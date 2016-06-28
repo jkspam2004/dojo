@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Contact Card</title>
+	<meta charset="utf-8">
+	<meta name="description" content="use jQuery .on() instead of callback function to append new data">
+	<link rel="stylesheet" type="text/css" href="contact_card.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#form1').submit(function() {
+			// $('.btn').click(function() {
+				var newcard = "<div class='card'><p>" + $('#firstname').val() + ' ' + $('#lastname').val() + "</p><p>Click for description!</p><p style='display:none'>" + $('#description').val() + "</p></div>";
+				$('div#cards').append(newcard);
+				$('.field').val('');
+				return false;
+			});
+			$(document).on('click', 'div.card', function() {
+				$(this).children().toggle();
+			});
+		});
+		
+	</script>
+</head>
+<body>
+	<div id="container">
+		<h1>Contact Cards</h1>
+
+		<div id="form">
+			<form id="form1">
+				<label>First Name:<input id="firstname" class="field" type="text" placeholder="first name"></label>
+				<label>Last Name:<input id="lastname" class="field" type="text" placeholder="last name"></label>
+				<p>Description:</p>
+				<textarea id="description" class="field" rows="10" cols="30"></textarea>
+				<p><input type="submit" value="Add Contact"></p>
+				<!-- <p><button class="btn">Add Contact</button></p> -->
+			</form>
+		</div> <!-- div#form -->
+
+		<!-- contact cards go here -->
+		<div id="cards"></div> 
+	</div> <!-- container -->
+</body>
+</html>

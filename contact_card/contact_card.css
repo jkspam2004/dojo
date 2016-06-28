@@ -1,0 +1,32 @@
+/* global css settings reset */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+#container {
+	width: 950px;
+	margin: 0px auto;
+}
+h1 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+#form, #cards {
+	display: inline-block;
+	vertical-align: top;
+}
+	#form {
+		width: 500px;
+	}
+	#cards {
+		width: 400px;
+	}	
+label {
+	display: block;
+	padding: 10px;
+}
+.card {
+	width: 200px;
+	height: 100px;
+	border: 1px solid grey;
+}
