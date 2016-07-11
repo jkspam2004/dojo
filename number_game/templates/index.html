@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Great Number Game</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var value = '{{guess}}';
+			if (value == 'match') {
+				$('#result').css("background-color", "green");
+			}
+		});
+	</script>
+</head>
+<body>
+	<div id="container">
+		<h1>Welcome to the Great Number Game</h1>
+		<h3>I am thinking of a number between 1 and 100</h3>
+		<h3>Take a guess!</h3>
+
+		<form id="number_game" action="/" method="post">
+			{% if guess != 'none' %}
+				<div id="result">
+					{% if guess == 'low' %}
+						<p>Too {{guess}}!</p>
+					{% elif guess == 'high' %}
+						<p>Too {{guess}}!</p>
+					{% else %}
+						<!-- reset the game here -->
+						<p>{{session['great_number']}} was the number!</p>
+						<input type="hidden" name="number" value="-1" />
+						<input type="hidden" name="reset" value="1" />
+						<input class="again" type="submit" value="Play again!" />
+					{% endif %}
+				</div> <!-- end div#result -->
+			{% endif %}
+
+			{% if guess != 'match' %}
+				<!-- the box to enter the guess number -->
+				<input type="text" name="number" />
+				<input type="submit" value="Submit" />
+			{% endif %}
+		</form>
+	</div> <!-- end div#container -->
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Ninja Money</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var activities = "{{session['activities']}}";
+
+			//document.getElementById("textarea").innerHTML = activities;
+			var activity = activities.split('\n');
+			for (var i in activity) {				// each activity is a newline to be set inside p tags
+				strings = activity[i].split('|') 	// split to get the string and gain/loss status
+				$('div.editable').append("<p class='" + strings[1] + "'>" + strings[0] + "</p>")
+			}
+			var objDiv = document.getElementById("editable"); 
+			objDiv.scrollTop = objDiv.scrollHeight;	// auto scroll to see more items added to the bottom
+		});
+	</script>
+</head>
+<body>
+	<div id='container'>
+		<h2>Ninja Gold</h2>
+
+		<p>
+			Your Gold: <input type="text" value="{{session['gold']}}" placeholder="0" readonly />
+		</p>
+
+		<div class="place">
+			<form id="farm" name="farm" action="/process_money" method="post">
+				<p class="title">Farm</p>
+				<p class="earn">(earns 10-20 golds)</p>
+				<input type="hidden" name="action" value="play_farm" />
+				<input class="button" type="submit" value="Find Gold!" />
+			</form>
+		</div> <!-- end div.place for Farm -->
+
+		<div class="place">
+			<form id="cave" name="cave" action="/process_money" method="post">
+				<p class="title">Cave</p>
+				<p class="earn">(earns 5-10 golds)</p>
+				<input type="hidden" name="action" value="play_cave" />
+				<input class="button" type="submit" value="Find Gold!" />
+
+			</form>		
+		</div> <!-- end div.place for Cave -->
+
+		<div class="place">
+			<form id="house" name="house" action="/process_money" method="post">
+				<p class="title">House</p>
+				<p class="earn">(earns 2-5 golds)</p>
+				<input type="hidden" name="action" value="play_house" />
+				<input class="button" type="submit" value="Find Gold!" />
+
+			</form>		
+		</div> <!-- end div.place for House -->
+
+		<div class="place">
+			<form id="casino" name="casino" action="/process_money" method="post">
+				<p class="title">Casino</p>
+				<p class="earn">(earns/takes 0-50 golds)</p>
+				<input type="hidden" name="action" value="play_casino" />
+				<input class="button" type="submit" value="Find Gold!" />
+
+			</form>		
+		</div> <!-- end div.place for Casino -->
+
+		<p>Activities:</p>
+		<!-- attempted to add the activities as a textarea but could not add font color
+		attributes to each line item. made a div that scrolls with overflow: auto instead-->
+		<div id="editable" class="editable"></div>
+
+		<!-- reset the total gold and activities -->
+		<form id="reset" name="reset" action="/reset" method="post">
+			<input type="submit" name="reset" value="Reset" />
+		</form>
+
+
+	</div> <!-- end div#container -->
+</body>
+</html>

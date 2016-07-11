@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Landing Page</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+       	<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>      
+        <!-- linking an image -->
+    </head>
+    <body>
+		<div id="container">
+    		<h3>Welcome to the Flask Project</h3>
+			<h4>We are playing with routes</h4>
+			<p><a href="/ninjas">Click for Ninjas</a></p>
+			<p><a href="/dojos/new">Click for Dojos</a></p>
+		</div>
+    </body>
+</html>

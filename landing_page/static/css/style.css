@@ -1,0 +1,14 @@
+/* global reset settings */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+#container {
+	width: 500px;
+    margin: 0px auto;
+}
+p {
+	color: blue;
+	padding: 20px 0px;
+}
+

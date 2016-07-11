@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head lang="en">
+    <title>Counter</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+	<div id='container'>
+
+		<form id="counter" action="/" method="post">
+			{% if title == 'ninja' %}
+				<h1> Hello, {{title}}</h1>
+			{% elif title == 'hacker' %}
+				<h1> Hello, {{title}}</h1>
+			{% else %}
+				<h1>Who are you?</h1>
+				<button class="first" name="title" value="ninja">Ninja</button>
+				<button name="title" value="hacker">Hacker</button>
+			{% endif %}
+			
+			<h2>Counter</h2>
+			<h3>{{session['count']}} times</h3>
+
+			{% if title == 'ninja' %}
+				<button class="first" name="add" value="true">+2</button>
+				<input type="hidden" name="title" value={{title}}>
+				<button class="reset" name="reset" value="true">I am not who I say I am</button>
+			{% elif title == 'hacker' %}
+				<button class="first" name="add" value="false">Reset</button>
+				<input type="hidden" name="title" value={{title}}>
+				<button class="reset" name="reset" value="true">I am not who I say I am</button>
+			{% endif %}
+
+		</form>
+
+
+	</div> <!-- end container -->
+
+  </body>
+</html>
