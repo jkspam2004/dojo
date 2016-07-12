@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head lang="en">
+    <title>Registration Form</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+	<div id='container'>
+		<form id="registration" action="/" method="post"> 
+			{% if title %} <!-- pass processed so we don't validate form on initial page load -->
+				<input type="hidden" name="processed" value="1" />
+			{% endif %}
+
+			<!-- print the two buttons to select ninja or hacker -->
+			{% if title == 'ninja' %}
+				<h1> Hello, {{title}}</h1>
+				<input type="hidden" name="title" value="ninja" />
+			{% elif title == 'hacker' %}
+				<h1> Hello, {{title}}</h1>
+				<input type="hidden" name="title" value="hacker" />
+			{% else %}
+				<h1>Who are you?</h1>
+				<input type="hidden" name="processed" value="0" />
+				<button class="first" name="title" value="ninja">Ninja</button>
+				<button name="title" value="hacker">Hacker</button>
+			{% endif %}
+			
+			{% if title == 'ninja' or title == 'hacker' %}
+				<!-- print flash messages -->
+				{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							<p class="{{category}}">{{message}}</p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+
+				{% if processed and not error_cnt %}
+					<!-- print out the successful form submit info except password -->
+					<p>Here is what you told me:</p>
+					<p>Email: {{request.form['email']}}</p>
+					<p>First Name: {{request.form['firstname']}}</p>
+					<p>Last Name: {{request.form['lastname']}}</p>
+				{% else %}
+					<!-- print out the form -->
+
+					<p>
+						<label>Email:<input type="text" name="email" value="{{request.form['email']}}" /></label>
+					</p>
+
+					<p>
+						<label>First Name:<input type="text" name="firstname" value="{{request.form['firstname']}}" /></label>
+					</p>
+					<p>
+						<label>Last Name:<input type="text" name="lastname" value="{{request.form['lastname']}}" /></label>
+					</p>
+					<p>
+						<label>Password:<input type="text" name="password" /></label>
+					</p>
+					<p>
+						<label>Confirm Password:<input type="text" name="confirm_password" /></label>
+					</p>
+
+					{% if title == 'hacker' %}
+						<p>
+							<label>Birth-date (YYYY-MM-DD):<input type="text" name="birthdate" /></label>
+						</p>					
+					{% endif %}
+					<p><input class="submit" type="submit" value="Submit"></p>
+				{% endif %}
+
+				<!-- reset button to return to page to choose ninja/hacker -->
+				<button class="reset" name="reset" value="true">I am not who I say I am</button>
+			{% endif %}
+		</form>
+
+
+	</div> <!-- end container -->
+
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Disappearing Ninjas</title>
+	<meta charset="utf-8">
+	<meta type="description" content="Exercise in advanced routing">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+	<div id="container">
+		<p>
+			<a href="/ninja/blue">Leonardo</a>
+			<a href="/ninja/orange">Michelangelo</a>
+			<a href="/ninja/red">Raphael</a>
+			<a href="/ninja/purple">Donatello</a>
+			<a href="/ninja/black">Megan</a>
+			<a href="/ninja">All</a>
+			<a href="/">None</a>
+		</p>
+		{% if color %}
+			{% if color == 'blue' %}
+				<p><img src="{{ url_for('static', filename='img/leonardo.jpg') }}"></p>
+			{% elif color == 'orange' %}
+				<p><img src="{{ url_for('static', filename='img/michelangelo.jpg') }}"></p>			
+			{% elif color == 'red' %}
+				<p><img src="{{ url_for('static', filename='img/raphael.jpg') }}"></p>				
+			{% elif color == 'purple' %}
+				<p><img src="{{ url_for('static', filename='img/donatello.jpg') }}"></p>
+			{% elif color == 'all' %}
+				<div>
+					<p class="all"><img src="{{ url_for('static', filename='img/leonardo.jpg') }}"></p>
+					<p class="all"><img src="{{ url_for('static', filename='img/michelangelo.jpg') }}"></p>
+					<p class="all"><img src="{{ url_for('static', filename='img/raphael.jpg') }}"></p>
+					<p class="all"><img src="{{ url_for('static', filename='img/donatello.jpg') }}"></p>
+				</div>
+			{% else %}	
+				<p><img src="{{ url_for('static', filename='img/notapril.jpg') }}"></p>
+			{% endif %}
+		{% else %}
+			<h2>No ninjas here</h2>
+		{% endif %}
+
+
+
+	</div> <!-- end div#container -->
+
+</body>
+</html>

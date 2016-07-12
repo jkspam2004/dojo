@@ -1,0 +1,27 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+#container {
+	margin: 0px auto;
+	width: 900px;
+}
+h2 {
+	margin-top: 20px;
+	text-align: center;
+}
+p {
+	margin: 0px auto;
+	text-align: center;
+}
+p.all {
+	display: inline-block;
+	vertical-align: top;
+}
+	p.all img {
+		width: 200px;
+		height: 400px;
+	}
+a {
+	padding: 1px;
+}

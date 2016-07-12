@@ -12,9 +12,9 @@ def index():
 	print "index - method: " + request.method
 
 	# let's initialize some session variables
-	if not session.get('gold'):
+	if not 'gold' in session:
 		session['gold'] = 0
-	if not session.get('activities'):
+	if not 'activities' in session:
 		session['activities'] = ''
 
 	return render_template('index.html')

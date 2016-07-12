@@ -1,0 +1,66 @@
+/* global reset */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+
+#container {
+	width: 600px;
+	margin: 0px auto;
+}
+
+h1 {
+	padding: 10px;
+	text-align: center;
+}
+h2 {
+	padding: 10px;
+	text-align: center;
+}
+h3 {
+	padding: 10px;
+	text-align: center;
+}
+
+button {
+	width: 60px;
+	height: 30px;
+	background-color: blue;
+	color: white;
+	border-radius: 10px;
+	
+}
+	button.first {
+		margin: 0px 0px 20px 250px;
+	}
+	button.reset {
+		display: block;
+		margin-left: 300px;
+		width: 140px;
+		background-color: white;
+		margin-top: 200px;
+		color: black;
+	}
+input.submit {
+	margin-top: 30px;
+}
+p {
+	padding: 10px;
+}
+	p.empty {
+		color: red;
+	}
+	p.invalid {
+		color: purple;
+	}
+	p.password {
+		color: orange;
+	}
+	p.success {
+		color: green;
+	}
+
+
+
+
+
