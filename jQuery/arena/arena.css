@@ -1,0 +1,45 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+#container {
+	background: black;
+	height: 800px;
+	padding-top: 200px;
+}
+#arena, #players {
+	width: 200px;
+	height: 150px;
+	opacity: 0.6;
+	background-color: gray;
+	border-radius: 10px;
+	margin-left: 500px;
+	padding: 30px;
+}
+#players {
+	display: none;
+}
+img{
+	width: 200px;
+	height: 300px;
+	display: none;
+}
+button {
+	font-size: 14px;
+	padding: 5px;
+	width: 55px;
+	height: 30px;
+	border-radius: 5px;
+}
+#leftninja {
+	margin-top: 40px;
+	margin-left: 100px;
+	display: inline-block;
+	vertical-align: top;
+}
+#rightninja {
+	margin-top: 40px;
+	margin-left: 600px;
+	display: inline-block;
+	vertical-align: top;
+}

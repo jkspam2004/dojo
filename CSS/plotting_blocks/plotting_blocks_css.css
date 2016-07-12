@@ -1,0 +1,45 @@
+/* reset settings */
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#wrapper{
+	width: 950px;
+	background-color: silver;
+	margin: 10px auto;
+	padding: 15px;
+	height: 590px;
+}
+#header{
+	height: 150px;
+	background-color: green;
+}
+#navigation{
+	height: 300px;
+	width: 200px;
+	background-color: blue;
+	margin-top: 15px;
+}
+#main_content{
+	height: 400px;
+	width: 700px;
+	background-color: red;
+	padding: 12px;
+	position: absolute;
+	top: 190px;
+	left: 400px;
+
+}
+.subcontents{
+	height: 200px;
+	width: 210px;
+	background-color: yellow;
+	display: inline-block;
+	margin-right: 10px;
+	margin-bottom: 20px;
+}
+#advertisement{
+	height: 120px;
+	width: 660px;
+	background-color: purple;
+}

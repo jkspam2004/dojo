@@ -1,0 +1,37 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+#container {
+	width: 700px;
+	margin: 0px auto;
+	padding: 50px;
+}
+h1 {
+	text-align: center;
+	margin-bottom: 50px;
+}
+p {
+	padding: 10px 0px 10px 20px;
+	margin-left: 20px;
+}
+input#name {
+	margin-top: 80px;
+}
+	input.submit {
+		margin-top: 40px;
+		width: 100px;
+		height: 30px;
+		background-color: blue;
+		color: white;
+		border-radius: 5px;
+	}
+span.error {
+	padding: 10px;
+	color: red;
+	font-size: 14px;
+}
+/* change the size of the datepicker widget */
+div.ui-datepicker{
+ font-size:10px;
+}

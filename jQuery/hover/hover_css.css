@@ -1,0 +1,11 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+#container {
+	margin: 0px auto;
+	margin-top: 40px;
+	width: 764px;
+	background-color: #eee;
+	height: 380px;
+}

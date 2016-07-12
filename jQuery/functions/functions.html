@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Practicing jQuery Functions</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="functions_css.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="functions.js"></script>
+</head>
+
+<body>
+	<div id="container">
+		<!-- .addClass and .removeClass example -->
+		<h3 class="title"><a href="http://api.jquery.com/addClass/">addClass</a> and <a href="http://api.jquery.com/removeClass/">removeClass</a>
+		</h3>
+		<p class="def">
+			Adds the specified class(es) to each element in the set of matched elements.
+		</p>
+		<button id="f_addClass">add class 'fruits' to ul element</button>
+		<button id="f_removeClass">remove 'fruits' from ul element</button>
+		<ul>
+			<li>apples</li>
+			<li>bananas</li>
+			<li>blueberries</li>
+		</ul>
+		<hr>
+
+		<!-- .append -->
+		<h3 class="title"><a href="http://api.jquery.com/append/">append</a></h3>
+		<p class="def">
+			Insert content, specified by the parameter, to the end of each element in the set of matched elements.
+		</p>
+		<button id="f_append">append to the end of the text before p tag closes</button>
+		<p class="append">my name is </p>
+		<hr>
+
+		<!-- .after -->
+		<h3 class="title"><a href="http://api.jquery.com/after/">after</a></h3>
+		<p class="def">
+			Insert content, specified by the parameter, after each element in the set of matched elements.
+		</p>
+		<button id="f_after">add text within div tag after the closing p tag</button>
+		<p class="after">hey there!</p>
+		<hr>
+
+		<!-- .prepend -->
+		<h3 class="title"><a href="http://api.jquery.com/before/">prepend</a></h3>
+		<p class="def">
+			Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.
+		</p>
+		<button id="f_prepend">add text to the beginning of text in p element</button>
+		<p class="prepend">amigo!</p>
+		<hr>
+
+		<!-- .before -->
+		<h3 class="title"><a href="http://api.jquery.com/before/">before</a></h3>
+		<p class="def">
+			Insert content, specified by the parameter, before each element in the set of matched elements
+		</p>
+		<button id="f_before">insert text within p tag before p element</button>
+		<p class="before">chicken!</p>
+		<hr>
+
+		<!-- .attr -->
+		<h3 class="title"><a href="http://api.jquery.com/attr/">attr</a></h3>
+		<h4>(getter/setter)</h4>
+		<p class="def">
+			Get the value of an attribute for the first element in the set of matched elements
+		</p>
+		<button id="f_attr1">get "class" attr of h3 element</button>
+		<p class="attr1">class attribute for h3 tag is...</p>
+		<p class="def">
+			Set one or more attributes for the set of matched elements.
+		</p>
+		<button id="f_attr2">change class attribute of p tag from "attr2" to "new"</button>
+		<p class="attr2">"p.new" class has purple background</p>		
+		<hr>
+
+		<!-- .html-->
+		<h3 class="title"><a href="http://api.jquery.com/html1/">html</a></h3>
+		<h4>(getter/setter)</h4>
+		<p class="def">
+			Get the HTML contents of the first element in the set of matched elements.
+		</p>
+		<button id="f_html_get">get the contents of button#f_html_get</button>
+		<p class="html">The html content of button#f_html is</p>
+		<p class="def">
+			Set the HTML contents of each element in the set of matched elements.
+		</p>
+		<button id="f_html_set">set the contents of button#f_html_set</button>
+		<p class="html2">overwrite the button with something</p>
+		<hr>
+
+		<!-- .text -->
+		<h3 class="title"><a href="http://api.jquery.com/text/">text</a></h3>
+		<h4>(getter/setter)</h4>
+		<p class="def">
+			Get the combined text contents of each element in the set of matched elements, including their descendants
+		</p>
+		<button id="f_text_get">get the text in p.html2</button>
+		<p class="text1">put it here</p>
+		<p class="def">
+			Set the content of each element in the set of matched elements to the specified text.
+		</p>
+		<button id="f_text_set">set text here</button>
+		<p class="text2"></p>
+		<hr>
+
+		<!-- .val -->
+		<h3 class="title"><a href="http://api.jquery.com/val/">val</a></h3>
+		<h4>(getter/setter)</h4>
+		<p class="def">
+			Get the current value of the first element in the set of matched elements.
+		</p>
+		<button id="f_val_get">get the value from the text box</button>
+		<input id="play" type="text" value="let's play">
+		<p class="val1"></p>
+		<p class="def">
+			Set the value of each element in the set of matched elements.
+		</p>
+		<button id="f_val_set">set a value in the text box</button>
+		<hr>
+
+		<!-- .toggle -->
+		<h3 class="title"><a href="http://api.jquery.com/toggle/">toggle</a></h3>
+		<p class="def">
+			Display or hide the matched elements.
+		</p>
+		<button id="f_toggle">Toggle</button>
+		<p class="toggle">Time for dinner</p>
+		<p class="toggle" style="display: none">Yum yum!!</p>
+		<button id="f_toggle2">Toggle to show and hide</button>
+		<p class="toggle2">Now you see me</p>
+		<hr>
+
+		<!-- .hide -->
+		<h3 class="title"><a href="http://api.jquery.com/hide/">hide</a></h3>
+		<p class="def">
+			Hide the matched elements.
+		</p>
+		<button id="f_hide">Click to hide me</button>
+		<hr>
+
+		<!-- .show -->
+		<h3 class="title"><a href="http://api.jquery.com/show/">show</a></h3>
+		<p class="def">
+			Display the matched elements
+		</p>
+		<button id="f_show">Click to unhide the button</button>
+		<hr>
+
+		<!-- .slideDown -->
+		<h3 class="title"><a href="http://api.jquery.com/slidedown/">slideDown</a></h3>
+		<p class="def">
+			 Display the matched elements with a sliding motion.			
+		</p>
+		<button id="f_slidedown">Click to slide down divs</button>
+		<div class="hide"></div>
+		<div class="hide"></div>
+		<div class="hide"></div>
+		<hr>
+
+		<!-- .slideUp -->
+		<h3 class="title"><a href="http://api.jquery.com/slideup/">slideUp</a></h3>
+		<p class="def">
+			Hide the matched elements with a sliding motion.
+		</p>
+		<button id="f_slideup">Click to hide the divs, sliding up</button>
+		<hr>
+
+
+		<!-- .slideToggle -->
+		<h3 class="title"><a href="http://api.jquery.com/slidetoggle/">slideToggle</a></h3>
+		<p class="def">
+			Display or hide the matched elements with a sliding motion.		
+		</p>
+		<button id="f_slidetoggle">Look up at slideDown and click me</button>
+		<hr>
+
+		<!-- .fadeOut -->
+		<h3 class="title"><a href="http://api.jquery.com/fadeout/">fadeOut</a></h3>
+		<p class="def">
+			Hide the matched elements by fading them to transparent.
+		</p>
+		<button id="f_fadeout">Fade away</button>
+		<p class="fadeout">going going gone ......</p>
+		<hr>
+
+		<!-- .fadeIn -->
+		<h3 class="title"><a href="http://api.jquery.com/fadein/">fadeIn</a></h3>
+		<p class="def">
+			Display the matched elements by fading them to opaque.
+		</p>
+		<button id="f_fadein">Bring me back</button>
+		<hr>
+
+		<!-- .focus -->
+		<h3 class="title"><a href="http://api.jquery.com/focus/">focus</a></h3>
+		<p class="def">
+			Bind an event handler to the "focus" JavaScript event, or trigger that event on an element.
+		</p>
+		<input type="text">
+		<span>and now you type something</span>
+		<div>Click in the box to get focus</div>
+		<hr>
+
+		<!-- .click -->
+		<h3 class="title"><a href="http://api.jquery.com/click/">click</a></h3>
+		<p class="def">
+			Bind an event handler to the "click" JavaScript event, or trigger that event on an element.
+		</p>
+		<div class="click">First Paragraph</div>
+		<div class="click">Second Paragraph</div>
+		<div class="click">Yet one more Paragraph</div>
+		<hr>
+
+		<!-- .data -->
+		<h3 class="title"><a href="http://api.jquery.com/data/">data</a></h3>
+		<p class="def">
+			Store arbitrary data associated with the matched elements or return the value at the named data store for the first element in the set of matched elements.
+		</p>
+		<button id="f_data1">Attach data to div element first. Nothing to see otherwise</button>
+		<button id="f_data2">Get data attached to div element</button>
+		<div id="data"></div>
+		<hr>
+
+	</div> <!-- div#container -->
+</body>
+</html>

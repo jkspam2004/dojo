@@ -1,0 +1,43 @@
+/***** CSS Reset *****/
+
+* {
+	margin: 0px;
+	padding: 0px;
+	border: 0 none;
+	font-size: 100%;
+	font-family: verdana, sans-serif;
+	vertical-align: top;
+}
+
+/***** Wrapper *****/
+
+#wrapper {
+	width: 970px;
+	margin: 20px auto;
+}
+
+h1 {
+	margin: 20px 0px;
+}
+
+table {
+	border: 1px solid black;
+
+}
+
+thead {
+	border: 1px solid black;
+}
+
+td {
+	border: 1px solid grey;
+}
+
+input {
+	border: 1px solid black;
+}
+
+button {
+	padding: 5px 10px;
+	broder: 1px solid black;
+}

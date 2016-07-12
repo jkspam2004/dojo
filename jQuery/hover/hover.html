@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Hover In/Out</title>
+	<meta charset="utf-8">
+	<meta name="description" content="On hover in/out switch the images">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="hover_css.css">
+	<script type="text/javascript">
+		$(document).ready( function(){
+			// swap images out
+			$('img').hover( function() {
+				var orig_src = $(this).attr("src");
+				$(this).attr("src", $(this).attr("data-alt-src"));
+				$(this).attr("data-alt-src", orig_src);
+			}, function() {
+				var orig_src = $(this).attr("src");
+				$(this).attr("src", $(this).attr("data-alt-src"));
+				$(this).attr("data-alt-src", orig_src);
+			});
+		});
+		
+	</script>
+</head>
+<body>
+	<div id="container">
+		<img src="images/market.png" data-alt-src="images/rambutan.png" alt="someimage">
+		<img src="images/market.png" data-alt-src="images/rambutan.png" alt="someimage">
+		<img src="images/market.png" data-alt-src="images/rambutan.png" alt="someimage">
+		<img src="images/market.png" data-alt-src="images/rambutan.png" alt="someimage">
+		<img src="images/market.png" data-alt-src="images/rambutan.png" alt="someimage">
+		<img src="images/market.png" data-alt-src="images/rambutan.png" alt="someimage">
+	</div>
+
+</body>
+</html>

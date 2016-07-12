@@ -1,0 +1,29 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+#container {
+	margin: 0px auto;
+	padding: 20px;
+	width: 448px;
+	border: 1px solid #009AC7;
+}
+button {
+	background-color: #009AC7;
+	color: white;
+	width: 80px;
+	height: 40px;
+	border-radius: 10px;
+}
+
+/* testing out positioning and placeholder to leave gap where image hidden*/
+div img:first-child {
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+div.placeholder {
+	width: 106px;
+	height: 103px;
+	background-color: orange;
+}

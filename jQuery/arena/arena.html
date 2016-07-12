@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Arena</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="arena.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready( function() {
+			var clicked = 0;
+		    var id = {};
+		    id['beach'] = 'ecj5j11o5';
+		    id['black'] = 'fg39uzmb9';
+		    id['dojo'] = 'urd2vljn9';
+		    id['forest'] = '9izee656d';
+		    id['green'] = 'e65gfxsj9';
+		    id['leo'] = '621xoxvhx';
+		    id['matrix'] = 'ch0ylm27p';
+		    id['planet'] = 'h470ndpkl';
+		    id['red'] = 'dlv0qzool';
+		    id['snow'] = 'gtzi41ayd';
+		    id['white'] = 'pdiw1sjat';
+		    id['yellow'] = '3sdte6mk5';
+
+
+			$('button').hover(function() {
+				console.log(id[$(this).attr('id')]);
+		        $('#container').css('background-image', 'url("https://s32.postimg.org/' + id[$(this).attr('id')] + '/' + $(this).attr('id') + '.jpg")');
+
+				// $('#container').css('background-image', 'url("images/' + $(this).attr('id') + '.jpg"');
+			}, function() {
+				if (!clicked) {
+					$('#container').css('background-image', '');
+				}
+			});			
+			$('button').click(function() {
+				clicked = !clicked;
+		        $('#container').css('background-image', 'url("https://s32.postimg.org/' + id[$(this).attr('id')] + '/' + $(this).attr('id') + '.jpg")');
+				// $('#container').css('background-image', 'url("images/' + $(this).attr('id') + '.jpg"');
+				$('#arena').hide();
+				$('#players').show();
+			});	
+
+			var ninjas = 0;
+			function hide_player_box (ninjas) {
+				if (ninjas >= 2) {
+					$('#players').hide();
+				}
+			}
+			$('#left').change(function(){
+				if($(this).val() === "select") {
+					return;
+				}
+				$('#leftninja').find("img").attr("src", 'https://s32.postimg.org/' + id[$(this).val()] + '/' + $(this).val() + '.png')
+				// $('#leftninja').find("img").attr("src", 'images/' + $(this).val() + '.png')
+				$('#leftninja').find("img").show();
+				ninjas++;
+				hide_player_box(ninjas);
+			});
+			$('#right').change(function(){
+				if($(this).val() === "select") {
+					return;
+				}
+				$('#rightninja').find("img").attr("src", 'https://s32.postimg.org/' + id[$(this).val()] + '/' + $(this).val() + '.png')
+				// $('#rightninja').find("img").attr("src", 'images/' + $(this).val() + '.png')
+				$('#rightninja').find('img').show();
+				ninjas++;
+				hide_player_box(ninjas);
+
+			});
+		});
+
+	</script>
+</head>
+<body>
+	<div id="container">
+		<div id="arena">
+			<h1>Select Arena</h1>
+			<button id="beach">beach</button>
+			<button id="dojo">dojo</button>
+			<button id="forest">forest</button>
+			<button id="planet">planet</button>
+			<button id="matrix">matrix</button>
+			<button id="snow">snow</button>
+
+		</div> <!-- div#arena -->
+		<div id="players">
+			<h1>Select Players</h1>
+			<form>
+				<select name="dropdown" id="left">
+					<option value="select">Select</option>
+					<option value="yellow">Yellow Ninja</option>
+					<option value="white">White Ninja</option>
+					<option value="green">Green Ninja</option>
+					<option value = "red">Red Ninja</option>
+					<option value="black">Black Ninja</option>
+				</select>
+				<select name="dropdown" id="right">
+					<option value="select">Select</option>
+					<option value="yellow">Yellow Ninja</option>
+					<option value="white">White Ninja</option>
+					<option value="green">Green Ninja</option>
+					<option value = "red">Red Ninja</option>
+					<option value="black">Black Ninja</option>
+				</select>
+			</form>
+		</div><!-- div#players -->
+		<div id="leftninja">
+			<img src="" alt="">
+		</div>
+		<div id="rightninja">
+			<img src="" alt="">
+		</div>
+	</div> <!-- div#container -->
+
+</body>
+</html>

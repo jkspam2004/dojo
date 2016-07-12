@@ -1,0 +1,72 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	/*font-family: "Arial";*/
+	/*font-size: 16px;*/
+}
+#container {
+	width: 970px;
+	margin: 0px auto;
+	background-color: #eee;
+	padding: 10px;
+}
+button {
+	background-color: #009AC7;
+	color: white;
+	border-radius: 5px;
+	font-size: 12px;
+	height: 30px;
+	margin-bottom: 10px;
+	padding: 5px;
+}
+a {
+	color: blue;
+}
+h3.title {
+	padding-top: 15px;
+	text-align: center;
+}
+h4 {
+	text-align: center;
+}
+p.def {
+	text-align: center;
+	margin-bottom: 30px;
+}
+hr {
+	margin-top: 10px;
+}
+ul.fruits {
+	list-style: inside square; 
+	color: blue;
+}
+
+/* make all p elements not of class def inline block with the button */
+button, p:not(.def) {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 20px;
+}
+div.hide {
+	width: 80px;
+	height: 40px;
+	background-color: purple;
+	border: 1px solid white;
+	display: none;
+}
+span {
+	display: none;
+}
+div#data {
+	width: 200px;
+	height: 20px;
+	background-color: orange;
+}
+p.attr2 {
+	background-color: green;
+}
+p.new {
+	background-color: purple;
+}
+
+

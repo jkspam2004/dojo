@@ -1,0 +1,15 @@
+$ mkdir test
+$ cd test
+$ touch index.html styles.css
+$ git init
+$ vi index.html
+$ git add index.html
+$ git commit -m "update html"
+$ vi styles.css 
+$ git add styles.css 
+$ git commit -m "update css"
+$ git log
+$ git revert 60125a174
+$ vi styles.css
+$ git add styles.css
+$ git commit -m "fix commits"

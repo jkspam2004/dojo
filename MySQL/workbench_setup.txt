@@ -1,0 +1,15 @@
+MySQL Workbench Setup
+
+1. Launch MAMP application
+2. Click Start Servers
+3. Launch MySQL Workbench
+4. Connect to MySQL with password 'root'
+
+Mysql commands:
+
+SHOW DATABASES;
+USE TWITTER;
+SHOW TABLES;
+SELECT COUNT(1) FROM users;
+SELECT * FROM users;
+

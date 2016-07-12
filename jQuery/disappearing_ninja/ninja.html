@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Disappearing Ninja</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="ninja_css.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('img').click(function(){
+				$(this).css("visibility","hidden");
+				// $(this).fadeOut(2000);  // .fadeOut and .hide did not preserve the space when hidden. other images moved to fill gap
+				// $(this).attr("src", "blank.png"); // cheat :) - replaced with blank image of same size as ninja
+				// $(this).attr("data-alt-src");
+			});
+			$('button').click(function(){
+				$('img').css("visibility", "visible");
+				// $('img').show('slow');
+				// $('img').attr("src", "ninja.png");  // show all ninja images
+				// $('img').attr('src');
+
+			});
+		});
+
+		
+	</script>
+</head>
+<body>
+	<div id="container">
+		<img src="ninja.png" alt="someimage" data-alt-src="blank.png">
+		<img src="ninja.png" alt="someimage" data-alt-src="blank.png">
+		<img src="ninja.png" alt="someimage" data-alt-src="blank.png">
+		<img src="ninja.png" alt="someimage" data-alt-src="blank.png">
+		<img src="ninja.png" alt="someimage" data-alt-src="blank.png">
+		<img src="ninja.png" alt="someimage" data-alt-src="blank.png">
+		<img src="ninja.png" alt="someimage" data-alt-src="blank.png">
+		<img src="ninja.png" alt="someimage" data-alt-src="blank.png">
+		<button class="restore">Restore</button>
+	</div>
+</body>
+</html>

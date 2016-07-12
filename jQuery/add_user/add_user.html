@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Add User</title>
+	<meta charset="utf-8">
+	<meta name="description" content="add user to table by inputing in form">
+	<link rel="stylesheet" type="text/css" href="add_user_css.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#new_user").click(function(){
+				var newrow = "<tr><td>"+$("#first_name").val()+"</td><td>"+$("#last_name").val()+"</td><td>"+$("#email").val()+"</td><td>"+$("#phone").val()+"</td></tr>";
+				$("#user_data").append(newrow);
+				$(".field").val("");
+			});
+		});	
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<h1>User records</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email Address</th>
+					<th>Contact Number</th>
+				</tr>
+			</thead>
+			<tbody id="user_data"></tbody>
+		</table>
+		<div id="user_input">
+			<h1>Add User</h1>
+			<table id="data_entry">
+				<tbody>
+					<tr>
+						<td>First Name:</td>
+						<td><input type="text" name="1" id="first_name" class="field"></td>
+					</tr>
+					<tr>
+						<td>Last Name:</td>
+						<td><input type="text" name="2" id="last_name" class="field"></td>
+					</tr>
+					<tr>
+						<td>Email Address:</td>
+						<td><input type="text" name="3" id="email" class="field"></td>
+					</tr>
+					<tr>
+						<td>Contact No.</td>
+						<td><input type="text" name="4" id="phone" class="field"></td>
+					</tr>
+				</tbody>
+			
+			</table>
+			<button id="new_user">Add User</button>
+		</div>  <!-- #user_input -->
+	</div>  <!-- #wrapper -->
+
+</body>
+</html>

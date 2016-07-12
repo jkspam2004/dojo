@@ -1,0 +1,144 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+#container{
+	width: 1190px;
+	margin: 0px auto;
+}
+#header {
+	height: 80px;
+	width: 1190px;
+	background-color: #7B0602;
+}
+#logo {
+	background-color: #7B0602;
+	height: 70px;
+	padding: 5px;
+	display: inline-block;
+}
+	#logo img{
+		margin-left: 30px;
+	}
+#header h1 {
+	display: inline-block;
+	color: white;
+	vertical-align: top;
+	padding: 20px 0;
+}
+
+#rightnav {
+	display: inline-block;
+	padding-top: 5px;
+	height: 70px;
+	vertical-align: top;
+	text-align: right;
+	margin-left: 350px;
+}
+	#rightnav li{
+		display: inline;
+		color: white;
+	}
+	#rightnav a {
+		color: yellow;
+		font-size: 12px;
+	}
+	#rightnav span{
+		color: white;
+		display: inline;
+		font-size: 12px;
+	}
+#navmenu {
+	border: 1px solid #B4B4B4;
+	background-color: #EEEEEE;
+	height: 30px;
+	margin-bottom: 25px;
+	padding: 10px 10px 0 10px;
+}
+	#navmenu li{
+		display: inline;
+		padding: 10px 0 10px 10px;
+	}
+	#navmenu a {
+		text-decoration: none;
+	}
+	#navmenu span {
+		padding: 10px;
+	}
+#sidebar {
+	background-color: #EEEEEE;
+	display: inline-block;
+	max-width: 140px;
+	border: 1px solid #B4B4B4;
+	padding: 10px;
+	margin-left: 30px;
+	color: grey;
+}
+	#sidebar li {
+		margin-bottom: 5px;
+		margin-left: 20px;
+		list-style: none;
+
+	}
+	#sidebar ul li a {
+		color: #9A0B3E;
+	}
+	#sidebar ul li:before {
+		content: "\00BB \0020";
+		margin-left: -12px;
+		color: #9A0B3E;
+	}
+
+#maincontent {
+	display: inline-block;
+	vertical-align: top;
+	width: 600px;
+	margin-left: 20px;
+}
+	#maincontent h4 {
+		color: #930902;
+		margin-bottom: 15px;
+		font-family: arial;
+		font-weight: bold;
+	}
+	#maincontent h5 {
+		color: #9A0B3E;
+		font-size: 14px;
+		margin-bottom: 15px;
+		margin-top: 15px
+	}
+	#maincontent ul {
+		margin-left: 40px;
+	}
+	#maincontent p {
+		margin-bottom: 10px;
+	}
+	#maincontent ol {
+		margin-left: 40px;
+		margin-bottom: 10px;
+	}
+	#maincontent ol a {
+		color: #9A0B3E;
+	}
+#maincontent ul a {
+	text-decoration: underline;
+	color: #9A0B3E;
+}
+.date {
+	font-weight: bold;
+}
+.release {
+	color: #9A0B3E;
+	text-decoration: underline;
+
+}
+p a {
+	color: #9A0B3E;
+}
+hr {
+	font-weight: bold;
+}
+p {
+	font-family: arial;
+	font-size: 14px;
+}
