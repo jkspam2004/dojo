@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Validation</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="container">
+        <form action='/add' method='post'>
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <p class="{{category}}">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <p class="title">
+                <label>Email Address: <input type="text" name="email" value="{{ request.form['email'] }}" /></label>
+            </p>
+            <input class="button" type="submit" value="Submit" />
+        </form>
+    </div>
+
+</body>
+</html>

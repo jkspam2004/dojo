@@ -1,0 +1,48 @@
+/* global reset settings */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+div#container {
+	margin: 0px auto;
+}
+div.results {
+	margin: 0px auto;
+	width: 500px;
+}
+p {
+	margin: 0px auto;
+	text-align: center;
+}
+	p.title {
+		margin: 200px 0px 20px 0px;
+		text-align: center;
+	}
+	p.error {
+		margin: 0px auto;
+		text-align: center;
+		background-color: red;
+		color: white;
+		width: 200px;
+		height: 20px;
+	}
+	p.success {
+		margin: 0px auto;
+		text-align: center;
+		background-color: green;
+		color: white;
+		width: 400px;
+		height: 40px;
+	}
+	p.row {
+		text-align: left;
+	}
+input.button {
+	margin: 0px auto;
+	display: block;
+}
+span {
+	text-align: right;
+	display: block;
+	float: right;
+}

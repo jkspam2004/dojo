@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Success Page</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+	<div id="container">
+		{% with messages = get_flashed_messages(with_categories=True) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					<p class="{{category}}">{{message}}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+
+		<!-- display email addresses in the database -->
+		<div class="results"> <!-- div email addresses -->		
+			<p class='title'>Email Addresses Entered:</p>
+			{% if results %}
+				{% for row in results %}
+					<p class="row">
+						{{row['email']}} 
+						{{row['added_time']}}
+						<a href="/delete/{{row['id']}}"><button>Remove</button></a>
+					</p>
+					{% endfor %}
+			{% endif %}
+		</div> <!-- end div email addresses -->	
+
+
+	</div><!-- end div#container -->
+
+</body>
+</html>
