@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome to Awesomeness!</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+	<!-- main page after successful login/registration -->
+	<div id="container">
+		<a href="/logout"><button class="logout">Logout</button></a>
+		<h3>Welcome to Awesomeness</h3>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					<p class='{{category}}'>{{message}}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		
+		{% if not user %}
+			<h4>No session.  Please log in.</h4>
+		{% else %}
+			<h4>Hi, {{ user[0]['first_name'] }}</h4>
+			<h5>You have logged in with {{ user[0]['email'] }}.  Keep your password safe.  You have been advised.</h5>
+		{% endif %}
+	</div><!-- end div#container -->
+
+</body>
+</html>
+

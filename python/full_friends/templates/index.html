@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Full Friends</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+	<div id="container">
+		<table>
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Time Added</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for friend in friends %}
+					<tr>
+						<td>{{ friend['first_name'] }}</td>
+						<td>{{ friend['last_name'] }}</td>
+						<td>{{ friend['email'] }}</td>
+						<td>{{ friend['created_at'] }}</td>
+						<td><a href="/friends/{{ friend['id'] }}/edit"><button>Edit</button></a>
+						<form action="/friends/{{ friend['id'] }}/delete" method="post">
+							<td><input class="submit" type="submit" value="Remove" /></td>
+						</form>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<p class="add"><a href="/add"><button>Add Friend</button></a></p>
+
+		
+	</div> <!-- div#container -->
+
+</body>
+</html>
