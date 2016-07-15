@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login and Registration</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+	<!-- index page which contains two forms: login and registration -->
+	<div id="container">
+		<form action="/process_login" method="POST">
+			<div class="login">
+				<p class="login"><input type="text" name="email" placeholder="Email"/></p>
+				<p class="login"><input type="text" name="password" placeholder="Password"/></p>
+				<p class="login"><input type="submit" value="Sign In" /></p>
+			</div> <!-- end div.login -->
+		</form> <!-- end form for login -->
+
+		<form action="/register" method="post">
+			<div class="register">
+				<h3>Register for greatness</h3>
+				{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							<p class='{{category}}'>{{message}}</p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<p class="register">First name</p>
+				<p class="register"><input type="text" name="first_name" ></p>
+				<p class="register">Last name</p>
+				<p class="register"><input type="text" name="last_name" /></p>
+				<p class="register">Email</p>
+				<p class="register"><input type="text" name="email" /></p>
+				<p class="register">Password (8 or more characters)</p>
+				<p class="register"><input type="text" name="password" /></p>
+				<p class="register">Confirm password</p>
+				<p class="register"><input type="text" name="confirm_password" /></p>
+				<p class="register"><input class="button" type="submit" value="Join Now">
+			</div> <!-- end div.register -->
+		</form> <!-- end form for register -->
+	</div> <!-- end div#container -->
+
+</body>
+</html>

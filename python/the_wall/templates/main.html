@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome to Awesomeness!</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+	<!-- main page after successful login/registration -->
+	<div id="container">
+		{% if not user %}
+			<h4>No session.  Please log in.</h4>
+		{% else %}
+			<div> <!-- header -->
+				<p class="title heading">Coding Dojo Wall</p>
+				<p class="title welcome">Welcome {{ user[0]['first_name'] }}</p>
+				<p class="title"><a href="/logout"><button class="logout">Logout</button></a></p>
+			</div> <!-- end header section -->
+			<hr>
+
+			<!-- flash messages -->
+			{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+					{% for category, message in messages %}
+						<p class='{{category}}'>{{message}}</p>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+
+			<form action="/post" method="post">
+				<div class="post">
+					<p class="post">Post a message</p>
+					<p><input class="postbox" type="text" name="message" /></p>
+					<p><input class="post" type="submit" value="Post a message" /></p>
+				</div> <!-- end div.post -->
+			</form>	
+
+			{% if messages %}
+				{% for message in messages %}
+					<p class="mtitle">{{ message.first_name }} {{ message.last_name }} - {{ message.message_created_at }} </p>
+					<p class="message">{{ message.message }}</p>
+
+					{% if comments %}
+						{% for comment in comments %}
+							{% if message.message_id == comment.message_id %}
+								<p class="ctitle">{{ comment.first_name }} {{ comment.last_name }} - {{ comment.comment_created_at }} </p>
+								<p class="comment">{{ comment.comment }}</p>
+							{% endif %}
+						{% endfor %}
+					{% endif %} <!-- end if comments -->
+
+					<form action="/comment" method="post">
+						<div class="comment">
+							<p class="cpost">Post a comment</p>
+							<p><input class="commentbox" type="text" name="comment" /></p>
+							<p><input type="hidden" name="messageid" value="{{ message.message_id }}" /></p>
+							<p><input class="comment" type="submit" value="Post a comment" /></p>
+						</div> <!-- end div.post -->
+					</form>
+
+				{% endfor %} <!-- end for messages -->
+			{% endif %} <!-- end if messages -->
+
+		{% endif %} <!-- end if logged in user -->
+	</div><!-- end div#container -->
+
+</body>
+</html>
+

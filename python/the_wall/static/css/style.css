@@ -1,0 +1,144 @@
+/* global reset settings */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+div#container {
+	margin: 0px auto;
+	width: 900px;
+	height: 500px;
+}
+	div.login {
+		margin: 20px 0px 0px 500px;
+
+	}
+	div.register {
+		width: 600px;
+		height: 700px;
+		margin: 20px auto;
+		border: 1px solid #ccc;
+	}
+	div.slogin {
+		width: 300px;
+		height: 200px;
+		margin: 20px auto;
+		padding: 40px;
+		border: 1px solid #ccc;
+	}
+	div.post {
+		margin: 20px auto;
+		/*width: 500px;*/
+	}
+h3 {
+	text-align: center;
+	margin: 30px auto;
+}
+h5 {
+	margin-top: 10px;
+}
+p {
+	margin: 0px auto;
+	text-align: center;
+}
+	p.login {
+		display: inline-block;
+		vertical-align: top;
+	}
+	p.register {
+		text-align: left;
+		padding: 1px 0px 5px 150px;
+		font-size: 14px;
+		font-family: 'Times';
+	}
+	p.slogin {
+		text-align: center;
+	}
+	p.register input {
+		width: 200px;
+	}
+	p.warning {
+		color: red;
+	}
+	p.success {
+		color: green;
+		margin-bottom: 20px;
+	}
+	p.title {
+		margin: 10px 0px;
+		display: inline-block;
+		vertical-align: top;
+	}
+	p.heading {
+		font-weight: bold;
+		font-size: 20px;
+	}
+	p.welcome {
+		margin-left: 500px;
+		text-align: center;
+	}
+	p.post {
+		font-size: 14px;
+	}
+	p.message {
+		text-align: left;
+		margin-bottom: 10px;
+	}
+	p.mtitle {
+		font-weight: bold;
+		text-align: left;
+		margin-top: 40px;
+	}
+	p.cpost {
+		font-size: 14px;
+	}
+	p.ctitle {
+		margin-left: 30px;
+		text-align: left;
+		font-weight: bold;
+	}
+	p.comment {
+		margin: 0px 0px 10px 30px;
+		text-align: left;
+
+	}
+input.button {
+	margin-top: 20px;
+	width: 60px;
+	height: 30px;
+	background-color: yellow;
+	border-radius: 5px;
+}
+	input.postbox {
+		width: 700px;
+		height: 50px;
+		margin-bottom: 10px;
+		border: 1px solid grey;
+	}
+	input.post {
+		margin-left: 500px;
+		width: 100px;
+		height: 25px;
+		background-color: #2B78E4;
+		color: white;
+		border-radius: 5px;
+	}
+	input.commentbox {
+		width: 600px;
+		height: 50px;
+		margin-bottom: 10px;
+		border: 1px solid grey;
+	}
+	input.comment {
+		margin-left: 500px;
+		width: 100px;
+		height: 25px;
+		background-color: green;
+		color: white;
+		border-radius: 5px;
+	}
+button.logout {
+	margin-left: 10px;
+	text-align: right;
+}
+
+

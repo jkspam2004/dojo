@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+	<!-- standalone login page -->
+	<div id="container">
+		<h3>With great power comes great responsibility. Be wise.</h3>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					<p class='{{category}}'>{{message}}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+
+		<form action="/process_login" method="POST">
+			<div class="slogin">
+				<p class="slogin"><input type="text" name="email" placeholder="Email"/></p>
+				<p class="slogin"><input type="text" name="password" placeholder="Password"/></p>
+				<p class="slogin"><input type="submit" value="Sign In" /></p>
+			</div> <!-- end div.login -->
+		</form> <!-- end form for login -->
+	</div> <!-- end div#container -->
+
+</body>
+</html>
