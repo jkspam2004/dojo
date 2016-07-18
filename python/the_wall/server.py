@@ -124,14 +124,14 @@ def post_comment():
 # not used ...
 # select all messages and comments with user info for poster and commenter
 # how do we display it in the html to associate the parent of the comments?  perhaps
-# create a dictionary with message id as key holding nested structure of comments?
+# create a dictionary with message id as the keys, holding nested structure of comments?
 # ToDo and think about
 def DoSelectAll():
 	query =	"SELECT messages.id AS message_id, comments.id AS comment_id, \
 		poster.first_name AS poster_first, poster.last_name AS poster_last, \
-		messages.message, messages.created_at, \
+		messages.message, messages.created_at message_created_at, \
 		commenter.first_name as commenter_first, commenter.last_name AS commenter_last, \
-		comments.comment, comments.created_at \
+		comments.comment, comments.created_at comment_created_at \
 		FROM messages \
 		LEFT JOIN comments on (messages.id = comments.message_id) \
 		LEFT JOIN users as poster on (poster.id = messages.user_id) \
@@ -173,10 +173,9 @@ def DoInsertPost(data):
 # add one row into users table
 def DoInsert(data):
 	query = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) \
-		VALUES (:first_name, :last_name, :email,  :password, NOW(), NOW())"
+		VALUES (:first_name, :last_name, :email, :password, NOW(), NOW())"
 
-	ret_val = mysql.query_db(query, data)
-	return ret_val
+	return mysql.query_db(query, data)
 
 # get comments and commenter info
 def DoSelectComments():
