@@ -1,0 +1,7 @@
+EC2 address: http://52.42.145.12
+
+SQL Dump Files in folder called: db_dump.sql 
+
+Bug: was not able to validate the birthdate and add it to database. left it out to prevent breaking registration
+
+password for users in app: 'password'
