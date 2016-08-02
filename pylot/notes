@@ -1,0 +1,72 @@
+git remote add github https://github.com/jkspam2004/pylot_.git
+git push github development
+
+
+step by step instruction from valentyna:
+
+valentynagorbachenko [9:50 PM]  
+How to create a sample Pylot app development version:
+1. In the terminal, navigate to the project folder of your choice. Then run following commands:
+git clone -b development https://github.com/Ketul-Patel/Pylot.git
+2. Navigate inside Pylot folder:
+cd Pylot
+3. Run the setup file:
+python setup.py
+4. When notified that you have no exisiting virtual environment, and prompted if you would like to create on,  press "Y" and press enter key:
+Y
+5. The setup script will then setup virtual environment, and the virtual environment will be activated.  At this point, run setup file again:
+python setup.py
+6.  Run the server and open your localhost after that:
+python manage.py runserver
+All done :smiley:
+ GitHub
+Ketul-Patel/Pylot
+Pylot MVC is a lightweight MVC framework built in Python leveraging flask 
+ 
+ 
+
+valentynagorbachenko [9:56 PM]  
+How to push your local repository to GitHub:
+1. Log in on https://github.com/login
+2. Click on the green button "Create Repository", name it and confirm
+3.  Copy http link -  https://github.com/ValentynaGorbachenko/pylot_friends_project.git
+4. Navigate in the terminal to your local repository, it should look like this:
+Valentynka (development *) Pylot $ 
+5. The * means you have modified files, run this command to see what files have been changed:
+git status
+6. Run this command to stage all files to be committed:
+git add .
+You will see that * changed to +
+Valentynka (development +) Pylot $ 
+7. Run the commit command to commit, with the -m option for including a commit comment within quotes:
+git commit -m "Uploading all files of the group project for Pylot app All Friends"
+You will see something like this:
+[development f17a6bf] Uploading all files of the group project for Pylot app All Friends
+15 files changed, 760 insertions(+), 13 deletions(-)
+create mode 100644 app/static/css/normalize.css
+create mode 100644 app/static/css/style.css
+create mode 100644 app/static/js/jquery.min.js
+create mode 100644 app/static/js/script.js
+create mode 100644 app/views/add.html
+create mode 100644 app/views/delete.html
+create mode 100644 app/views/edit.html
+rewrite app/views/index.html (96%)
+copy app/views/{index.html => index1.html} (100%)
+create mode 100644 app/views/show.html
+Valentynka (development) Pylot $
+8.  If you run this
+git status
+You will see something like this:
+On branch development
+Your branch is ahead of 'origin/development' by 1 commit.
+(use "git push" to publish your local commits)
+nothing to commit, working directory clean
+Valentynka (development) Pylot $ 
+9. Now we will connect to our GitHub repository  -  https://github.com/ValentynaGorbachenko/pylot_friends_project.git
+Please use your URL to run this line of code!!!!
+git remote add github  https://github.com/ValentynaGorbachenko/pylot_friends_project.git
+10. Pushing our updated branch development to the cloud :
+git push github development
+11. All done :smiley:
+
+
