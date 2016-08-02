@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quotes</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        function get_html(info) {
+          var htmlstr = "";
+          for (var i=0; i<info.length; i++) {
+            htmlstr += "<div class='col-md-4 box'>";
+            htmlstr += info[i].description;
+            htmlstr += "</div>";
+          } 
+          return htmlstr;
+        }
+        
+        // upon form submit
+        // send form data to /posts/create and display html in div#recent_posts and div#older_posts 
+        $('form').submit(function() {
+          $.post('/posts/create', $(this).serialize(), function(res) {
+            console.log('post') 
+            console.log(res);
+            $('#recent_posts').html(get_html(res.recent_posts));
+            $('#older_posts').html(get_html(res.older_posts));
+            $('textarea#post').val('')
+          });
+          return false; // don't refresh page 
+        });
+
+        // index_json
+        $.get('/posts/index_json', function(res) {
+            console.log('get');
+            console.log(res);
+            $('#recent_posts').html(get_html(res.recent_posts));
+            $('#older_posts').html(get_html(res.older_posts));
+        }, 'json');
+
+/*
+        // index_html. can't make this work now since i split the data above and below the form
+        // not sure how to parse the html response
+        $.get('/posts/index_html', function(res) {
+            console.log(res);
+        });
+*/
+      });
+    </script>
+    <style>
+      form {
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="body" class="container"> 
+      <h1>My Posts</h1>
+
+      <div id="recent_posts" class="container">
+        <!-- recent 3 posts go here -->
+      </div>
+
+      <form action="/posts/create" method="post">
+        <p>
+          <label>Add a note: </label>
+        </p>
+        <p>
+          <textarea id="post" name="description"></textarea>
+        </p>
+        <input type="submit" value="Post It!">
+      </form>
+
+      <div id="older_posts" class="container">
+        <!-- older 9 posts go here -->
+      </div>
+
+    </div>
+  </body>
+</html>

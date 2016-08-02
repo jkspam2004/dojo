@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Quotes</title>
+</head>
+<body>
+  <! -- returns the api in html -->
+  {% for quote in quotes %}
+  <div class='quote'>
+    <h2>{{ quote['author'] }}</h2>
+    <p>{{ quote['quote'] }}</p>
+  </div>
+  {% endfor %}
+</body>
+</html>

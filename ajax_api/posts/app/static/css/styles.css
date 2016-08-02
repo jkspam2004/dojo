@@ -1,0 +1,19 @@
+* {
+  font-family: monaco;
+}
+.box {
+    height: 100px;
+    border: 1px solid #eee;
+}
+table {
+    border: 1px solid #eee;
+}
+th, td {
+    border: 1px solid #eee;
+}
+p.error {
+    color: red;
+}
+p.success {
+    color: green;
+}

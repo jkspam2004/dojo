@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Weather</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="static/css/styles.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('form').submit(function() {
+        var api_key = "7e7240b3ec36bfd52c31b9b7e16b1dac";
+        var url = "http://api.openweathermap.org/data/2.5/weather?q=";
+        var city = $("input#city").val();
+        url += city + "&units=imperial&appid=" + api_key;
+        
+        $.get(url, function(res) {
+          var html_str = "";
+          console.log(res);
+          html_str += "<h4>" + res.name + "</h4>";
+          html_str += "<p>Temperature: " + res.main.temp + "</p>"; 
+
+          $("div#weather").html(html_str);
+        }, 'json');
+
+        return false;
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="container-fluid" id="body">
+    <h3>Check the weather</h3>
+    <form class="form-inline">
+      <div class="form-group">
+        <label class="sr-only" for="city">City</label>
+        <input type="text" class="form-control" id="city" placeholder="city">
+      </div>
+      <button type="submit" class="btn btn-default">Search Weather</button>
+    </form>
+
+    <div class="container-fluid" id="weather">
+    </div>
+
+ </div> 
+
+</body>
+</html>

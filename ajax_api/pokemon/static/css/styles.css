@@ -1,0 +1,16 @@
+* {
+  font-family: monaco;
+  margin: 0px;
+  padding: 0px;
+}
+div#body {
+    width: 970px; 
+}
+
+div#pokedex {
+    border: 10px solid red;
+    height: 500px;
+}
+ul {
+    list-style-position: inside;
+}
