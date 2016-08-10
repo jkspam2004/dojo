@@ -1,0 +1,25 @@
+* {
+  font-family: monaco;
+}
+.box {
+    margin-bottom: 2%;
+    width: 250px;
+    height: 150px;
+    background: rgba(51, 204, 255, 0.3);
+    border-radius: 7px;
+    padding: 4%;
+    overflow-y:scroll;
+
+}
+button.submit {
+    margin-top: 1%;
+}
+input.title {
+    width: 22%;
+}
+p.error {
+    color: red;
+}
+p.success {
+    color: green;
+}

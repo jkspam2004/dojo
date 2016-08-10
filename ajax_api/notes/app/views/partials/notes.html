@@ -1,0 +1,19 @@
+{% for note in notes %}
+    {% if note %}
+    <div class="row">
+        <div class="col-md-3 ">
+            <h4>{{ note.title }}</h4>
+            <form action="/notes/update/{{ note.id }}" class="update" id="update{{note.id}}" method="post" >
+                <p id="note{{note.id}}" note_id="{{ note.id }}" class="box" contenteditable="true">{{ note.description }}</p>
+                <input type="hidden" class="description{{note.id}}" name="description" value="{{ note.description }}"/>
+            </form>
+            <hr>
+        </div>
+        <div class="col-md-0">
+            <form action="/notes/delete/{{ note.id }}" method="post" class="delete">
+                <button type="submit" class="btn btn-link">delete</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+{% endfor %}

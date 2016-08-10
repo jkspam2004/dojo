@@ -1,4 +1,7 @@
-''' Wizard, Ninja, and Samurai classes inherit Human class '''
+''' Wizard, Ninja, and Samurai classes inherit Human class.
+implicit inheritance - new subclasses inherit the function and properties of the parent class
+but also have their own additional functions and properties
+'''
 
 from human import Human
 
@@ -8,12 +11,14 @@ class Wizard(Human):
 	    self.intelligence = 10           # every wizard starts off with 10 intelligence
  	def heal(self):
 		self.health += 10
+
 class Ninja(Human):
 	def __init__(self):
 		super(Ninja, self).__init__()    # use super to call the Human __init__ method
 		self.stealth = 10                # every Ninja starts off with 10 stealth
 	def steal(self):
 		self.stealth += 5
+
 class Samurai(Human):
 	def __init__(self):
 		super(Samurai, self).__init__()  # use super to call the Human __init__ method
@@ -27,9 +32,9 @@ rain = Ninja()
 tom = Samurai()
 # all instances still have human properties because its
 # class inherits from the Human class
-print harry.health
-print rain.health
-print tom.health
+print "harry's health", harry.health
+print "rain's health", rain.health
+print "tom's health", tom.health
 # yet they are subclasses which mean they can extend the current functionality of Human class
 # instances of the Wizard class can perform the heal method
 harry.heal()

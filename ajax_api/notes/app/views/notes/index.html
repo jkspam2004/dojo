@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Notes</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+<!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+-->
+    <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap/bootstrap-theme.min.css">
+    <script src="/static/js/jquery-3.1.0.min.js"></script>
+    <script src="/static/js/bootstrap/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready( function() {
+            // add a note and append to the notes div
+            $("#create").submit( function() {
+                console.log($(this).serialize());
+                $.post($(this).attr('action'), $(this).serialize(), function(res) {
+                    $("div#notes").append(res); 
+                    $("input.title").val('');
+                });
+                return false;
+            });
+
+            // delete a note and refresh all the notes
+            $("#notes").on('submit', "form.delete", function() {
+                console.log($(this).serialize());
+                $.post($(this).attr('action'), function(res) {
+                    $("div#notes").html(res); 
+                    $("input.title").val('');
+                });
+                return false;
+            });
+
+            // update description for a note
+            // user can click on description box to type something
+            // on focus out, if there is a change to the description, it will get saved
+            $("#notes").on('focusout', "p.box",  function() { // the editable description box
+                var note_id = $(this).attr('note_id');
+                var p_content = $("#note" + note_id).text(); // description entered in p tag
+                var db_content = $("input.description" + note_id).val(); // description from database
+                if ( p_content != '' && (p_content != db_content) ) {
+                    var action = $(this).parent().attr("action"); // parent is the form
+                    var input = $("input.description" + note_id).val(p_content);
+
+                    $.post($(this).parent().attr('action'), $(this).parent().serialize(), function(res) {
+                        // do nothing 
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="body" class="container-fluid"> 
+        <div class="container">
+            <h3>Notes</h3>
+            <hr>
+
+            <div id="notes">
+            {% for note in notes %}
+                {% if note %}
+                <div class="row">
+                    <div class="col-md-3 ">
+                        <h4>{{ note.title }}</h4>
+                        <form action="/notes/update/{{ note.id }}" class="update" id="update{{note.id}}" method="post" >
+                            <p id="note{{note.id}}" note_id="{{ note.id }}" class="box" contenteditable="true">{{ note.description }}</p>
+                            <input type="hidden" class="description{{note.id}}" name="description" value="{{ note.description }}"/>
+                        </form>
+                        <hr>
+                    </div>
+                    <div class="col-md-0">
+                        <form action="/notes/delete/{{ note.id }}" method="post" class="delete">
+                            <button type="submit" class="btn btn-link">delete</button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+
+            <form id="create" action="/notes/create" method="post" class="form-group">
+                <input type="text" name="title" placeholder="Insert note title here..." class="form-control title"/>
+                <p><button type="submit" class="btn btn-small btn-primary submit">Add Note</button></p>
+            </form>
+        </div> 
+    </div>
+</body>
+</html>
