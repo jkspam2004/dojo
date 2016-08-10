@@ -43,7 +43,7 @@ class BankAccount
   end
 
   # withdraw amount from checking or savings account
-  # store success or insufficient funds in message
+  # print insufficient funds message if amount is less than balance
   def withdraw(acct_type, amount)
     puts "withdrawing #{amount} from #{acct_type} account"
     @message = ""
