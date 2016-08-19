@@ -99,3 +99,6 @@ user1.account_information
 user2 = BankAccount.new
 user2.displayAccountNumber
 user2.count_accounts
+
+puts "BankAccount.account_counter",  BankAccount.account_counter
+puts "user1.account_counter",  user1.account_counter # doesn't work

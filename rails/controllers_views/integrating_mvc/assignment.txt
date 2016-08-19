@@ -1,0 +1,31 @@
+$ rails new integrating_mvc -m ~/template.rb
+$ rails generate rails_footnotes:install
+$ rails g model User name:string
+$ rake db:migrate:status
+$ rake db:migrate
+$ rails c
+
+- populate db/seeds.rb
+$ rake db:seed
+
+integrating_mvc> User.all
+  User Load (3.1ms)  SELECT "users".* FROM "users"
++----+--------+-------------------------+-------------------------+
+| id | name   | created_at              | updated_at              |
++----+--------+-------------------------+-------------------------+
+| 1  | Donald | 2016-08-17 19:24:09 UTC | 2016-08-17 19:24:09 UTC |
+| 2  | Mickey | 2016-08-17 19:24:09 UTC | 2016-08-17 19:24:09 UTC |
+| 3  | Minnie | 2016-08-17 19:24:09 UTC | 2016-08-17 19:24:09 UTC |
+| 4  | Daisy  | 2016-08-17 19:24:09 UTC | 2016-08-17 19:24:09 UTC |
+| 5  | Goofy  | 2016-08-17 19:24:09 UTC | 2016-08-17 19:24:09 UTC |
++----+--------+-------------------------+-------------------------+
+
+- add 'resources :users' to config/routes.rb
+$ rake routes
+
+$ rails g controller Users
+
+
+
+
+

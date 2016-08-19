@@ -1,0 +1,90 @@
+# ruby commands for blog_post assignment 2
+# adding on to assignment 1
+
+# add users and owners tables
+$ rails g model User first_name:string last_name:string email_address:string
+
+$ rails g model Owner user:references blog:reference
+$ rake db:migrate
+$ rails g migration AddUserRefToPosts user:references
+$ rails g migration AddUserRefToMessages user:references
+$ rake db:migrate
+
+# added these lines to the db migration file:  _add_user_ref_to_posts
+  def change
+    add_reference :posts, :user, index: true
+  end
+
+
+# rails console
+
+3. first 3 blogs owned by first user
+> owned = Owner.create(user: User.first, blog: Blog.first)
+
+4. 4th blog owned by second user
+> owned = Owner.create(user: User.find(2), blog: Blog.find(4))
+
+5. 5th blog owned by last user
+> owned = Owner.create(user: User.find(2), blog: Blog.find(4))
+
+6. third user owns all of the blogs that were created
+> owned = Owner.update_all "user_id = 3"
+
+7. Have the first user create 3 posts for the blog with an id of 2
+> post = Post.create(user: User.first, blog: Blog.find(2), title: "something new", content:"blah blah")
+> post = Post.where("user_id = ?", 1)
+
+
+8. Have the second user create 5 posts for the last Blog.
+> post = Post.create(user: User.find(2), blog: Blog.last, title: "second user, blog last, post 5", content:"blah blah")
+
+9. Have the 3rd user create several posts for different blogs.
+post = Post.create(user: User.find(3), blog: Blog.find(5), title: "third user, blog any, post 1", content:"blah blah")
+> Post.where("user_id = ?", 3)
+
+10. Have the 3rd user create 2 messages for the first post created and 3 messages for the second post created
+> msg = Message.create(user: User.find(3), post: Post.first, author: "somebody", message: "more something longer to meet the minimum requirement")
+> Message.where("user_id = ?", 3)
+>  msg = Message.create(user: User.find(3), post: Post.find(2), author: "somebody", message: "more something longer to meet the minimum requirement")
+
+11. Have the 4th user create 3 messages for the last post you created.
+> msg = Message.create(user: User.find(4), post: Post.last, author: "somebody", message: "more something longer to meet the minimum requirement")
+
+12. Change the owner of the 2nd post to the last user.
+> Post.find(2).update(user: User.last)
+
+13. Change the 2nd post's content to be something else.
+> Post.find(2).update(content: "something else that is min 15")
+
+14. Retrieve all blogs owned by the 3rd user (make this work by simply doing: User.find(3).blogs).
+> User.find(3).blogs
+
+User model must have this relationship:
+  has_many :owners
+  has_many :blogs, through: :owners
+
+15. Retrieve all posts that were created by the 3rd user
+User.find(3).posts
+
+16. Retrieve all messages left by the 3rd user
+> User.find(3).posts
+
+17. Retrieve all posts associated with the first blog as well as who left these posts.  
+> Blog.first.posts.joins(:user).select("*")
+
+18. Retrieve all messages associated with the first blog along with all the user information of those who left the messages.
+> Blog.joins(:messages).joins(:users).select("*").where("blogs.id = ?", 1)
+
+
+19. Grab all user information of those that own the first blog (make this work by allowing Blog.first.owners to work).
+> Blog.first.owners.joins(:user).select("*")
+
+
+20. Change it so that the first blog is no longer owned by the first user.
+> Owner.where("blog_id = ?", 1).first.update(user: User.find(2))
+
+
+
+
+
+

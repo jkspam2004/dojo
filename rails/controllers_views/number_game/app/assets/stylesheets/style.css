@@ -1,0 +1,36 @@
+/* reset global */
+* {
+	margin: 0px;
+	padding: 0px;
+}
+#container {
+	margin: 0px auto;
+}
+h1 {
+	text-align: center;
+	padding: 20px 0px;
+}
+h3 {
+	text-align: center;
+	padding: 10px 0px;
+}
+input {
+	margin: 30px auto;
+	display: block;
+}
+	input.again {
+		margin-top: 80px;
+	}
+#result {
+	background-color: red;
+	margin: 30px auto;
+	color: white;
+	height: 150px;
+	width: 150px;
+	border: 1px solid black;
+}
+p {
+	margin: 60px auto;
+	text-align: center;
+}
+

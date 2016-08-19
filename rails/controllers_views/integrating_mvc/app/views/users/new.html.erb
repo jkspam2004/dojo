@@ -1,0 +1,9 @@
+<h2>Create a new user</h2>
+<form action="/users/" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="hidden" name="_method" value="patch">
+  <input type="text" name="name" placeholder="box does not take input"/>
+  <!-- <input type="submit" value="Create" /> -->
+</form>
+
+<a href="/users/create">Create</a>

@@ -1,0 +1,57 @@
+# ruby commands for dojo_ninjas assignment
+$ rails new dojo_ninjas
+$ rails g model Dojo name:string city:string state:string
+$ rails g model Ninja first_name:string last_name:string dojo:references
+$ rake db:create   # sets up create scripts, yml, and test scrips
+$ rake db:migrate  # do the schema creation
+
+# rails console commands
+> Dojo.find(1).destroy
+> Dojo.destroy_all
+
+# add ninjas to first dojo
+> dojo = Dojo.new(name: 'CodingDojo Silicon Valley', city: 'Mountain View', state: "CA")
+> dojo.save
+> dojo = Dojo.new(name: 'CodingDojo Seattle', city: 'Seattle', state: "WA")
+> dojo.save
+> dojo = Dojo.new(name: 'CodingDojo New York', city: 'New York', state: "NY")
+> dojo.save
+> Dojo.all
+> ninja = Ninja.new(dojo: Dojo.first, first_name: "Leo", last_name: "Turtle")
+> ninja.save
+
+# add ninjas to second dojo
+> ninja1 = Ninja.new(dojo: Dojo.find(6), first_name: "Mike", last_name: "Turtle")
+> ninja.save
+
+# add ninjas to third dojo
+> ninja1 = Ninja.new(dojo: Dojo.find(7), first_name: "Joe", last_name: "Smith")
+
+# get ninjas for first dojo
+> Dojo.first.ninjas
+
+# second dojo ninjas
+> Dojo.find(6).ninjas
+
+# get dojo name that first ninja belongs to
+> Ninja.first.dojo.name
+
+# get first ninja's name from first dojo
+> Dojo.first.ninjas.first.first_name
+
+
+# retrieve the first_names of the ninja that belongs to the second dojo and order the result by created_at DESC order
+ > ninjas = Dojo.find(6).ninjas.select("id", "first_name", "created_at").order(created_at: :desc)
+
+# .where returns an array
+# .where.first will give the first element of the array
+# chaining with .where will not work if more than 1 row
+> Dojo.where(id: 6).first.ninjas.select("id", "first_name", "created_at").order(created_at: :desc)
+
+
+# delete second dojo and the ninjas associated
+models/dojo.rb:
+has_many :ninjas, dependent: :destroy
+
+> dojo.Dojo.find(6)
+> dojo.destroy

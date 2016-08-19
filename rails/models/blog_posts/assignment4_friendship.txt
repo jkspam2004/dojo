@@ -1,0 +1,66 @@
+Self join - user has many friendships.  user has many friends through friendships
+
+# incorrect
+$ rails g model Friendship user_id:integer friend_id:integer
+# should be references
+$ rails g model Friendship user:references friend:references
+$ rake db:migrate
+
+
+
+> Friendship.new
++----+---------+-----------+------------+------------+
+| id | user_id | friend_id | created_at | updated_at |
++----+---------+-----------+------------+------------+
+|    |         |           |            |            |
++----+---------+-----------+------------+------------+
+
+> Friendship.create(user: User.first, friend: User.find(2))
+
+> Friendship.all
+  Friendship Load (0.6ms)  SELECT "friendships".* FROM "friendships"
++----+---------+-----------+-------------------------+-------------------------+
+| id | user_id | friend_id | created_at              | updated_at              |
++----+---------+-----------+-------------------------+-------------------------+
+| 1  | 1       | 2         | 2016-08-17 07:38:30 UTC | 2016-08-17 07:38:30 UTC |
++----+---------+-----------+-------------------------+-------------------------+
+
+1. User.first should retrieve the first user information
+blog_posts? User.first
+  User Load (0.4ms)  SELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1
++----+------------+-----------+-----------------+------------------------+-------------------------+
+| id | first_name | last_name | email_address   | created_at             | updated_at              |
++----+------------+-----------+-----------------+------------------------+-------------------------+
+| 1  | Donald     | Duck      | donald@duck.com | 2016-08-16 01:34:05... | 2016-08-16 01:34:05 UTC |
++----+------------+-----------+-----------------+------------------------+-------------------------+
+
+
+2. User.first.friends should display all the friend information of the first user (this should include the first name and last name of all the friends of User.first).
+> User.first.friends
+  User Load (0.3ms)  SELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1
+  User Load (0.2ms)  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?  [["user_id", 1]]
++----+------------+-----------+------------------+------------------------+------------------------+
+| id | first_name | last_name | email_address    | created_at             | updated_at             |
++----+------------+-----------+------------------+------------------------+------------------------+
+| 2  | Mickey     | Mouse     | mickey@mouse.com | 2016-08-16 01:34:31... | 2016-08-16 01:34:31... |
+| 3  | Minnie     | Mouse     | minnie@mouse.com | 2016-08-16 01:34:46... | 2016-08-16 01:34:46... |
++----+------------+-----------+------------------+------------------------+------------------------+
+
+
+3. retrieve all users who are NOT a friend with the first User.
+> User.where("id not in(?)", User.first.friends.select(:id))
+
+SELECT "users".* FROM "users"  WHERE (id not in(SELECT "users"."id" FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?))  [["user_id", 1]]
+
+> User.where.not(id: User.first.friends.select(:id))
+
+SELECT "users".* FROM "users"  WHERE ("users"."id" NOT IN (SELECT "users"."id" FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?))  [["user_id", 1]]
+
+> User.where("id not in(?) AND id <> ?", User.first.friends.select(:id), User.first.id)
+SELECT "users".* FROM "users"  WHERE (id not in(SELECT "users"."id" FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?) AND id <> 1)  [["user_id", 1]]
+
+
+
+
+
+

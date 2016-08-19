@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Survey Result</title>
+</head>
+<body>
+    <%= flash[:message] %>
+
+    <p>Submitted Information</p>
+    <p><label>Name: </label><%= @dojo[:name] %></p>
+    <p><label>Dojo Location: </label><%= @dojo[:location] %></p>
+    <p><label>Favorite Language: </label><%= @dojo[:language] %></p>
+    <p><label>Comment: </label><%= @dojo[:comment] %></p>
+</body>
+</html>

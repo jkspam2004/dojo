@@ -1,0 +1,29 @@
+<h2>New User</h3>
+
+<% if flash[:messages].present? %>
+    <% flash[:messages].each do |message| %>
+       <p class="<%=message['status'] %>"><%= message['text'] %></p> 
+    <% end %>
+<% end %>
+
+<form action="/users" method="post">
+    <p>
+        <label>First name</label>
+        <input type="text" name="first_name">
+    <p>
+    <p>
+        <label>Last name</label>
+        <input type="text" name="last_name">
+    <p>
+    <p>
+        <label>Email</label>
+        <input type="text" name="email_address">
+    <p>
+    <p>
+        <label>Password</label>
+        <input type="password" name="password">
+    <p>
+    <p><input type="submit" value="Create"></p>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <a href="/users">Back</a>
+</form>

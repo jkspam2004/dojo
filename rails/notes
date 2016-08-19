@@ -1,0 +1,115 @@
+
+~~~~ creating new rails project
+$ rails new <project_name>
+
+~~~~ running the rails server
+$ rails s[erver]
+
+~~~~ running the rails console
+$ rails c[onsole]
+
+~~~~ creating table. generating a model
+$ rails g[enerate] model User first_name:string last_name:string email:string password:string age:integer
+Running via Spring preloader in process 35393
+      invoke  active_record
+      create    db/migrate/20160812062244_create_users.rb
+      create    app/models/user.rb
+      invoke    test_unit
+      create      test/models/user_test.rb
+      create      test/fixtures/users.yml
+
+~~~~ run db migration
+$ rake db:migrate
+
+~~~~ destroying a model
+$ bundle exec rake db:rollback
+$ rails destroy model <model_name>
+
+~~~~ adding data
+# active_record
+$ rails c
+> User.new                          # lists out the columns
+> user1 = User.new                  # create instance of User
+> user1[:first_name] = "Edward"     # setting first name
+> user1[:last_name] = "Stark"
+> user1[:age] = 40
+> user1.save                        # inserts and commits the transaction
+> user2 = User.new(first_name:"Julie", last_name:"Smith", age:35)
+> user2.save
+> User.create(first_name:"Jon", last_name:"Snow", email:"know@nothing.com", password:"password",age: 17)
+> User.all                          # select *
+> Hirb.enable                       # prints table nicely
+
+> User.first                        # first entry
+> User.last                         # last entry
+> User.find(5)                      # find by id
+> User.find_by(first_name: "Jon")
+> User.last.update(age:18)
+
+> reload!                           # reload last command
+> jon
+> jon.save
+> jon.errors
+ => #<ActiveModel::Errors:0x007fcd34224d00 @base=#<User id: nil, first_name: nil, last_name: nil, email: nil, password: nil, age: nil, created_at: nil, updated_at: nil>, @messages={:first_name=>["can't be blank", "is too short (minimum is 2 characters)"], :last_name=>["can't be blank", "is too short (minimum is 2 characters)"]}> 
+> jon.errors.full_messages
+ => ["First name can't be blank", "First name is too short (minimum is 2 characters)", "Last name can't be blank", "Last name is too short (minimum is 2 characters)"
+
+~~~~ querying from sqlite3 command line
+sqlite> .open development.sqlite3
+sqlite> .databases
+sqlite> .tables
+sqlite> .quit
+
+
+~~~~ adding footnotes gem for debug info (routes, session, cookies, ..) at bottom of webpage
+1. add to rails/myproj/Gemfile: gem 'rails-foonotes', '>= 4.0.0', '<5'
+2. bundle install
+3. bundle show footnotes
+4. rails generate rails_footnotes:install
+
+
+~~~~ gems
+hirb
+Hirb is a wonderful gem that makes using the terminal to do queries and look at your data 1000 times better. Hirb puts your query results into a table so that you can see your data much more effectively when in the Rail's console. To use Hirb, simply add gem 'hirb' to your Gemfile, then run bundle install, enter the Rail's console and type Hirb.enable. A tip on using Hirb: whenever you enable Hirb, the table size of the query results will be the size of the terminal window when you enabled it. if you would like a larger table simply resize your window and type Hirb.disable and then Hirb.enable.
+
+bcrypt
+This is an incredible gem. This gem deals with password authentication, and encrypting your passwords in an incredibly strong way. We will go over this further in the controller section.
+
+simple_form
+Simple form makes the creation of forms simpler (go figure). It also taps into the next gem for styling.
+
+bootstrap-sass
+Bootstrap is the CSS library you learned way back at the end of the CSS section, and they have a gem for Rails. When this gem is included, you can use bootstrap throughout your project. Other gems may also use it, such as simple_form.
+
+carrierwave
+Carrierwave is used for file upload. File upload in Rails can be a bit of a pain and this is one of the many file upload gems out there that aim to make it an easier experience.
+
+capybara and rspec
+These two gems are very important gems. They help us do test driven development or TDD.
+
+
+~~~~ destroying a model
+bundle exec rake db:rollback    
+rails destroy model <model_name>
+When you generate a model, it creates a database migration. If you run 'destroy' on that model, it will delete the migration file, but not the database table. So before run
+
+bundle exec rake db:rollback
+
+
+~~~~ rake db:create and rake db:migrate
+You run rake db:create once and only once, and you run it first. 
+Then you run rake db:migrate every time you add/change a migration.
+If you want to nuke the DB and start over, do rake db:drop db:create db:migrate.
+
+~~~~ activerecord delete vs destroy
+delete will only delete current object record from db but not its associated children records from db.
+
+destroy will delete current object record from db and also its associated children record from db.
+
+# quieting some console messages
+in config/environments/development.rb add:
+config.log_level = :info
+
+~~~~ authenticity token for forms
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+

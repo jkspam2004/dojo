@@ -1,0 +1,90 @@
+# Commands used for user_login_project
+
+# create new project
+$ rails new user_login_project
+
+# create new model User
+$ rails g model User first_name:string last_name:string email_address:string age:integer
+$ rake db:create
+
+# add records
+$ rails c
+> User.new
+> user1 = User.new
+> user1[:first_name] = "sally"
+> user1.save
+> user1.new_record?  # checks to see if object is empty
+> user2 = User.new(first_name: "Donald", last_name: "Duck")
+> user2.save
+> User.create(:first_name => nil).valid? # no presence validation set yet
+> User.create(first_name:"Mickey", last_name:"Mouse", age:15)
+
+# add validation
+class User < ActiveRecord::Base
+  EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
+  validates :first_name, :last_name, :email_address, :age, presence: true
+  validates :age, numericality: true
+  validates :first_name, :last_name, length: {minimum: 2}
+  validates :email_address, uniqueness: { case_sensitive: false }, format: { with: EMAIL_REGEX }
+  validates_numericality_of :age, greater_than_or_equal_to: 10, less_than: 150
+end
+
+
+# test errors
+>   test = User.create(first_name: 'a')
+   (0.3ms)  begin transaction
+   (0.1ms)  rollback transaction
++----+------------+-----------+---------------+-----+------------+------------+
+| id | first_name | last_name | email_address | age | created_at | updated_at |
++----+------------+-----------+---------------+-----+------------+------------+
+|    | a          |           |               |     |            |            |
++----+------------+-----------+---------------+-----+------------+------------+
+> test.errors
+ => #<ActiveModel::Errors:0x007fd95f103958 @base=#<User id: nil, first_name: "a", last_name: nil, email_address: nil, age: nil, created_at: nil, updated_at: nil>, @messages={:last_name=>["can't be blank", "is too short (minimum is 2 characters)"], :email_address=>["can't be blank"], :age=>["can't be blank", "is not a number", "is not a number"], :first_name=>["is too short (minimum is 2 characters)"]}>
+
+
+> test = User.create(first_name: 'ab')
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
++----+------------+-----------+---------------+-----+------------+------------+
+| id | first_name | last_name | email_address | age | created_at | updated_at |
++----+------------+-----------+---------------+-----+------------+------------+
+|    | ab         |           |               |     |            |            |
++----+------------+-----------+---------------+-----+------------+------------+
+1 row in set
+> test.errors.full_messages
+ => ["Last name can't be blank", "Last name is too short (minimum is 2 characters)", "Email address can't be blank", "Age can't be blank", "Age is not a number", "Age is not a number"]
+
+> test = User.create(first_name: 'ab', age: 10)
+ => ["Last name can't be blank", "Last name is too short (minimum is 2 characters)", "Email address can't be blank", "Age must be greater than or equal to 10"]
+
+> test = User.create(first_name: 'ab', age: 150)
+ => ["Last name can't be blank", "Last name is too short (minimum is 2 characters)", "Email address can't be blank", "Age must be less than 150"]
+
+
+> test = User.create(first_name: 'Goofy', last_name: 'Goofy', email_address: 'abc', age: 10)
+=> ["Email address has already been taken", "Email address is invalid"]
+
+# get all users
+> User.all
+
+# first user
+> User.first
+
+# last user
+> User.last
+
+# users sorted by first name asc
+User.order(:first_name)
+
+# users sorted by first name desc
+User.order(first_name: :desc)
+
+# get user with id 3 and update last_name to something else
+> user = User.find(3)
+> user.update(last_name: "Duck")
+> user.save
+
+# get user with id 4 and delete 
+User.find(4).destroy
+

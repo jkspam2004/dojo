@@ -1,0 +1,68 @@
+<div id='container'>
+    <h2>Ninja Gold</h2>
+
+    <p>
+        Your Gold: <input type="text" value="<%= session[:gold] %>" placeholder="0" readonly />
+    </p>
+
+    <div class="place">
+        <form id="farm" name="farm" action="/rpg/farm" method="post">
+            <p class="title">Farm</p>
+            <p class="earn">(earns 10-20 golds)</p>
+            <input type="hidden" name="action" value="play_farm" />
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input class="button" type="submit" value="Find Gold!" />
+        </form>
+    </div> <!-- end div.place for Farm -->
+
+    <div class="place">
+        <form id="cave" name="cave" action="/rpg/cave" method="post">
+            <p class="title">Cave</p>
+            <p class="earn">(earns 5-10 golds)</p>
+            <input type="hidden" name="action" value="play_cave" />
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input class="button" type="submit" value="Find Gold!" />
+
+        </form>     
+    </div> <!-- end div.place for Cave -->
+
+    <div class="place">
+        <form id="house" name="house" action="/rpg/house" method="post">
+            <p class="title">House</p>
+            <p class="earn">(earns 2-5 golds)</p>
+            <input type="hidden" name="action" value="play_house" />
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input class="button" type="submit" value="Find Gold!" />
+
+        </form>     
+    </div> <!-- end div.place for House -->
+
+    <div class="place">
+        <form id="casino" name="casino" action="/rpg/casino" method="post">
+            <p class="title">Casino</p>
+            <p class="earn">(earns/takes 0-50 golds)</p>
+            <input type="hidden" name="action" value="play_casino" />
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input class="button" type="submit" value="Find Gold!" />
+
+        </form>     
+    </div> <!-- end div.place for Casino -->
+
+    <p>Activities:</p>
+    <!-- attempted to add the activities as a textarea but could not add font color
+    attributes to each line item. made a div that scrolls with overflow: auto instead-->
+    <div id="editable" class="editable">
+        <% session[:activities].each do |act| %>
+          <p class="<%= act["status"] %>"><%= act["activity"] %></p>
+        <% end %>
+    </div>
+
+    <!-- reset the total gold and activities -->
+    <form id="reset" name="reset" action="/reset" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="submit" name="reset" value="Reset" />
+    </form>
+
+
+</div> <!-- end div#container -->
+

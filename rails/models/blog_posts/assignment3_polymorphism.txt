@@ -1,0 +1,94 @@
+Polymorphism
+
+Create a Comment model.  A user can leave a comment for either a user, blog, post or a message.
+
+# ruby commands
+$ rails g model Comment comment:string:index commentable:references{polymorphic}
+$ rake db:migrate
+
+#### rails console commands
+
+# user comments
+blog_posts> User.first.comments.new
+  User Load (0.8ms)  SELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1
++----+---------+----------------+------------------+------------+------------+
+| id | comment | commentable_id | commentable_type | created_at | updated_at |
++----+---------+----------------+------------------+------------+------------+
+|    |         | 1              | User             |            |            |
++----+---------+----------------+------------------+------------+------------+
+
+
+# create a comment for first user
+> Comment.create(commentable: User.first, comment: "she is awesome")
+> User.joins(:comments).select("*").where(id: 1)
+> Comment.first.update(comment: "he is awesome")
+
+> Comment.create(commentable: User.first, comment: "another comment for donald")
+> User.joins(:comments).select("*").where(id: 1) # where users.id = 1
+
+
+# blog comments
+blog_posts> Blog.first.comments.new
+  Blog Load (0.3ms)  SELECT  "blogs".* FROM "blogs"   ORDER BY "blogs"."id" ASC LIMIT 1
++----+---------+----------------+------------------+------------+------------+
+| id | comment | commentable_id | commentable_type | created_at | updated_at |
++----+---------+----------------+------------------+------------+------------+
+|    |         | 1              | Blog             |            |            |
++----+---------+----------------+------------------+------------+------------+
+
+
+> Comment.create(commentable: Blog.first, comment: "it was easy")
+> Comment.find(6).update(comment: "new update")
+> Comment.all.limit(1)
+blog_posts> Comment.all.limit(1)
+  Comment Load (0.7ms)  SELECT  "comments".* FROM "comments"  LIMIT 1
++----+---------------+----------------+------------------+--------------------+--------------------+
+| id | comment       | commentable_id | commentable_type | created_at         | updated_at         |
++----+---------------+----------------+------------------+--------------------+--------------------+
+| 1  | he is awesome | 1              | User             | 2016-08-17 06:2... | 2016-08-17 06:3... |
++----+---------------+----------------+------------------+--------------------+--------------------+
+
+
+
+
+# Post comments
+blog_posts> Post.first.comments.new
+  Post Load (0.3ms)  SELECT  "posts".* FROM "posts"   ORDER BY "posts"."id" ASC LIMIT 1
++----+---------+----------------+------------------+------------+------------+
+| id | comment | commentable_id | commentable_type | created_at | updated_at |
++----+---------+----------------+------------------+------------+------------+
+|    |         | 1              | Post             |            |            |
++----+---------+----------------+------------------+------------+------------+
+
+> Comment.create(commentable: Post.find(1), comment: "first comment for post")
+
+
+# Message comments
+blog_posts> Message.first.comments.new
+  Message Load (0.4ms)  SELECT  "messages".* FROM "messages"   ORDER BY "messages"."id" ASC LIMIT 1
++----+---------+----------------+------------------+------------+------------+
+| id | comment | commentable_id | commentable_type | created_at | updated_at |
++----+---------+----------------+------------------+------------+------------+
+|    |         | 1              | Message          |            |            |
++----+---------+----------------+------------------+------------+------------+
+
+blog_posts> Comment.all
+  Comment Load (1.0ms)  SELECT "comments".* FROM "comments"
++----+------------------+----------------+------------------+------------------+-------------------+
+| id | comment          | commentable_id | commentable_type | created_at       | updated_at        |
++----+------------------+----------------+------------------+------------------+-------------------+
+| 1  | he is awesome    | 1              | User             | 2016-08-17 06... | 2016-08-17 06:... |
+| 2  | another comme... | 1              | User             | 2016-08-17 06... | 2016-08-17 06:... |
+| 3  | he is our leader | 2              | User             | 2016-08-17 06... | 2016-08-17 06:... |
+| 4  | it was easy      | 1              | Blog             | 2016-08-17 06... | 2016-08-17 06:... |
+| 5  | it's like magic  | 1              | Blog             | 2016-08-17 06... | 2016-08-17 06:... |
+| 6  | new update       | 2              | Blog             | 2016-08-17 06... | 2016-08-17 06:... |
+| 7  | first comment... | 1              | Post             | 2016-08-17 06... | 2016-08-17 06:... |
+| 8  | first comment... | 2              | Post             | 2016-08-17 06... | 2016-08-17 06:... |
+| 9  | first comment... | 2              | Message          | 2016-08-17 06... | 2016-08-17 06:... |
+| 10 | first comment... | 1              | Message          | 2016-08-17 06... | 2016-08-17 06:... |
++----+------------------+----------------+------------------+------------------+-------------------+
+
+# delete the first message. also deleted the associated comment
+blog_posts> Message.first.destroy
+

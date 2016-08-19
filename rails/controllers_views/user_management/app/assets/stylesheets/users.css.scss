@@ -1,0 +1,36 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+form {
+    display: inline-block;
+}
+
+button {
+    overflow: visible;
+    width: auto;
+}
+
+button.link { // make a button look like a link
+    -moz-user-select: text;
+    background: none;
+    border: none;
+    color: blue;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: underline;
+}
+ 
+button.link:hover {
+    text-decoration: underline;
+}
+p.success {
+    color: green;
+}
+p.error {
+    color: red;
+}
+
