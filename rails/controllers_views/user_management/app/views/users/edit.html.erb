@@ -22,7 +22,7 @@
     <p>
     <p>
         <label>Password</label>
-        <input type="password" name="user[password]">
+        <input type="password" name="user[password]" value="<%= @user.password %>">
     <p>
     <input type="hidden" name="_method" value="patch">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">

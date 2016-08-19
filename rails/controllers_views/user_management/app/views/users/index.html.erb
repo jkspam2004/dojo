@@ -1,11 +1,5 @@
 <h2>Listing Users</h2>
 
-<% if flash[:messages].present? %>
-    <% flash[:messages].each do |message| %>
-       <p class="<%=message['status'] %>"><%= message['text'] %></p> 
-    <% end %>
-<% end %>
-
 <table>
   <tr>
       <th>First name</th>

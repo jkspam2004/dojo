@@ -67,7 +67,7 @@ class UsersController < ApplicationController
 
   # only following params allowed to be inputted as a security measure
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password)
+    params.require(:user).permit(:first_name, :last_name, :email_address, :password)
   end
   
 end
