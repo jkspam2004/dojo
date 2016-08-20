@@ -1,0 +1,30 @@
+<% @title="Product Info" %>
+<p>
+  <strong>Category: </strong>
+  <select name="product[category_id]">
+    <option selected>Pick category</option>
+    <% @categories.each do |c| %>
+      <option value="<%= c.id %>"><%= c.name %></option>
+    <% end %>
+  </select>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+<p>
+  <strong>Price:</strong>
+  $<%= @product.pricing %>
+</p>
+<p>
+  <strong>Category:</strong>
+  <%= @product.category.name %>
+</p>
+<p>
+  <a href="/products/<%= @product.id %>/edit">Edit</a>
+  <a href="/products">Back</a>
+</p>

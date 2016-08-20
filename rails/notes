@@ -113,3 +113,16 @@ config.log_level = :info
 ~~~~ authenticity token for forms
 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
+~~~~ update row ids - decrement by 5
+Category.update_all "id = id - 5"
+
+~~~~ truncating table in sqlite3 ORM
+ActiveRecord::Base.connection.execute("DELETE FROM categories")
+ActiveRecord::Base.connection.execute("DELETE FROM sqlite_sequence WHERE name='categories'")
+
+~~~~ truncating table in mysql/postgres ORM
+Model.destroy_all # Only necessary if you want to trigger callbacks.
+ActiveRecord::Base.connection.execute("TRUNCATE #{table_name} RESTART IDENTITY")
+
+
+

@@ -32,16 +32,23 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def delete
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to action: 'index' 
+  end
+
   def edit
     @user = User.find(params[:id])
+    #fail
   end
 
   def update
     flash[:messages] = []
 
     user = User.find(params[:id])
+    #fail
 
-    #if @user.update(first_name: params[:first_name], last_name: params[:last_name], email_address: params[:email_address], password: params[:password])
     if user.update(user_params) # calls user_params to make sure we are passing in the fields that we want
 
       flash[:messages].push({ 'status' => "success", 'text' => "Successful update"}) 
@@ -57,17 +64,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def delete
-    user = User.find(params[:id])
-    user.destroy
-    redirect_to action: 'index' 
-  end
-
   private # private functions below
 
   # only following params allowed to be inputted as a security measure
   def user_params
+
+    print "params user first_name: ", params[:user][:first_name], "\n"
+    print "params user: ", params[:user], "\n"
+
     params.require(:user).permit(:first_name, :last_name, :email_address, :password)
+    #params.require(:category).permit(:name)
   end
   
 end

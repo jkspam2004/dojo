@@ -18,7 +18,7 @@ class RpgController < ApplicationController
     earned = rand(10...20)
     time = Time.now
     activity = "Earned " + earned.to_s + " golds from the farm! (" + time.to_s + ")"
-    session[:activities].push({ 'status' => 'gain', 'activity' => activity })
+    session[:activities].push({ 'status'=> 'gain', 'activity' => activity })
     redirect_to root_path
   end
 

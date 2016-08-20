@@ -11,19 +11,20 @@
     <p>
         <label>First name</label>
         <input type="text" name="user[first_name]" value="<%= @user.first_name %>">
-    <p>
+    </p>
     <p>
         <label>Last name</label>
         <input type="text" name="user[last_name]" value="<%= @user.last_name %>">
-    <p>
+    </p>
     <p>
         <label>Email</label>
-        <input type="text" name="user[email_address]" value="<%= @user.email_address %>">
-    <p>
+        <input type="text" name="user[email_address]" value="<%= @user.email_address %>" >
+    </p>
     <p>
         <label>Password</label>
         <input type="password" name="user[password]" value="<%= @user.password %>">
-    <p>
+        <!-- <input type = "name" name = "category[name]" value = ""> -->
+    </p>
     <input type="hidden" name="_method" value="patch">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <p><input type="submit" value="Update"></p>

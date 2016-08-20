@@ -1,0 +1,38 @@
+<% @title="New Product" %>
+
+<h1>New Product</h1>
+
+<% if flash[:messages] %>
+  <% flash[:messages].each do |message| %>
+    <p class="<%= message['status'] %>"><%= message['text'] %></p>
+  <% end %>
+<% end %>
+
+<form action="/products" method="post">
+<p>
+  <label>Category: </label>
+  <select name="product[category_id]">
+    <option selected>Pick category</option>
+    <% @categories.each do |c| %>
+      <option value="<%= c.id %>"><%= c.name %></option>
+    <% end %>
+  </select>
+</p>
+<p>
+  <label>Name: </label>
+  <input type="text" name="product[name]">
+</p>
+<p>
+  <label>Description: </label>
+  <input type="text" name="product[description]">
+</p>
+<p>
+  <label>Price</label>
+  <input type="text" name="product[pricing]">
+</p>
+<p>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Create">
+</p>
+
+<a href="/products">Back</a>

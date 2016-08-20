@@ -1,0 +1,38 @@
+<% @title="Products" %>
+<h1>Listing products</h1>
+
+<% if flash[:messages] %>
+  <% flash[:messages].each do |message| %>
+    <p class="<%= message['status'] %>"><%= message['text'] %></p>
+  <% end %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Category</th>
+    <th>Actions</th>
+  </tr>
+  <% if @products %>
+    <% @products.each do |p| %>
+      <tr>
+        <td><%= p.name %></td> 
+        <td><%= p.description %></td> 
+        <td><%= p.pricing %></td> 
+        <td><%= p.category.name %></td>
+        <td>
+          <a href="/products/<%= p.id %>">Show</a>
+          <a href="/products/<%= p.id %>/edit">Edit</a>
+          <form action="/products/<%= p.id %>" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="link"> Destroy</button>
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<p><a href="/products/new">New Product</a></p>
