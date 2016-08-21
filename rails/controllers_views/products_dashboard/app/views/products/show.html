@@ -1,30 +1,44 @@
 <% @title="Product Info" %>
+
+<% if flash[:messages] %>
+  <% flash[:messages].each do |message| %>
+    <p class="<%= message['status'] %>"><%= message['text'] %></p>
+  <% end %>
+<% end %>
+
 <p>
-  <strong>Category: </strong>
-  <select name="product[category_id]">
-    <option selected>Pick category</option>
-    <% @categories.each do |c| %>
-      <option value="<%= c.id %>"><%= c.name %></option>
-    <% end %>
-  </select>
-</p>
-<p>
-  <strong>Name:</strong>
+  <strong>Name: </strong>
   <%= @product.name %>
 </p>
 <p>
-  <strong>Description:</strong>
+  <strong>Description: </strong>
   <%= @product.description %>
 </p>
 <p>
-  <strong>Price:</strong>
+  <strong>Price: </strong>
   $<%= @product.pricing %>
 </p>
 <p>
-  <strong>Category:</strong>
+  <strong>Category: </strong>
   <%= @product.category.name %>
 </p>
 <p>
   <a href="/products/<%= @product.id %>/edit">Edit</a>
   <a href="/products">Back</a>
 </p>
+
+<p><strong>Comment: </strong></p>
+<p>
+  <form action="/comments" method="post">
+    <textarea name="comment[comment]"></textarea>
+    <input type="hidden" name="comment[product_id]" value="<%= @product.id %>">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="submit" value="Submit">
+  </form>
+</p>
+
+<% if @comments %>
+  <% @comments.each do |c| %>
+    <p><%= c.comment %> - <%= c.comment_date %></p>
+  <% end %>
+<% end %>

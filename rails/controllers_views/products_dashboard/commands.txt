@@ -9,7 +9,12 @@ $ rake db:migrate
 $ rake db:seed
 $ rails g migration AddCategoryRefToProducts category:references (adds category_id to products)
 $ rake db:migrate
-- update product model: add belongs to 
+- update product model: add belongs_to :category
+- update category model: add has_many :products
+$ rails g model Comment comment:text product:references
+$ rake db:migrate
+$ rails g controller Comments
+
 
 ~~~~~~~~~~~~ queries ~~~~~~~~~~~~
 > Product.where("id >= ? and id <= ?", 1,3)
@@ -41,7 +46,7 @@ SELECT  "products".* FROM "products"   ORDER BY "products"."id" DESC LIMIT 3
 > Product.order(:name).first
 SELECT  "products".* FROM "products"   ORDER BY "products"."name" ASC LIMIT 1
 
-> Product.find_by name: 'hose'         # find_by returns first matching record
+> Product.find_by(name: 'hose')        # find_by returns first matching record
 > Product.where(name: 'hose').take     # where returns array. take limits to 1 record
 SELECT  "products".* FROM "products"  WHERE "products"."name" = 'hose' LIMIT 1
 

@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
+    @comments = Comment.where(product_id: params[:id]).select("id, comment, DATE(created_at) AS comment_date")
   end
 
   def new

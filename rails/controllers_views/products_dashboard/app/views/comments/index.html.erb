@@ -1,0 +1,17 @@
+<% @title="All Comments" %>
+
+<h1>All Comments</h1>
+<% if @comments %>
+<table>
+  <tr>
+    <th>Comments</th>
+    <th>Products</th>
+  </tr>
+  <% @comments.each do |c| %>
+    <tr>
+      <td><%= c.comment %></td>
+      <td><%= c.product.name %></td>
+    </tr>
+  <% end %>
+</table>
+<% end %>
