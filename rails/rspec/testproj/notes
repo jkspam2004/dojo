@@ -1,0 +1,3 @@
+this project has a scaffold project with Post
+
+rails g scaffold Post name:string description:text

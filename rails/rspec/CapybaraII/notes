@@ -1,0 +1,19 @@
+# steps to make selenium and capybara testing with facebook on chrome.  
+# doesn't work on firefox. suggestions were to downgrade to make it work
+http://stackoverflow.com/questions/7263564/unable-to-obtain-stable-firefox-connection-in-60-seconds-127-0-0-17055
+
+
+test lives in spec/features/facebook_login_spec.rb
+1. brew install chromedriver
+
+2. add this to spec_helper.rb
+
+Capybara.register_driver :selenium_chrome do |app|   
+ Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+3. add this to facebook_login_spec.rb (edited)
+
+Capybara.javascript_driver = :selenium_chrome (instead of setting current_driver
+
+4. change test to say click_button instead of click_link_or_button

@@ -1,0 +1,8 @@
+<% if flash[:messages].present? %>
+    <% flash[:messages].each do |message| %>
+       <p class="<%=message['status'] %>"><%= message['text'] %></p> 
+    <% end %>
+<% end %>
+
+<h2>Edit <%= @user.name %></h2>
+

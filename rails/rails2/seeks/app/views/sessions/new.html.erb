@@ -1,0 +1,24 @@
+<% if flash[:messages].present? %>
+    <% flash[:messages].each do |message| %>
+       <p class="<%=message['status'] %>"><%= message['text'] %></p> 
+    <% end %>
+<% end %>
+
+<h3>Login to secrets</h3>
+
+<form action="/sessions" method="post">
+  <p>
+    <label for="email">Email</label>
+    <input type="text" id="email" name="user[email]">
+  </p>
+  <p>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="user[password]">
+  </p>
+  <p>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="submit" value="Log In">
+  </p>
+</form>
+
+<a href="/users/new">Create an account</a>

@@ -1,0 +1,96 @@
+rspec
+
+group :development, :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'capybara'
+end
+
+$ rails new myproject -m ~/template.rb
+$ spring stop
+$ rails g rspec:install
+# this seems to not work - run `spring stop` and then rspec:install again
+
+
+$ bundle exec rspec # generates some tests
+$ rails g model User first_name:string last_name:string email:string
+$ rake db:migrate
+
+$ rspec spec # run test
+
+$ gem install capybara # do this after project creation if slow during bundle install
+
+~~~~~~
+
+~~~~ running rspec
+`rspec spec` # inside project dir
+
+~~~~ Modifier - These are rspec methods that help us read an expectation better. It almost feels 
+like you are writing in English:
+expect
+
+~~~~ Matcher - These usually consist of boolean operators. e.g: 
+> 
+< 
+>= 
+<= 
+==
+
+~~~~ Predicate Matcher - Commonly paired with the should modifier.
+
+be_valid
+be_within
+be_a_kind_of
+be_an_instance_of
+be_true
+be_false
+be_nil
+...
+
+
+player.ammo.should be > 10
+~~ recommended equivalent:
+expect(player.ammo).to be > 10
+expect(player.ammo).to_not be <= 10
+
+ninja.happy?.should be_true
+~~ recommended equivalent:
+expect(ninja.happy?).to be_true
+expect(ninja).to be_happy
+
+~~~ should be <-- deprecated
+modifier should, matcher be
+
+player.ammo.should be > 10
+player.ammo.should > 10
+player.ammo.should_not <= 10
+player.ammo.should_not be <= 10
+
+ninja.happy?.should be_true
+ninja.happy?.should == true
+ninja.happy?.should_not == false
+ninja.happy?.should_not be_false
+ninja.happy?.should eq true
+ninja.should be_happy
+
+~~~~ describe / it ~~~~
+~~ one group, one example
+RSpec.describe "something" do
+  it "does something" do
+  end
+end
+
+~~ nested example groups (using context)
+RSpec.describe "something" do
+  context "in one context" do
+    it "does one thing" do
+    end
+  end
+  context "in another context" do
+    it "does another thing" do
+    end
+  end
+end
+
+# run with `rspec nested_example_groups_spec.rb -fdoc`
+
