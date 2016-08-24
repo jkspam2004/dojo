@@ -24,5 +24,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # make sure the user has correct authorization
+  def require_correct_user
+    user = User.find(params[:id])
+    redirect_to "/users/#{current_user.id}" if current_user != user
+  end
+
   helper_method :current_user, :logged_in?, :require_login
 end

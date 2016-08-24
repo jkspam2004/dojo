@@ -1,14 +1,20 @@
 Rails.application.routes.draw do
   root 'users#index'
-  get 'sessions/new' => 'sessions#new' 
-  post 'sessions' => 'sessions#create'
-  delete 'sessions' => 'sessions#destroy'
+  get 'sessions/new'   => 'sessions#new' 
+  post 'sessions'      => 'sessions#create'
+  delete 'sessions'    => 'sessions#destroy'
 
-  get 'users' => 'users#index'
-  get 'users/new' => 'users#new'
-  post 'users' => 'users#create'
-  get 'users/:id' => 'users#show'
+  get 'users'          => 'users#index'
+  get 'users/new'      => 'users#new'
+  post 'users'         => 'users#create'
+  get 'users/:id'      => 'users#show'
   get 'users/:id/edit' => 'users#edit'
+  patch 'users/:id'    => 'users#update'
+  delete 'users/:id'   => 'users#destroy'
+
+  get 'secrets'        => 'secrets#index'
+  post 'secrets'       => 'secrets#create'
+  delete 'secrets/:id' => 'secrets#destroy'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

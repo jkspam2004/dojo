@@ -2,10 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-form {
-    display: inline-block;
-}
-
 button {
     overflow: visible;
     width: auto;
@@ -32,4 +28,11 @@ p.success {
 }
 p.error {
     color: red;
+}
+
+div.secrets {
+    display: inline-block;
+    vertical-align: top;
+    width: 400px;
+    height: 200px;
 }

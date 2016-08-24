@@ -1,11 +1,38 @@
-<% if flash[:messages].present? %>
-    <% flash[:messages].each do |message| %>
-       <p class="<%=message['status'] %>"><%= message['text'] %></p> 
-    <% end %>
+
+<% if current_user.id == @user.id %>
+    <p><a href="/users/<%= @user.id %>/edit">Edit Profile</a></p>
 <% end %>
 
-<h2><%= @user.name %></h2>
+<!-- display form for new secret -->
+<p>
+    <form action="/secrets" method="post">
+        <label for="content">New Secret</label>
+        <input type="text" id="content" name="secret[content]">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="submit" value="Create Secret">
+    </form>
+</p>
 
-<a href="/users/<%= @user.id %>/edit">Edit Profile</a>
+<!-- secrets that i created -->
+<div class="secrets">
+    <h3>Secrets</h3>
+    <% @user.secrets.each do |secret| %>
+      <p><%= secret.content %></p>
+      <%= secret.likes.count %> likes
+      <form action="/secrets/<%= secret.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="submit" value="Delete">
+      </form>
+    <% end %> 
+</div>
 
+<!-- secrets that i liked -->
+<div class="secrets">
+    <h3>Secrets Liked</h3>
+    <% current_user.secrets_liked.each do |secret| %>
+      <p><%= secret.content %><p>
+      <p><%= secret.likes.count %> likes
+    <% end %>
+</div>
 

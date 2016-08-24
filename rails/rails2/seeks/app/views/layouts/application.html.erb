@@ -7,12 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if flash[:errors] %>
-  <% flash[:errors].each do |e| %>
-    <p><%= e %></p>
-  <% end %>
-<% end %>
+<!-- logout button -->
 <% if current_user %>
+  <a href="/secrets">Secrets</a> |
+  <a href="/users/<%= current_user.id %>"><%= current_user.name %>'s Profile</a> |
   <form action='/sessions' method='post'>
     <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
     <input type='hidden' name='_method' value='delete'>
@@ -20,6 +18,14 @@
   </form>
 <% end %>
 
+<!-- flash success or error messages -->
+<% if flash[:messages] %>
+  <% flash[:messages].each do |message| %>
+    <p class="<%= message['status'] %>"><%= message['text'] %></p>
+  <% end %>
+<% end %>
+
+<!-- from the partials -->
 <%= yield %>
 
 </body>

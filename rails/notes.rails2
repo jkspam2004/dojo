@@ -9,6 +9,17 @@ $ rails g model User name:string email:string password:digest
 $ rake db:create
 $ rake db:migrate
 
+~~~~ create Secret model
+$ rails g model Secret content:text user:references
+$ rake db:migrate
+
+~~~~ create Like model
+$ rails g model Like user:references secret:references
+$ rake db:migrate
+
+~~~~ create Secrets controller
+$ rails g controller Secrets
+
 ~~~~ BCrypt
 $ rails c
 $ u = User.create(name: 'kobe', email: 'kobe@lakers.com', password: 'password', password_confirmation: 'password')

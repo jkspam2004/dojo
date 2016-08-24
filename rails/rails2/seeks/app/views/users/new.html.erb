@@ -1,9 +1,3 @@
-<% if flash[:messages].present? %>
-    <% flash[:messages].each do |message| %>
-       <p class="<%=message['status'] %>"><%= message['text'] %></p> 
-    <% end %>
-<% end %>
-
 <form action="/users" method="post">
   <p>
     <label for="email">Email</label>
