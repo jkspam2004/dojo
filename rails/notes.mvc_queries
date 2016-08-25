@@ -107,6 +107,10 @@ SELECT "products"."id" FROM "products"
 SELECT  1 AS one FROM "products"  WHERE "products"."name" = 'hose' LIMIT 1
 > Product.where(name: "hoses").exists?
 SELECT  1 AS one FROM "products"  WHERE "products"."name" = 'hoses' LIMIT 1
+> Secret.find(3).likes.exists?(user_id: 9)
+  Like Exists (0.6ms)  SELECT  1 AS one FROM "likes"  WHERE "likes"."secret_id" = $1 AND "likes"."user_id" = 9 LIMIT 1  [["secret_id", 3]]
+=> true
+
 
 ~~~ minimum, maximum, average ~~~
 > Product.minimum("pricing")

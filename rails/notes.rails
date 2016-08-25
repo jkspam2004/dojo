@@ -131,4 +131,9 @@ Model.destroy_all # Only necessary if you want to trigger callbacks.
 ActiveRecord::Base.connection.execute("TRUNCATE #{table_name} RESTART IDENTITY")
 
 
-
+~~~~ strong parameters
+this is how you pass over nested parameters...
+the view template has this set up: <input name="like[secret_id]" type="hidden" .. >
+the controller is requiring strong parameters: params.require(:like).permit(:secret_id)
+post :create, secret_id: @secret2.id, like: { secret_id: @secret2.id }
+ 
