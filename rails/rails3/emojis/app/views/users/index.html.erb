@@ -1,0 +1,36 @@
+<script>
+  $(document).ready(function(){
+    $('#new_user_form').submit(function(){
+      $.post(
+        $(this).attr('action'),
+        $(this).serialize(),
+        function(data){
+          console.log('Data Received from the Ajax call', data);
+          //put additional codes here to update html, etc.
+          //for example things like
+          $('#message').html(data.message);
+        },
+        "json"
+      );
+      return false;
+    });
+  });
+</script>
+
+
+<form action="/users" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <label>Name: 
+    <input type="text" name="user[name]" />
+  </label>
+  <label>Email:
+    <input type="text" name="user[email]" />
+  </label>
+  <input type="submit" value="Submit a new user information" />
+</form>
+
+<% if @users %>
+  <% @users.each do |user| %>
+    <p><%= user.name %> <%= user.email %> </p>
+  <% end %>
+<% end %>

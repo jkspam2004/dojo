@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button fun</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        function clickhandler() {
+            console.log(this);
+            //used attr instead of prop because cannot access custom attr such as .original
+            if (this.getAttribute("original") === "blue") {
+                this.setAttribute("original", "red");
+                this.setAttribute("class", "red");
+            }
+            else { //prop original=red 
+                this.setAttribute("original", "blue");
+                this.setAttribute("class", "blue");
+            }
+        };
+        function mouseOverHandler() {
+            this.setAttribute("class", "green");
+        };
+        function mouseOutHandler() {
+            this.setAttribute("class", this.getAttribute("original"));
+        };
+
+        document.addEventListener("DOMContentLoaded", function(event) { 
+          var button = document.querySelector("#magicbtn");
+          button.addEventListener("click", clickhandler);
+          button.addEventListener("mouseenter", mouseOverHandler, false);
+          button.addEventListener("mouseleave", mouseOutHandler, false);
+        });
+
+/*
+        $(document).ready(function() { 
+            var button = document.querySelector("#magicbtn");
+            button.addEventListener("click", clickhandler);
+            button.addEventListener("mouseenter", mouseOverHandler, false);
+            button.addEventListener("mouseleave", mouseOutHandler, false);
+        });
+*/
+    </script>
+    <style type="text/css">
+        .blue {
+            font-weight: bold;
+            color: white;
+            background-color: blue;
+        }
+        .red {
+            font-weight: bold;
+            color: white;
+            background-color: red;
+        }
+        .green {
+            font-weight: bold;
+            color: white;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <button id="magicbtn" class="blue" original="blue" style="height: 30px; width: 150px">Magic button</button>
+</body>
+</html>

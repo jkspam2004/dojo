@@ -1,0 +1,21 @@
+$ rails new events --database=postgresql --skip-test-unit -m ~/template.rb
+
+$ rails g model State state:string
+
+$ rails g model User first_name:string last_name:string email:string location:string password:digest state:references
+
+$ rails g model Event name:string location:string event_date:date user:references state:references 
+
+$ rails g model Comment comment:text user:references event:references
+
+$ rails g model Guest user:references event:references
+
+$ rake db:create
+
+$ rake db:migrate
+
+$ rake db:seed
+
+$ rails g controller Sessions
+
+$ rails g controller Users

@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
   def new
-    if user = current_user
+    # if logged in (if current_user), set user to current_user
+    # then redirect to profile page
+    # otherwise, render login page
+    if user = current_user 
+      puts "here?"
       redirect_to "/users/#{user.id}"
     end
   end

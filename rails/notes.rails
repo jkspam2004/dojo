@@ -126,7 +126,7 @@ Category.update_all "id = id - 5"
 ActiveRecord::Base.connection.execute("DELETE FROM categories")
 ActiveRecord::Base.connection.execute("DELETE FROM sqlite_sequence WHERE name='categories'")
 
-~~~~ truncating table in mysql/postgres ORM
+~~~~ truncate table in mysql/postgres ORM
 Model.destroy_all # Only necessary if you want to trigger callbacks.
 ActiveRecord::Base.connection.execute("TRUNCATE #{table_name} RESTART IDENTITY")
 
@@ -137,3 +137,17 @@ the view template has this set up: <input name="like[secret_id]" type="hidden" .
 the controller is requiring strong parameters: params.require(:like).permit(:secret_id)
 post :create, secret_id: @secret2.id, like: { secret_id: @secret2.id }
  
+
+~~~~ figaro gem
+1. add gem to Gemfile
+=> gem 'figaro'
+2. install gem
+   this will create a file application.yml in config folder
+=> bundle install
+=> bundle exec figaro install
+=> config/application.yml
+3. add your api keys to application.yml
+=> GOOGLE_API_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+4. access the key anywhere from your project
+=> Figaro.env.GOOGLE_API_KEY
+=> ENV['GOOGLE_API_KEY']

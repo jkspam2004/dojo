@@ -1,0 +1,44 @@
+<html>
+<head>
+  <script src="/~eto/jquery_pkgs/bower_components/dist/jquery.min.js"></script>  
+  <script>
+    $(document).ready( function() {
+      // toggle button between blue and red
+      var clicked = true;
+      $("#mybutton").click( function() {
+        var color = clicked? "red" : "blue";
+        $(this).css("background-color", color);
+        clicked = !clicked;
+      });
+
+      $("#mybutton").hover( 
+        function() {
+          old_color = $(this).css("background-color");
+          console.log(old_color);
+          $(this).css("background-color", "green");
+        }, function() {
+          $(this).css("background-color", old_color);
+        }  
+      );
+
+    });
+  </script>
+  <style>
+    #mybutton {
+      color: white;
+    }
+    .select {
+      background:rgb(0, 0, 255); /* blue */
+    }
+    .select.highlight {
+      background:rgb(255, 0, 0); /* red */
+    }
+    .hover {
+      background:rgb(0,128,0); /* green */
+    }
+  </style>
+</head>
+<body>
+  <button id="mybutton" class="select">Click Me</button>
+</body>
+</html>

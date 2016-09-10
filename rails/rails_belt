@@ -1,0 +1,19 @@
+design database
+relationships
+validations
+queries
+
+state has_many users
+state has many events
+user belongs to a state
+event belongs to a state
+
+
+current_user.state.events
+
+
+def state_events
+  state.events
+end
+
+

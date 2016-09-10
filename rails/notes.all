@@ -1,0 +1,123 @@
+
+$ rails new seeks --database=postgresql --skip-test-unit -m ~/template.rb
+$ rails g model User name:string email:string password:digest
+$ rails g model Secret content:text user:references
+$ rails g model Like user:references secret:references
+$ rails g controller Users
+$ rake db:create
+$ rake db:migrate
+$ rake db:seed
+$ bundle exec rake db:rollback
+$ rails destroy model <model_name>
+$ bundle install
+$ rails generate rails_footnotes:install
+$ rails g rspec:install
+
+
+datatypes
+~~~~~~~~~
+
+:binary
+:boolean
+:date
+:datetime
+:decimal
+:float
+:integer
+:primary_key
+:references
+:string
+:text
+:time
+:timestamp
+
+user:references - references user
+
+validations
+~~~~~~~~~~~
+
+:length - validates the length of an attribute's value
+:minimum, :maximum, :in, :is
+:numericality - validates whether an attribute is a numeric value
+:odd, :even, and many others
+:presence - validates that the specified attributes are not empty
+:uniqueness - validates whether the value is unique in the corresponding database table. 
+NOTE: always create a unique index in the database too.
+:confirmation - use this when you have two text fields that should receive exactly the same content; assumes the second field name has "_confirmation" appended
+validates_associated - use this when your model has associations with other models and they also need to be validated
+:acceptance - validate whether a checkbox was checked when a form was submitted (usually for 'terms and conditions')
+also, get familiar with .message and .on
+
+callbacks
+~~~~~~~~~
+before_validation
+before_validation_on_create
+after_validation
+after_validation_on_create
+before_save
+before_create
+after_create
+after_save
+
+migration
+~~~~~~~~~
+$ rails g migration <name_of_migration>
+
+--- Functions
+create_table(name, options)
+drop_table(name)
+rename_table(old_name, new_name)
+add_column(table_name, column_name, type, options)
+rename_column(table_name, column_name, new_column_name)
+change_column(table_name, column_name, type, options)
+remove_column(table_name, column_name)
+add_index(table_name, column_name, index_type)
+remove_index(table_name, column_name)
+add_reference(table_name, referenced_model, index:true)
+
+---- Different data types
+string - for small data types (less than 256 characters)
+text - for longer text (more than 256 characters)
+integer - for whole numbers
+float - for decimals
+datetime and timestamp - store the date and time into a column
+date and time - store either the date only or time only (not used very often)
+binary - for storing data such as images, audio, or movies (not used very often)
+boolean - for storing true or false values
+
+$ rake routes
+$ rake db:migrate
+$ rake db:rollback
+
+rake db:rollback STEP=3 - rollback the last 3 changes made in the migrations.
+
+routes
+~~~~~~
+
+      Prefix Verb   URI Pattern               Controller#Action
+        root GET    /                         users#index
+sessions_new GET    /sessions/new(.:format)   sessions#new
+    sessions POST   /sessions(.:format)       sessions#create
+             DELETE /sessions(.:format)       sessions#destroy
+       users GET    /users(.:format)          users#index
+   users_new GET    /users/new(.:format)      users#new
+             POST   /users(.:format)          users#create
+             GET    /users/:id(.:format)      users#show
+             GET    /users/:id/edit(.:format) users#edit
+             PATCH  /users/:id(.:format)      users#update
+             DELETE /users/:id(.:format)      users#destroy
+     secrets GET    /secrets(.:format)        secrets#index
+             POST   /secrets(.:format)        secrets#create
+             DELETE /secrets/:id(.:format)    secrets#destroy
+       likes POST   /likes(.:format)          likes#create
+             DELETE /likes/:id(.:format)      likes#destroy
+
+
+
+~~~~ 
+ask for javascript file from rails server, asyncrhonous request
+<form action="/users/create" data-remote = "true" method="post">
+
+_create.js.erb
+
+create an create.js.erb

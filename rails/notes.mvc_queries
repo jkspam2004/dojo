@@ -135,4 +135,19 @@ SELECT "products".* FROM "products" INNER JOIN "categories" ON "categories"."id"
 EXPLAIN for: SELECT "products".* FROM "products" INNER JOIN "categories" ON "categories"."id" = "products"."category_id" WHERE "products"."id" = 1
 
 
+~~~ drop database ~~~
+$ rake db:drop
+$ rake db:drop db:create db:migrate
+# If you have data in other tables you don't want to lose, open the database console and drop the posts table manually:
+$ rails db
+# drop table posts;
+
+~~~ bring schema down by version ~~~
+You deleted the file but the ID is still in the schema table.
+Just Log into mysql
+SELECT * FROM schema_migrations; *- take note of the version_id*
+Then
+DELETE FROM schema_migrations WHERE VERSION = version_id; 
+Then logout and verify
+rake db:migrate:status migration files ~~~
 

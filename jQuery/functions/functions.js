@@ -35,7 +35,7 @@ $(document).ready(function() {
 
 	//.attr setter
 	$('button#f_attr2').click(function(){				
-		// $('p.attr2').attr("background-color", "purple");
+		// $('p.attr2').css("background-color", "purple");
 		$('p.attr2').attr("class", "new");
 	});	
 		

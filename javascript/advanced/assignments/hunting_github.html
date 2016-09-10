@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/~eto/jquery_pkgs/bower_components/dist/jquery.min.js"></script> 
+  <script>
+    $(document).ready( function() {
+      $("#gitbutton").click( function() {
+        console.log("here");
+        var username = "jkspam2004";
+        $.get("https://api.github.com/users/" + username, displayName);
+
+        function displayName(data) {
+          console.log(data);
+          var html_str = "<ul>";
+          for (var key in data) {
+            html_str += "<li>" + key + ": " + data[key] + "</li>";
+          }
+          html_str += "</ul>";
+          $(".gitdata").html(data.login);
+          $(".gitdata").append(html_str);
+        }
+
+      });
+    });
+  </script>
+</head>
+<body>
+  <button id="gitbutton">Github</button>
+  <p class="gitdata"></p>
+</body>
+</html>
+
+<!-- Optional Use promises (either the q library or ES6) instead of callbacks. -->

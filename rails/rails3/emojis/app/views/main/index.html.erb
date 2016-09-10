@@ -1,0 +1,11 @@
+<h1> Emoji API</h1>
+<h3>Share your mood</h3>
+
+<form action="/mood" method="post">
+  <p><label for="mood">Please enter your emoji code here:</label></p>
+  <input type="text" name="main[mood]" >
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Check Code">
+</form>
+
+<p><a href="/main/get_api">Get API</a></p>

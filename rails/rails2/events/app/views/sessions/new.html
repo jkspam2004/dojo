@@ -1,0 +1,68 @@
+<h2>Welcome!</h2>
+
+<!-- Register -->
+<div class="reglog">
+  <h3>Register</h3>
+
+  <form action="/users" method="post">
+    <p>
+      <label for="first_name">First Name: </label>
+      <input type="text" name="user[first_name]" id="first_name">
+    </p>
+    <p>
+      <label for="last_name">Last Name: </label>
+      <input type="text" name="user[last_name]" id="last_name">
+    </p>
+    <p>
+      <label for="email">Email: </label>
+      <input type="text" name="user[email]" id="email">
+    </p>
+    <p>
+      <label for="location">Location: </label>
+      <input type="text" name="user[location]" id="location">
+    </p>
+    <p>
+      <label for="state">State: </label>
+      <select name="user[state_id]">
+        <% @states.each do |s| %>
+          <option value="<%= s.id %>"><%= s.state %></option>
+        <% end %>
+      </select>
+    </p>
+    <p>
+      <label for="password">Password: </label>
+      <input type="password" name="user[password]" id="password">
+    </p>
+    <p>*Password should be at least 8 characters
+    <p>
+      <label for="password_confirmation">Password Confirmation: </label>
+      <input type="password" name="user[password_confirmation]" id="password_confirmation">
+    </p>
+    <p>
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" value="Register">
+    </p>
+  </form>
+
+</div>
+
+
+<!-- Login -->
+<div class="reglog">
+  <h3>Login</h3>
+  <form action="/sessions" method="post">
+    <p>
+      <label for="email">Email</label>
+      <input type="text" id="email" name="user[email]">
+    </p>
+    <p>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="user[password]">
+    </p>
+    <p>
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" value="Log In">
+    </p>
+  </form>
+</div>
+

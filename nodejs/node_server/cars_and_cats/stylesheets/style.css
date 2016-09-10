@@ -1,0 +1,11 @@
+/* global settings */
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+img {
+  width: 500px;
+  height: 400px;
+  margin: 20px auto;
+}

@@ -1,0 +1,4 @@
+Asset Pipeline
+app/assets/images
+
+Use image_tag to display images

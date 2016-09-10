@@ -1,7 +1,10 @@
 ~~~~ creating new project with postgres
-$ rails new seeks --database=postgresql --skip-test-unit -m ~/template.rb
+$ rails new seeks --database=postgresql --skip-test-unit -m ~/Git/dojo/rails/template.rb
 
 $ rails g # see what needs to be installed
+
+~~~~ bring down specific model version 
+$ rake db:migrate:down VERSION=20160831204337
 
 ~~~~ this will create a model with a password digest column
 $ rails g model User name:string email:string password:digest
@@ -39,3 +42,19 @@ $ u.authenticate('password') # returns row object if match
 app/controllers/application_controller.rb 
 - make method available in all view files
 app/views/layout/application.html.erb
+
+
+~~~~ changing from sqlite to postgresql
+- add 'pg' to Gemfile
+- change the adapter to postgresql
+- change database field like below : products_development
+
+default: &default
+  adapter: postgresql
+  username: ubuntu
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: products_development

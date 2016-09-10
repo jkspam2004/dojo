@@ -1,0 +1,10 @@
+
+<h2>Mood</h2>
+
+<% if @mood.present? %>
+  <p>Your mood is <img src='<%= @mood %>' alt='emoji'/> today!</p>
+<% else %>
+  <p>I'm sorry.  I could not recognize your mood.  Please try again.</p>
+<% end %>
+
+<a href="/">Back</a>

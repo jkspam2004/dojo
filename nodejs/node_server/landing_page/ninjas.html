@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="/~eto/jquery_pkgs/bower_components/dist/jquery.min.js"></script>  
+
+  <script>
+    $(document).ready(function() {
+      $("h1").click(function() {
+        var html_str = '<ul>';
+        var ninjas = ['leo', 'don', 'mike', 'raph'];
+        for (var i = 0; i < ninjas.length; i++) {
+          console.log(ninjas[i]);
+          html_str += "<li>" + ninjas[i] + "</li>"; 
+        } 
+        html_str += '</ul>';
+        $(".ninjas").html(html_str);
+      });
+    });
+  </script>
+
+</head>
+
+<body>
+
+  <h1>Ninjas!</h1>
+  <p class="ninjas"></p>
+
+</body>
+</html>

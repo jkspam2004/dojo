@@ -1,0 +1,46 @@
+<html>
+<head>
+  <script src="/~eto/jquery_pkgs/bower_components/dist/jquery.min.js"></script>  
+  <script>
+    $(document).ready( function() {
+      var class_type = $("#mybutton").attr("class");
+      console.log(class_type);
+      // toggle button between blue and red
+      $("#mybutton").click( function() {
+        var clicked = true;
+        $(this).toggleClass('highlight');
+        clicked = !clicked;
+      });
+
+
+      $("#mybutton").hover( 
+        function() {
+          //$(this).css("background-color", "green");
+          class_type = $(this).attr("class");
+          $(this).attr("class", "hover");
+        }, function() {
+          $(this).attr("class", class_type);
+        }  
+      );
+
+    });
+  </script>
+  <style>
+    #mybutton {
+      color: white;
+    }
+    .select {
+      background:rgb(0, 0, 255); /* blue */
+    }
+    .select.highlight {
+      background:rgb(255, 0, 0); /* red */
+    }
+    .hover {
+      background:rgb(0,128,0); /* green */
+    }
+  </style>
+</head>
+<body>
+  <button id="mybutton" class="select">Click Me</button>
+</body>
+</html>

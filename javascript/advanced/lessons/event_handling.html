@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>Event handling</title>
+</head>
+
+<body>
+  <button id="someButton">This is Some Button</button>
+  <script>
+  // some js code here to add an event listener to the button
+
+  // Link our variable "button" to a DOM element
+  var button = document.getElementById("someButton")
+  // add a DOM eventListener to that variable.
+  //button.addEventListener("click", whatToDoOnClick);
+  // here we define the whatToDoOnClick function
+  var foo = 'something';
+  button.addEventListener("click", function whatToDoOnClick() { 
+    alert("you did " + foo + "!") 
+  });
+
+  //function whatToDoOnClick() {
+  //  alert("You Did it!")
+  //}
+  </script>
+
+
+  <!-- 
+Event Handling
+Callbacks can be used to handle events
+
+Remember how we said that Javascript uses an Event-Driven programming style? This means that we 
+listen for events, trigger events, and keep track of a list of instructions to run when the event 
+is triggered. As developers we take care of listening for events and passing the list of 
+instructions to dictate what to do once the event is triggered. The user is usually the one to 
+actually trigger the event.
+  -->
+
+</body>
+</html>
