@@ -17,8 +17,11 @@ var server = http.createServer(function (request, response){
             response.end(); // finished!
         });
     }
-    else if (request.url === '/stylesheets/style.css') {
-        fs.readFile('./stylesheets/style.css', 'utf8', function (errors, contents){
+    // regular expression
+    // use .test to return boolean
+    else if (match = /\/stylesheets\/(\w+\.css)/.exec(request.url)){
+        console.log(match);
+        fs.readFile("./" + match[0], 'utf8', function (errors, contents){
           response.writeHead(200, {'Content-type': 'text/css'});
           console.log("errors: ", errors);
           //console.log(contents);
