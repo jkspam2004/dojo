@@ -52,7 +52,7 @@ Deck.prototype.shuffle = function() {
   console.log("shuffling");
   // fisher-yates shuffle
   for (var i = this.cards.length - 1; i > 0; i--) {
-    var rand = Math.floor(Math.random() * (i +1));
+    var rand = Math.floor(Math.random() * (i + 1));
 
     // swap with card at random index
     var temp = this.cards[i];
