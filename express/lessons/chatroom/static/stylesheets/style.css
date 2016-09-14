@@ -1,0 +1,7 @@
+.chats {
+  display: inline-block;
+  vertical-align: top;
+  width: 150px; 
+  height: 70px;
+  border: 1px solid black;
+}

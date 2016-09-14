@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+      $(document).ready(function (){
+        /* connect to socket */
+        var socket = io.connect();
+
+        /* prompt user for name */
+        prompt_user();
+        function prompt_user() {
+          var name = prompt("What is your name?");
+          socket.emit("new_user", { name: name });
+        }
+
+        /* keep prompting for name if no name entered */
+        socket.on("get_name", function() {
+          prompt_user();
+        });
+
+        /* new_user_join event was broadcasted to all users
+           new user has joined message is appended
+           append new user to the end of the roster */
+        socket.on("new_user_join", function(data) {
+          $("#message").append("<p>User " + data.response + " has joined</p>");
+
+          var html_str = "<div class='chats'>" + data.response + "</div>";
+          $("#roster").append(html_str); 
+        });
+
+        /* existing_users event only sent to the user who just joined
+           complete roster is sent over */
+        socket.on("existing_users", function(data) {
+          console.log("roster", data.response);
+          var html_str = '';
+          for (var id in data.response) {
+            html_str += "<div class='chats'>" + data.response[id] + "</div>";
+          }
+          $("#roster").html(html_str); 
+        });
+
+        /* disconnect_user is broadcasted to all except the disconnected user */
+        socket.on("disconnect_user", function(data) {
+          $("#message").append("<p>User " + data.response + " has disconnected</p>");
+        });
+
+        //$(window).on(beforeunload, function() {
+        //  socket.emit("disconnect_user", { name : name });
+        //});
+
+      });
+    </script>
+</head>
+<body>
+
+  <div id="message"></div>
+  <div id="roster"></div>
+
+</body>
+</html>
+

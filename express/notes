@@ -1,0 +1,63 @@
+~~~~~ sockets ~~~~~
+1. Emit: sends data from the server to the specific client who initiated contact.
+2. Broadcast: sends data from the server to everyone BUT the client that initiated the contact.
+3. Full Broadcast: sends data to all connected clients.
+
+Here is sample code for each different method:
+Note: we are just showing the emits, not any listeners.
+//  this is just the configuration code that we've already used
+io.sockets.on('connection', function (socket) {
+    //  EMIT:
+    socket.emit('my_emit_event');
+    //  BROADCAST:
+    socket.broadcast.emit("my_broadcast_event");
+    //  FULL BROADCAST:
+    io.emit("my_full_broadcast_even");
+})
+
+
+~~~~ dependencies ~~~~~~
+
+Want to use the same dependencies for another project?
+
+You have some options: our favorite way: Create the new project, npm init -y in the new project, then copy the dependencies to that new package.json.
+Then type: npm install. Install, when not passed any information, will look for a package.json file and then install all the listed dependencies in the package.json.
+
+1. npm init -y
+2. copy dependencies section to package.json in new file
+  , "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0"
+  }
+3. npm install --save
+
+# --save flag tells the install to get the update-to-date version of new packages
+
+
+~~~~~ node modules ~~~~~
+EJS
+Embedded Javascript is the templating engine we will use to render our views. When using EJS, 
+your node server will take the .ejs file you wrote, parse through it, resolve all of the Javascript
+in the file, and then send a 'rendered' HTML page to the client. This is extra computation that the
+server will be required to do, and later we'll replace EJS with a full front end framework like 
+Angular.
+
+Express
+Like we said before, express is super useful for managing incoming requests!
+
+body-parser
+Guess what body-parser is used for? Parsing the body! We'll use this piece of middleware to parse 
+information out of HTTP requests made to our server. Body-parser is incredibly flexible, and will 
+be used to not only pull POST data out of requests, but can also snag data encoded into URLs via 
+GET requests, and later you'll use body-parser to pull raw JSON.
+
+socket.io
+This node module will enable you to use web sockets within your application, we'll get into it more later. You will use socket.io for just this chapter!
+
+
+npm install express
+npm install ejs
+npm install body-parser
+npm install express-session
+npm install socket.io

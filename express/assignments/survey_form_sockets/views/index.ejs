@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey Form</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <script>
+    $(document).ready(function() {
+      var socket = io.connect();
+    
+      // emit the form data to the server upon submit 
+      $("#surveyform").submit(function() {
+        console.log($(this).serialize());
+        console.log($(this).serializeArray());
+        var data = $(this).serializeArray();
+        socket.emit("posting_form", { form_data: data });
+        return false;
+      });
+
+      // listen for updated_message from server
+      socket.on("updated_message", function(data) {
+        console.log("updated message: " + data.response);
+      });
+      // listen for random_number from server
+      socket.on("random_number", function(data) {
+        console.log("random number: " + data.number);
+      });
+
+    });
+  </script>
+</head>
+<body>
+  <h2>Survey Form</h2>
+
+  <form action="/result" id="surveyform" method="post">
+    <p>
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name">
+    </p>
+    <p>
+    <label for="location">Dojo Location:</label>
+    <select name="location">
+      <option value="San Jose">San Jose</option>
+      <option value="Seattle">Seattle</option>
+      <option value="Chicago">Chicago</option>
+      <option value="Dallas">Dallas</option>
+    </select>
+    </p>
+    <p>
+    <label for="language">Favorite Language:  </label>
+    <select name="language">
+      <option value="Python">Python</option>
+      <option value="Ruby">Ruby</option>
+      <option value="JavaScript">JavaScript</option>
+      <option value="Perl">Perl</option>
+    </select>
+    </p>
+    <p>
+    <label for="comment">Comment (optional):</label>
+    </p>
+    <p>
+      <textarea id="comment" name="comment"></textarea>
+    </p>
+    <p><input type="submit" value="Submit"></p>
+
+  </form>
+</body>
+</html>
