@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mongoose</title>
+</head>
+
+<body>
+  <h3>Users</h3>
+
+  <h4>Add a user</h4>
+  <form id="userform" action="/users" method="post">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" /> 
+    <label for="age">Age</label>
+    <input type="text" id="age" name="age" />
+    <input type="submit" value="Submit" />
+  </form>
+
+  <h4>List of Users</h4>
+  <div id="users">
+    <% if (users) { %>
+      <table>
+      <tr><th>Name</th><th>Age</th></tr>
+      <% for (var i=0; i<users.length; i++) { %>
+        <tr><td><%= users[i].name %></td><td><%= users[i].age %></td>
+      <% } %> 
+      </table>
+    <% } %>
+  </div>
+
+</body>
+</html>

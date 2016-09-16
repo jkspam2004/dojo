@@ -1,0 +1,6 @@
+make a package.json file:
+yourcommandline> npm init -y
+yourcommandline> npm install express --save
+yourcommandline> npm install ejs --save
+yourcommandline> npm install body-parser --save
+yourcommandline> npm install mongoose --save

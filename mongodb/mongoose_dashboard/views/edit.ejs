@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Edit Course</title>
+</head>
+<body>
+  <h2>Edit Course</h2>
+  <% if (course) { %>
+    <form action="/courses/<%= course.id %>" method="post">
+      <p>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%= course.name %>" />
+      </p>
+      <p>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" value="<%= course.description %>" />
+      </p>
+      <input type="hidden" name="_method" value="patch" />
+      <p><button type="submit">Submit</button></p>
+    </form>
+  <% } %>
+
+  <p><a href="/">Back</a></p>
+</body>
+</html>

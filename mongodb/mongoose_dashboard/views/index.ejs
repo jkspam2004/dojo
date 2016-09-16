@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dashboard</title>
+</head>
+<body>
+  <h2>Courses Dashboard</h2>
+
+  <% if (courses.length) { %>
+    <table>
+      <tr><th>Name</th><th>Description</th><th>Action</th></tr>
+    <% for (var i = 0; i < courses.length; i++) { %> 
+      <tr>
+        <td><%= courses[i].name %></td>
+        <td><%= courses[i].description %></td>
+        <td><a href="/courses/<%= courses[i].id %>">Show</a></td>
+        <td><a href="/courses/<%= courses[i].id %>/edit">Edit</a></td>
+        <td>
+          <form action="/courses/<%= courses[i].id %>/destroy" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr> 
+    <% } %>
+    </table>
+  <% } %>
+
+  <p><a href="/courses/new">Add new course</a></p>
+</body>
+</html>
+
