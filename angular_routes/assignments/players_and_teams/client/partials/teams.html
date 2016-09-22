@@ -1,0 +1,55 @@
+<div id="teams">
+
+  <!-- form for adding team -->
+    <form id="teamForm" ng-submit="addTeam()">
+      <p>
+        <label for="name">Team Name:</label>
+        <input id="name" name="name" type="text" ng-model="newTeam.name" />
+      </p>
+      <p><button type="submit" id="addTeam">Add Team</button></p>
+    </form>
+
+  <!-- clear sort -->
+  <p>Sort by={{sortName}}, reverse={{reverse}}</p>
+  <p><button ng-click="sortName=null; reverse=false">Clear sort</button></p>
+
+  <!-- display teams -->
+  <table class="teams">
+    <tr>
+      <th>
+        <a href="" ng-click="sortBy('name')">Name</a>
+        <span class="sortorder" ng-show="sortName === 'name'" ng-class="{reverse: reverse}"></span>
+      </th>
+      <th>Actions</th>
+    </tr>
+    <tr ng-repeat="team in teams | orderBy:sortName:reverse">
+      <td><a href="#/{{team.name}}">{{ team.name }}</a></td>
+      <td><button ng-click="removeTeam(team)">Remove Team</button></td>
+    </tr>
+
+  </table>
+
+  <style>
+    .teams {
+      border-collapse: collapse;
+    }
+
+    .teams th {
+      border-bottom: 1px solid;
+    }
+    .teams td {
+      border-left: 1px solid;
+      padding: 5px 10px;
+    }
+    .teams td:first-child, .teams th:first-child {
+      border-left: none;
+    }
+    .sortorder:after {
+      content: '\25b4';   // BLACK UP-POINTING TRIANGLE
+    }
+    .sortorder.reverse:after {
+      content: '\25be';   // BLACK DOWN-POINTING TRIANGLE
+    }
+  </style>
+
+</div>

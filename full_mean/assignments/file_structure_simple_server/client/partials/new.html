@@ -1,0 +1,26 @@
+<div id="newfriend">
+  <h3>Add a New Friend</h3>
+  <form name="add_friend_form">
+    <!-- display messages if any -->
+    <div ng-if="error">
+      <p>{{ error.message }}:</p>
+      <ul>
+        <li ng-repeat="e in error.errors">{{e.message}}</li>
+      </ul>
+    </div>
+
+    <p>
+      <label for="first_name">First Name:</label>
+      <input id="first_name" name="first_name" type="text" ng-model="newFriend.first_name" />
+    </p>
+    <p>
+      <label for="last_name">Last Name:</label>
+      <input id="last_name" name="last_name" type="text" ng-model="newFriend.last_name" />
+    </p>
+    <p>
+      <label for="birthday">Birthday:</label>
+      <input id="birthday" name="birthday" type="date" ng-model="newFriend.birthday" placeholder="yyyy-MM-dd" min="1916-01-01" max="2016-09-21" />
+    </p>
+    <p><button ng-click="addFriend()">Add Friend</button>
+  </form>
+</div>

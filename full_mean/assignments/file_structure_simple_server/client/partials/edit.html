@@ -1,0 +1,19 @@
+<div id="editfriend">
+  <h3>Edit Friend</h3>
+  <form name="edit_friend_form">
+    <p>
+      <label for="first_name">First Name:</label>
+      <input id="first_name" name="first_name" type="text" ng-model="friend.first_name" />
+    </p>
+    <p>
+      <label for="last_name">Last Name:</label>
+      <input id="last_name" name="last_name" type="text" ng-model="friend.last_name" />
+    </p>
+    <p>
+      <label for="birthday">Birthday:</label>
+      <input id="birthday" name="birthday" type="date" ng-model="friend.birthday" placeholder="yyyy-MM-dd" min="1916-01-01" max="2016-09-21" />
+    </p>
+    <p><button ng-click="updateFriend()">Edit Friend</button>
+  </form>
+
+</div>

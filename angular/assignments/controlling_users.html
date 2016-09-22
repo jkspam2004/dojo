@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Controlling users</title>
+  <script src="../bower_components/angular/angular.js"></script>
+  <script>
+    var myApp = angular.module("myApp", []);
+    myApp.controller("usersController", ['$scope', function($scope) {
+      // users data array
+      var users = [
+        {first_name: 'Minnie', last_name: 'Mouse', language: 'JavaScript'},
+        {first_name: 'Donald', last_name: 'Duck', language: 'Python'},
+        {first_name: 'Bob', last_name: 'Jones', language: 'Ruby'},
+        {first_name: 'Joe', last_name: 'Smith', language: 'Perl'},
+        {first_name: 'Angel', last_name: 'Luna', language: 'C'},
+      ];
+      
+      $scope.users = users;
+      // set default sortby and sort order
+      $scope.propertyName = 'language';
+      $scope.reverse = false;
+
+      // add a user
+      $scope.addUser = function() {
+        $scope.users.push($scope.newUser);
+        $scope.newUser = {};
+      };
+      // delete a user
+      $scope.deleteUser = function(index) {
+        $scope.users.splice(index, 1); 
+        // consider passing the whole object instead of index as index can be mixed up when filters used
+        //$scope.users.splice( $scope.users.indexOf(user), 1 );
+      }
+      // sort by column. flip the order and set the sortby
+      $scope.sortBy = function(propertyName) {
+        $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+        $scope.propertyName = propertyName;
+      }
+    }]); 
+  </script>
+</head>
+<body ng-app="myApp">
+  <h2>Users Controller</h2>
+
+  <div id="usersController" ng-controller="usersController">
+    <!-- form to add new user -->
+    <form id="userForm">
+      <p>
+        <label="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" ng-model="newUser.first_name" />
+      </p>
+      <p>
+        <label="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" ng-model="newUser.last_name" />
+      </p>
+      <p>
+        <label="favorite language">Favorite Language:</label>
+        <input type="text" id="language" name="language" ng-model="newUser.language" />
+      </p>
+      <p><button type="submit" ng-click="addUser()">Create User</button></p>
+    </form>
+
+    <!-- display users -->
+    <p>Sort by={{propertyName}}; reverse={{reverse}}</p>
+    <p><button ng-click="propertyName=null; reverse=false">Set to unsorted</button></p>
+    <table class="users">
+      <tr>
+        <th>
+          <a href="" ng-click="sortBy('first_name')">First Name</a>
+          <span class="sortorder" ng-show="propertyName === 'first_name'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th>
+          <a href="" ng-click="sortBy('last_name')">Last Name</a>
+          <span class="sortorder" ng-show="propertyName === 'last_name'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th>
+          <a href="" ng-click="sortBy('language')">Favorite Language</a>
+          <span class="sortorder" ng-show="propertyName === 'language'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th>Actions</th>
+      </tr>
+      <tr ng-repeat="user in users | orderBy:propertyName:reverse track by $index">
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.language }}</td>
+        <td><button ng-click="deleteUser($index)">Delete User</button></td>
+      </tr> 
+    </table>
+
+  </div>
+  <style>
+    .users {
+      border-collapse: collapse;
+    }
+
+    .users th {
+      border-bottom: 1px solid;
+    }
+    .users td, .friends th {
+      border-left: 1px solid;
+      padding: 5px 10px;
+    }
+    .users td:first-child, .users th:first-child {
+      border-left: none;
+    }
+
+    .sortorder:after {
+      content: '\25b4';   // BLACK UP-POINTING TRIANGLE
+    }
+    .sortorder.reverse:after {
+      content: '\25be';   // BLACK DOWN-POINTING TRIANGLE
+    }
+  </style>
+</body>

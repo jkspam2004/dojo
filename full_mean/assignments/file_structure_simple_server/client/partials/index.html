@@ -1,0 +1,18 @@
+<h2>All Friends</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Show</th>
+    <th>Update</th>
+    <th>Delete</th>
+  </tr>
+  <tr ng-repeat="friend in friends">
+    <form name="deleteForm" method="post">
+      <td>{{ friend.first_name }} {{ friend.last_name }}</td>
+      <td><a href="#/friends/{{ friend._id }}">show</a></td>
+      <td><a href="#/friends/{{ friend._id }}/edit">edit</a></td>
+    <td><button type="submit" ng-click="removeFriend(friend)">delete</button></td>
+    </form>
+  </tr>
+</table>

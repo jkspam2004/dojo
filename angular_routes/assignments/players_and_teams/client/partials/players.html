@@ -1,0 +1,55 @@
+<div id="players">
+
+  <!-- form for adding player -->
+    <form id="playerForm" ng-submit="addPlayer()">
+      <p>
+        <label for="name">First Name:</label>
+        <input id="name" name="name" type="text" ng-model="newPlayer.name" />
+      </p>
+      <p><button type="submit" id="addPlayer">Add Player</button></p>
+    </form>
+
+  <!-- clear sort -->
+  <p>Sort by={{sortName}}, reverse={{reverse}}</p>
+  <p><button ng-click="sortName=null; reverse=false">Clear sort</button></p>
+
+  <!-- display players -->
+  <table class="players">
+    <tr>
+      <th>
+        <a href="" ng-click="sortBy('name')">Name</a>
+        <span class="sortorder" ng-show="sortName === 'name'" ng-class="{reverse: reverse}"></span>
+      </th>
+      <th>Actions</th>
+    </tr>
+    <tr ng-repeat="player in players | orderBy:sortName:reverse">
+      <td>{{ player.name }}</td>
+      <td><button ng-click="removePlayer(player)">Remove Player</button></td>
+    </tr>
+
+  </table>
+
+  <style>
+    .players {
+      border-collapse: collapse;
+    }
+
+    .players th {
+      border-bottom: 1px solid;
+    }
+    .players td {
+      border-left: 1px solid;
+      padding: 5px 10px;
+    }
+    .players td:first-child, .players th:first-child {
+      border-left: none;
+    }
+    .sortorder:after {
+      content: '\25b4';   // BLACK UP-POINTING TRIANGLE
+    }
+    .sortorder.reverse:after {
+      content: '\25be';   // BLACK DOWN-POINTING TRIANGLE
+    }
+  </style>
+
+</div>

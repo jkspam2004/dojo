@@ -1,0 +1,66 @@
+<div id="associations">
+
+  <!-- form for assigning player to assign -->
+    <form id="assignForm" ng-submit="addAssignment()">
+      <p>
+        <label for="playerIdx">Player:</label>
+        <select name="playerIdx" id="playerIdx" ng-model="newAssignment.playerIdx" ng-init="newAssignment.playerIdx='0'">
+          <option ng-repeat="player in players" value="{{ $index }}">{{ player.name }}</option>
+        </select>
+        <label for="team">Team:</label>
+        <select name="team" id="team" ng-model="newAssignment.team" ng-init="newAssignment.team=teams[0].name">
+          <option ng-repeat="team in teams" value="{{ team.name }}">{{ team.name }}</option>
+        </select>
+        <button type="submit" id="addAssignment">Assign Player to Team</button>
+      </p>
+    </form>
+
+  <!-- clear sort -->
+  <p>Sort by={{sortName}}, reverse={{reverse}}</p>
+  <p><button ng-click="sortName=null; reverse=false">Clear sort</button></p>
+
+  <!-- display assignment -->
+  <table class="assignment">
+    <tr>
+      <th>
+        <a href="" ng-click="sortBy('name')">Name</a>
+        <span class="sortorder" ng-show="sortName === 'name'" ng-class="{reverse: reverse}"></span>
+      </th>
+      <th>
+        <a href="" ng-click="sortBy('team')">Team</a>
+        <span class="sortorder" ng-show="sortName === 'team'" ng-class="{reverse: reverse}"></span>
+      </th>
+      <th>Actions</th>
+    </tr>
+    <tr ng-repeat="player in players | orderBy:sortName:reverse">
+      <td>{{ player.name }}</td>
+      <td>{{ player.team }}</td>
+      <td><button ng-click="removeAssignment($index)">Clear Assignment</button></td>
+    </tr>
+
+  </table>
+
+  <style>
+    .assignment {
+      border-collapse: collapse;
+    }
+
+    .assignment th {
+      border-bottom: 1px solid;
+    }
+    .assignment td {
+      border-left: 1px solid;
+      padding: 5px 10px;
+    }
+    .assignment td:first-child, .assignment th:first-child {
+      border-left: none;
+    }
+    .sortorder:after {
+      content: '\25b4';   // BLACK UP-POINTING TRIANGLE
+    }
+    .sortorder.reverse:after {
+      content: '\25be';   // BLACK DOWN-POINTING TRIANGLE
+    }
+  </style>
+
+</div>

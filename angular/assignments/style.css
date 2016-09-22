@@ -1,0 +1,20 @@
+.food {
+  display: inline-block;
+  vertical-align: top;
+  width: 500px;
+}
+.filter {
+  width: 200px;
+  height: 20px;
+  border: 1px solid #eee;
+}
+.items {
+  width: 200px;
+  height: 300px;
+  overflow: auto;
+  border: 1px solid #eee;
+}
+.filterbox {
+  border: none;
+}
+

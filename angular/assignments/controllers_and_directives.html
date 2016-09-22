@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <title>Controller and Directives</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script src="../bower_components/angular/angular.js"></script>
+  <script>
+    var myAppModule = angular.module("myApp", []);
+    myAppModule.controller('foodsController', ['$scope', function($scope) {
+      $scope.foods = [
+        {name: 'Pizza'},
+        {name: 'BBQ'},
+        {name: 'Fries'},
+        {name: 'Salad'},
+      ];
+      $scope.addFood = function() {
+        $scope.foods.push($scope.newFood);
+        $scope.newFood = {};
+      };
+    }]);
+  </script>
+</head>
+<body>
+  <h3>Controllers and Directives</h3>
+  <div ng-controller="foodsController" id="foodsController">
+    <!-- form to add food -->
+    <div class="food">
+      <form ng-submit="addFood()">
+        <label>Favorite Food</label>
+        <input type="text" ng-model="newFood.name" />
+        <input type="submit" value="Add Food" />
+        <!--<input type="submit" value="Add Food" ng-click="addFood()" />-->
+      </form>
+
+      <p id="typing" ng-if="newFood.name">
+        Currently typing: {{ newFood.name }}
+      </p>
+      <div>
+          <p>Click me: <input type="checkbox" ng-model="clicked"></p>
+          <p>Show: <span ng-show="clicked">Here</span></p>
+          <p>Hide: <span ng-hide="clicked">Here</span></p>
+      </div>
+    </div>
+    <!-- display filter -->
+    <div class="food">
+        <div class="filter"><input class="filterbox" type="text" ng-model="name" placeholder="filter..." /></div>
+      <div class="items">
+        <p ng-repeat="food in foods | filter:name">{{ food.name }}</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

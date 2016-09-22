@@ -29,12 +29,11 @@ module.exports = function(app) {
   });
 
   /* update a course */
-  app.post('/courses/:id', function(req, res) {
-    courses.update(req, res);
-  });
+  app.post('/courses/:id', courses.update);
 
   /* delete a course */
   app.post('/courses/:id/destroy', function(req, res) {
     courses.destroy(req, res);
   });
 }
+
