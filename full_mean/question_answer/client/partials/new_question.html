@@ -1,0 +1,23 @@
+<div>
+  <a href="#/">Home</a> | {{ user.username }} | <a href="#/">Logout</a>
+
+  <h3>New Question</h3>
+
+  <div ng-if="error">
+    <p style="color: red">{{ error.message }}</p>
+    <ul>
+      <li style="color: red" ng-repeat="e in error.errors">{{e.message}}</li>
+    </ul>
+  </div>
+
+
+  <form id="newQuestionForm">
+    <p>Question:</p>
+    <textarea ng-model="newQuestion.question"></textarea>
+    <p>Description (Optional):</p>
+    <textarea ng-model="newQuestion.description"></textarea>
+    <button type="submit" ng-click="addQuestion()">Submit</button>
+  </form>
+</div>
+
+

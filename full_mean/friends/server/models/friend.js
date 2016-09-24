@@ -15,7 +15,7 @@ var friendSchema = new mongoose.Schema({
   },
   birthday: { 
     type: Date, 
-    required: true
+    required: false
   }
 }, { timestamps: true });
 mongoose.model('Friend', friendSchema); // set our schema to model name

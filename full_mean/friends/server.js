@@ -10,7 +10,7 @@ var port = 8000;
 
 /* use modules */
 var app = express();
-app.use(bodyParser.urlencoded('body-parser')); // parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
 app.use(express.static(path.join(root, './client')));
 app.use(express.static(path.join(root, './bower_components')));
