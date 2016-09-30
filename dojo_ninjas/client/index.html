@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="end">
+<head>
+  <title>Dojo Ninjas</title>
+  <!-- include angular -->
+  <script src="angular/angular.js" charset="utf-8"></script>
+  <script src="angular-route/angular-route.js" charset="utf-8"></script>
+  <script src="angular-base64-upload/src/angular-base64-upload.js" charset="utf-8"></script>
+  <script src="socket.io/socket.io.js" charset="utf-8"></script>
+
+  <!-- include boostrap and jquery -->
+  <link rel="stylesheet" href="static/stylesheets/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="static/stylesheets/bootstrap/bootstrap-theme.min.css" />
+  <script src="static/javascripts/jquery.min.js"></script>
+  <script src="static/javascripts/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="static/stylesheets/style.css" />
+  <link rel="icon" type="image/x-icon" href="static/images/green_ninja.png" />
+
+  <!-- project's factories and controllers -->
+  <script src="app.js" charset="utf-8"></script>
+  <script src="factories/ninjas/ninjaFactory.js" charset="utf-8"></script>
+  <script src="factories/chatrooms/chatroomFactory.js" charset="utf-8"></script>
+
+  <script src="controllers/login/welcomeController.js" charset="utf-8"></script>
+  <script src="controllers/login/loginController.js" charset="utf-8"></script>
+  <script src="controllers/login/logoutController.js" charset="utf-8"></script>
+  <script src="controllers/ninjas/registerController.js" charset="utf-8"></script>
+  <script src="controllers/ninjas/ninjaDexController.js" charset="utf-8"></script>
+  <script src="controllers/ninjas/profileController.js" charset="utf-8"></script>
+  <script src="controllers/ninjas/editNinjasController.js" charset="utf-8"></script>
+  <script src="controllers/events/eventsController.js" charset="utf-8"></script>
+  <script src="controllers/chatroom/chatroomController.js" charset="utf-8"></script>
+   
+    
+</head>
+
+<body ng-app="app">
+  <div ng-view></div>
+</body>
+</html>

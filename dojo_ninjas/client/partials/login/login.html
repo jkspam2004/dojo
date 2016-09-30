@@ -1,0 +1,28 @@
+<div id="login">
+
+  <h2>Login Ninja</h2>
+
+  <div ng-if="error">
+    <p>{{ error.message }}:</p>
+    <ul>
+      <li ng-repeat="e in error.errors">{{e.message}}</li>
+    </ul>
+  </div>
+
+  <div>
+    <form id="loginForm">
+    <p>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="text" ng-model="newLogin.email" />
+    </p>
+    <p>
+      <label for="password">Password</label>
+      <input id="password" name="email" type="password" ng-model="newLogin.password" />
+    </p>
+    <p>
+      <button ng-click="login()">Login</button>
+    </p>
+    </form>
+  </div>
+  <a href="#/register">Register</a>
+</div>
