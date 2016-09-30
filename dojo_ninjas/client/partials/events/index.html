@@ -1,15 +1,30 @@
-<div id="events">
-  <p>
-    <a href="#/events">Events</a> | 
-    <a href="#/chatroom">Chat Room</a> | 
-    <a href="#/discussion">Discussion Board</a> | 
-    <a href="#/resources">Resources</a> | 
-    <a href="#/ninjadex">Ninja Dex</a> | 
-    <a href="#/profile">{{ ninja_self.first_name }}</a> | 
-    <a href="#/logout">Logout</a>
-  </p>
 
-  {{ ninja.campus }}
 
+<div id="events" class="container-fluid" ng-style="{'background-image':'url(/static/images/dojo.jpg' + ')', 'height': '900px'}">
+
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <ul class="nav navbar-nav">
+            <li><a href="#/events">Events</a></li>
+            <li><a href="#/chatroom">Chat Room</a></li>
+            <li><a href="#/discussion">Discussion Board</a></li>
+            <li><a href="#/resources">Resources</a></li>
+            <li><a href="#/gallery">Gallery</a></li>
+            <li><a href="#/messages">Messages</a></li>
+            <li><a href="#/ninjadex">Ninja Dex</a></li>
+            <li><a href="#/profile">Profile</a></li>
+            <li><a href="#/logout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    {{ ninja.campus }}
+
+  </div>
 </div>
 
