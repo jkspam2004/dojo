@@ -43,6 +43,26 @@ app.config(function($routeProvider) {
       controller: 'chatroomController',
       templateUrl: 'partials/chatrooms/index.html'
     })
+    .when('/dashboard', { // display dashboard of topics 
+      controller: 'dashboardController',
+      templateUrl: 'partials/discussions/dashboard.html'
+    })
+    .when('/topics/new', { // display page to add topic 
+      controller: 'newTopicController',
+      templateUrl: 'partials/discussions/new_topic.html'
+    })
+    .when('/topics/:id/new_comment', { // display page to add comment 
+      controller: 'newCommentController',
+      templateUrl: 'partials/discussions/new_comment.html'
+    })
+    .when('/topics/:id', { // display a specific topic 
+      controller: 'showTopicController',
+      templateUrl: 'partials/discussions/show_topic.html'
+    })
+    .when('/gallery', { // display dashboard of topics 
+      controller: 'galleryController',
+      templateUrl: 'partials/gallery/gallery.html'
+    })
     .otherwise({
       redirectTo: '/'
     });

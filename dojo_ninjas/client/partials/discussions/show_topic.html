@@ -1,6 +1,5 @@
 
-<div id="welcome" class="container-fluid" ng-style="{'background-image':'url(/static/images/dojo.jpg' + ')', 'height': '900px'}">
-
+<div id="showTopic" class="container-fluid">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -19,22 +18,19 @@
     </div>
   </nav>
 
-  <div id="welcome" class="container">
+  <div class="container">
 
-    <h4 style="color: white">Welcome, {{ ninja_self.first_name }}!</h4>
 
-    <div class="jumbotron">
-      <h2>Dojo Ninjas</h2>
-      <h3>Where are they now?</h3>
-    </div>
+    <h3>{{ topic.topic }}</h3>
+    <p>Category: {{ topic.category }}</p>
+    <p>Asked by {{ topic._poster.first_name }}</p>
+
+    <ul ng-repeat="comment in topic.comments" style="list-style: none;">
+      <li>Comment by : {{ comment._poster.first_name }}</li>
+      <li>{{ comment.comment }} </li> 
+    </ul>
+    
 
   </div>
 </div>
 
-<style>
-  background: url("./static/images/dojo.jpg") no-repeat;
-  position: relative;
-  background-size: 100% 100%;
-  width: 1420px;
-  height: 900px;
-</style>

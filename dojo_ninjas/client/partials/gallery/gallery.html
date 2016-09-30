@@ -1,6 +1,5 @@
 
-<div id="welcome" class="container-fluid" ng-style="{'background-image':'url(/static/images/dojo.jpg' + ')', 'height': '900px'}">
-
+<div id="dashboard" class="container-fluid">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -19,22 +18,23 @@
     </div>
   </nav>
 
-  <div id="welcome" class="container">
+  <div class="container">
 
-    <h4 style="color: white">Welcome, {{ ninja_self.first_name }}!</h4>
+    <h3>Gallery</h3>
 
-    <div class="jumbotron">
-      <h2>Dojo Ninjas</h2>
-      <h3>Where are they now?</h3>
+    <img src="./static/images/xlb.jpg" width="40%" height="30%">
+    <img src="./static/images/bfs.jpg" width="40%" height="30%">
+<!--
+    <img data-ng-src="{{'data:image/jpg;base64,'+ndividual.image}}" width="30%" height="auto">    
+-->
+
+    <div ng-repeat="image in gallery">
     </div>
+
+    <form>
+    <p>Upload an image:  <input type='file' ng-model='newGallery.image' base-sixty-four-input></p>
+    <input type="submit" value="Submit">
+    </form>
 
   </div>
 </div>
-
-<style>
-  background: url("./static/images/dojo.jpg") no-repeat;
-  position: relative;
-  background-size: 100% 100%;
-  width: 1420px;
-  height: 900px;
-</style>

@@ -1,6 +1,6 @@
 
-<div id="welcome" class="container-fluid" ng-style="{'background-image':'url(/static/images/dojo.jpg' + ')', 'height': '900px'}">
 
+<div id="newComment" class="container-fluid">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -19,22 +19,29 @@
     </div>
   </nav>
 
-  <div id="welcome" class="container">
+  <div class="container">
 
-    <h4 style="color: white">Welcome, {{ ninja_self.first_name }}!</h4>
 
-    <div class="jumbotron">
-      <h2>Dojo Ninjas</h2>
-      <h3>Where are they now?</h3>
+    <h3>{{ topic.topic }}</h3>
+    <p>{{ topic.category }}</p>
+    <p>Asked by {{ topic._poster.first_name }}</p>
+
+    <div ng-if="error">
+      <p style="color: red">{{ error.message }}</p>
+      <ul>
+        <li style="color: red" ng-repeat="e in error.errors">{{e.message}}</li>
+      </ul>
     </div>
 
-  </div>
-</div>
+    <form id="commentForm">
+      <p>Your Comment:</p>
+      <textarea ng-model="newComment.comment"></textarea>
+      <p>
+        <button type="cancel" ng-click="cancelComment()">Cancel</button>
+        <button type="submit" ng-click="addComment()">Submit</button>
+      </p>
 
-<style>
-  background: url("./static/images/dojo.jpg") no-repeat;
-  position: relative;
-  background-size: 100% 100%;
-  width: 1420px;
-  height: 900px;
-</style>
+    </form>
+  </div>
+
+</div>
