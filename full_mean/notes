@@ -1,0 +1,42 @@
+1. run mongod
+$ sudo mongod
+
+2. npm installs
+npm init -y
+npm install express --save
+npm install body-parser --save
+npm install http --save
+npm install mongoose --save
+npm install sockets.io --save
+
+3. bower installs
+bower init
+bower install angular --save
+bower install angular-route --save 
+
+4. run server
+nodemon server.js
+
+
+
+~~~~~ Errors ~~~~~
+Error: 
+angular.js:13920 Error: [ng:areq] Argument 'eventsController' is not a function, got undefined
+http://errors.angularjs.org/1.5.8/ng/areq?p0=eventsController&p1=not%20aNaNunction%2C%20got%20undefined
+Fix: 
+add the source in index.html
+<script src="controllers/events/eventsController.js" charset="utf-8"></script>
+
+Error: 
+page is rendering json instead of html
+Fix: 
+make sure link to page has '#' in front
+<a href="#/events">Events</a>
+
+Error:
+angular.js:13920 Error: [$injector:unpr] Unknown provider: $base64Provider <- $base64
+Fix:
+add dependency injection name into angular module. client side routes file. app.js
+var app = angular.module('app', ['ngRoute', 'base64']);
+
+

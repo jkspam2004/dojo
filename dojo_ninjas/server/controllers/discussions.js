@@ -11,7 +11,9 @@ function Controller() {
   /* don't need to get all comments. just use length in client side to get count of comments */
   this.index = function(req, res) {
     console.log("server topics index");
-    Topic.find({}, function(err, results) {
+    Topic.find({})
+      .populate({ path: "_poster" })
+      .exec(function(err, results) {
       if (err) {
         console.log("error finding results");
         res.json({ status: false, result: err });
