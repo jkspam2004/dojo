@@ -15,10 +15,6 @@ app.config(function($routeProvider) {
       controller: 'newQuestionController',
       templateUrl: 'partials/new_question.html'
     })
-//    .when('/questions/:id/new_answer', { // display page to add answer 
-//      controller: 'newAnswerController',
-//      templateUrl: 'partials/new_answer.html'
-//    })
     .when('/questions/:id', { // display a specific question 
       controller: 'showQuestionController',
       templateUrl: 'partials/show_question.html'

@@ -22,7 +22,7 @@ app.controller("newQuestionController", function($scope, usersFactory, questions
         $scope.newQuestion._id = returned_data.result._id;
 
 
-        /* ugggly solution. not sure why the variable $scope.newQuestion.opt kept saving the last value from options */
+        /* ugggggggly solution! :( new add option function for each of the 4 options.  tried to loop through each option and assign values to a single variable. not sure why the variable $scope.newQuestion.opt kept saving the last value from options */
 
         // now add options
         $scope.newQuestion.opt = '';
