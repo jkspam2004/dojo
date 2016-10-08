@@ -1,0 +1,25 @@
+<div>
+  <a href="#/dashboard">Go to Polls</a>  
+
+  <h2>{{ question.question }}</h2>
+  <p>Asked by {{ question._poster.username }}</p>
+  <p>Click the Vote button to choose one</p>
+
+  <table>
+    <tr>
+      <th>Option</th>
+      <th>Current Count of Votes</th>
+      <th>Action</th>
+    </tr>
+   
+    <tr ng-repeat="option in question.options">
+      <form name="addVote">
+      <td>{{ option.option }}</td>
+      <td> {{ option.votes.length }} </td>
+      <td><button type="submit" ng-click="vote(option._id)">Vote</button></td> 
+      </form>
+    </tr>
+  </table>
+  
+
+</div>

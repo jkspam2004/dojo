@@ -1,0 +1,30 @@
+<div>
+  <a href="#/questions/new">Create a New Poll</a>
+  <a href="#/">Logout</a>
+
+  <h4>Hi {{ user.username }}!</h4>
+  <h3>Current Polls:</h3>
+
+
+  <p><input type="text" ng-model="q_filter.question" placeholder="Search..."/></p>
+  <table style="border: 1px solid #eee;">
+    <tr>
+      <th>Name</th>
+      <th>Survey Question</th>
+      <th>Date Posted</th>
+      <th>Action</th>
+    </tr>
+    <tr ng-repeat="question in questions | filter:q_filter">
+      <form name="deleteQuestionForm">
+      <td>{{ question._poster.username }}</td>
+      <td><a href="#/questions/{{ question._id }}">{{ question.question }}</a></td>
+      <td>{{ question.createdAt | date }}</td>
+      <td ng-if="question.owner">
+        <button ng-click="delete(question)">Delete</button>
+      </td>
+      </form>
+    </tr>
+  </table>
+</div>
+
+

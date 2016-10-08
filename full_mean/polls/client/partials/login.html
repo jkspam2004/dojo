@@ -1,0 +1,16 @@
+<div id="login">
+  <h3>Q&A</h3>
+  <p>Please enter your name to enter polls</p>
+
+  <div ng-if="error">
+    <p style="color: red">{{ error.message }}</p>
+    <ul>
+      <li style="color: red" ng-repeat="e in error.errors">{{e.message}}</li>
+    </ul>
+  </div>
+
+  <form name="loginForm">
+    <input type="text" name="username" ng-model="newUser.username" />
+    <button type="submit" ng-click="login()">Enter</button>
+  </form>
+</div>
