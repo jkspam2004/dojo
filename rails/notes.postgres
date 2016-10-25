@@ -1,0 +1,35 @@
+$ rails db
+
+# list tables
+\d
+dstress_development=# \d
+                 List of relations
+ Schema |         Name         |   Type   | Owner  
+--------+----------------------+----------+--------
+ public | delayed_jobs         | table    | ubuntu
+ public | delayed_jobs_id_seq  | sequence | ubuntu
+ public | images               | table    | ubuntu
+ public | images_id_seq        | sequence | ubuntu
+ public | reasons              | table    | ubuntu
+ public | reasons_id_seq       | sequence | ubuntu
+ public | reminders            | table    | ubuntu
+ public | reminders_id_seq     | sequence | ubuntu
+ public | responses            | table    | ubuntu
+ public | responses_id_seq     | sequence | ubuntu
+ public | schedulers           | table    | ubuntu
+ public | schedulers_id_seq    | sequence | ubuntu
+ public | schema_migrations    | table    | ubuntu
+ public | sensitivities        | table    | ubuntu
+ public | sensitivities_id_seq | sequence | ubuntu
+ public | solutions            | table    | ubuntu
+ public | solutions_id_seq     | sequence | ubuntu
+ public | tips                 | table    | ubuntu
+ public | tips_id_seq          | sequence | ubuntu
+ public | triggers             | table    | ubuntu
+ public | triggers_id_seq      | sequence | ubuntu
+ public | users                | table    | ubuntu
+ public | users_id_seq         | sequence | ubuntu
+(23 rows)
+
+# quit
+\q

@@ -1,4 +1,4 @@
-git remote add github https://github.com/jkspam2004/pylot_.git
+git remote add github https://github.com/jkspam2004/pylot.git
 git push github development
 
 
