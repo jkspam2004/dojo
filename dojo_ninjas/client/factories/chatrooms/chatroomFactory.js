@@ -2,7 +2,7 @@ console.log("socket factory");
 
 /* client side. socket factory */
 app.factory('socket', function ($rootScope) {
-  var host = "http://localhost:8000";
+  var host = "http://localhost:8003";
   var socket = io.connect(host);
 
   return {
