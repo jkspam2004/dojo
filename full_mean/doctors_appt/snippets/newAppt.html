@@ -1,0 +1,51 @@
+<div ng-controller="NewApptController" class="container">
+
+  <div class="row">
+    <div class="col-md-10-offset-1">
+      <h2>New Appointment</h2>
+      <form name="newAppt">
+        Date:
+        <input type="date" required min="{{tomorrow | date:''}}" ng-model="newAppt.date"></input>
+        <br>
+        Time:
+        <select required ng-model="newAppt.time">
+          <option>8:00 AM</option>
+          <option>9:00 AM</option>
+          <option>10:00 AM</option>
+          <option>11:00 AM</option>
+          <option>12:00 PM</option>
+          <option>1:00 PM</option>
+          <option>2:00 PM</option>
+          <option>3:00 PM</option>
+          <option>4:00 PM</option>
+          <option>5:00 PM</option>
+        </select>
+        <br>
+        Complain:
+        <textarea rows="2" cols="50" required ng-minlength='10' ng-model="newAppt.complain"></textarea>
+        <br>
+        <button ng-click="cancelAppt()">Cancel</button>
+
+        <button class="button-primary" ng-click="createNewAppt(newAppt)">Add Appointment</button>
+      </form>
+    </div>
+  </div>
+
+  <div ng-messages="newAppt.date.$error">
+    <p ng-message="ng-min" style="color:red">The date should be in the future.</p>
+    <p ng-message="required" style="color:red">The date is a required field.</p>
+  </div>
+  <div ng-messages="newAppt.time.$error">
+    <p ng-message="required" style="color:red">The time is a required field.</p>
+  </div>
+  <div ng-messages="newAppt.complain.$error">
+    <p ng-message="required" style="color:red">The complain is a required field.</p>
+    <p ng-message="ng-minlength" style="color:red">The complain should be atleast 10 chars long.</p>
+  </div>
+
+
+  <div ng-if="message">
+    {{message}}
+  </div>
+
+</div>

@@ -1,0 +1,67 @@
+<div>
+
+  <h3>New Appointment</h3>
+
+  <div ng-if="error">
+    <p style="color: red">{{ error.message }}</p>
+    <ul>
+      <li style="color: red" ng-repeat="e in error.errors">{{e.message}}</li>
+    </ul>
+  </div>
+
+  <form name="apptForm">
+<!--
+    Date: <input type="date" ng-model="newAppt.date" name="date" min="{{newAppt.date}}" required/>
+    <div role="alert">
+      <span class="error" ng-show="apptForm.date.$error.required"> Required!</span>
+      <span class="error" ng-show="apptForm.date.$error.date"> Not a valid date!</span>
+    </div>
+    <tt>value = {{newAppt.date | date: "yyyy-MM-dd"}}</tt><br/>
+    <tt>apptForm.date.$valid = {{apptForm.date.$valid}}</tt><br/>
+    <tt>apptForm.date.$error = {{apptForm.date.$error}}</tt><br/>
+    <tt>apptForm.$valid = {{apptForm.$valid}}</tt><br/>
+    <tt>apptForm.$error.required = {{!!apptForm.$error.required}}</tt><br/>
+
+    Time: <input type="time" ng-model="newAppt.time" name="time" placeholder="HH:mm am" min="08:00" max="17:00" required date-format/>
+
+    <div role="alert">
+      <span class="error" ng-show="apptForm.time.$error.required"> Required!</span>
+      <span class="error" ng-show="apptForm.time.$error.time"> Not a valid date!</span>
+    </div>
+
+    <tt>value = {{newAppt.time | date: "HH:mm"}}</tt><br/>
+    <tt>apptForm.time.$valid = {{apptForm.time.$valid}}</tt><br/>
+    <tt>apptForm.time.$error = {{apptForm.time.$error}}</tt><br/>
+    <tt>apptForm.$valid = {{apptForm.$valid}}</tt><br/>
+    <tt>apptForm.$error.required = {{!!apptForm.$error.required}}</tt><br/>
+
+   
+    <br /> 
+    <br />
+    <textarea ng-model="newAppt.complaint"></textarea>
+    <p>
+      <button ng-click="cancelAdd()">Cancel</button>
+
+      <button ng-disabled="apptForm.$invalid" ng-click="addAppt(apptForm.time.$error)">Add Appointment</button>
+    </p>
+-->
+  </form>
+
+  <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
+  <pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
+
+  <div class="row"> 
+    <div class="col-xs-6">
+        Hours step is:
+      <select class="form-control" ng-model="hstep" ng-options="opt for opt in options.hstep"></select>
+    </div>
+    <div class="col-xs-6">
+        Minutes step is:
+      <select class="form-control" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>
+    </div>
+  </div>
+
+  <hr>
+
+</div>

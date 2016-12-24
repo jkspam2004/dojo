@@ -1,0 +1,31 @@
+<div id="dashboard">
+  <a href="#/">Logout</a>
+
+  <h3>Hi {{ user }}!</h3>
+
+  <p>Search <input type="text" ng-model="q_filter" /></p>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Patient Name</th>
+      <th>Complaint</th>
+    </tr>
+    <tr ng-repeat="appt in appointments | filter:q_filter">
+      <form id="cancelForm">
+        <td>{{ appt.appt_date | date }}</td>
+        <td>{{ appt.appt_time }}</td>
+        <td>{{ appt.name }}</td>
+        <td>{{ appt.complaint }}</td>
+        <span ng-if="cancel">
+        </span>
+      </form>
+    </tr>
+  </table>
+
+  <a href="#/appointments/new"><button>Add New Appointment</button></a>
+
+  
+</div>
+
+
