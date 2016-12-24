@@ -1,0 +1,19 @@
+
+#messages {
+  width: 600px;
+  height: 400px;
+  border: 1px solid #eee;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#roster {
+  width: 200px;
+  height: 400px;
+  border: 1px solid #eee;
+  display: inline-block;
+  vertical-align: top;
+}
+
+
