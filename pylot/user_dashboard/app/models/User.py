@@ -75,7 +75,7 @@ class User(Model):
         user_errors = self.validate_user_info(info)
         # if email isn't blank and it's already in the system, error
         if info['email'] and duplicate_email:
-            errors.append('Email cannot be blank')
+            user_errors.append('Email already in use')
 
         password_errors = self.validate_password(info)
 
