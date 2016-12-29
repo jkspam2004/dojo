@@ -44,6 +44,12 @@ class Users(Controller):
 
     # dislay registration page
     def register(self):
+        if 'user_id' in session:
+            if 'admin' in session:
+                return redirect("/dashboard/admin")
+            else:
+                return redirect("/dashboard")
+
         print("register")
         return self.load_view("register.html")
 
@@ -74,6 +80,9 @@ class Users(Controller):
       
     # dashboard
     def dashboard(self):
+        if 'user_id' not in session:
+            return redirect("/signin")
+
         users = self.models['User'].get_all_users()
         for user in users:
             user['level'] = 'admin' if user.get('user_level') == 9 else 'normal'
@@ -81,6 +90,9 @@ class Users(Controller):
 
     # display add new user page (admin only)
     def new(self):
+        if 'user_id' not in session:
+            return redirect("/signin")
+
         # non-admin getting here by entering url redirects to user dashboard
         if not session.get('admin'):
             return redirect('/dashboard')
@@ -91,6 +103,7 @@ class Users(Controller):
     def create(self):
         create_status = self.models['User'].create_user(request.form)
         if create_status.get('status') == True:
+            flash("Successfully created account", "success")
             return redirect("/dashboard/admin")
         else:
             for error in create_status.get('errors'):
@@ -99,13 +112,18 @@ class Users(Controller):
 
     # display edit profile page. user_id = person logged in
     def edit_profile(self):
+        if 'user_id' not in session:
+            return redirect("/signin")
+
         print("edit_profile")
         user = self.models['User'].get_user_by_id(session.get('user_id')) 
         return self.load_view("edit.html", user=user)
 
     # display edit user page (admin only)
     def edit_user(self, user_id):
-        print("edit_user")
+        if 'user_id' not in session:
+            return redirect("/signin")
+
         # non-admin getting here by entering url redirects to user dashboard
         if not session.get('admin'):
             return redirect('/dashboard')
@@ -115,7 +133,6 @@ class Users(Controller):
 
     # process update user
     def update_user(self):
-        print("update_user")
         edit_status = self.models['User'].edit_user(request.form)
         print("edit status: ", edit_status)
         if edit_status.get('status') == False:
@@ -146,10 +163,17 @@ class Users(Controller):
     # process update description
     def update_description(self):
         update_status = self.models['User'].update_description(request.form)
-        return redirect("/dashboard")
+
+        if int(request.form.get('id')) == session.get('user_id'):
+            return redirect("/users/edit")
+        else:
+            return redirect("/users/edit/" + request.form.get('id'))
  
     # displays confirmation page to delete user
     def delete(self, user_id): 
+        if 'user_id' not in session:
+            return redirect("/signin")
+
         # non-admin getting here by entering url redirects to user dashboard
         if not session.get('admin'):
             return redirect('/dashboard')
@@ -160,6 +184,7 @@ class Users(Controller):
     # process deleting user
     def confirm_delete(self, user_id):
         self.models['User'].delete_user(user_id)
+        flash("Successfully deleted account", "success")
         if session.get('admin') == 1:
             return redirect("/dashboard/admin")
         else:
@@ -168,6 +193,9 @@ class Users(Controller):
 
     # display user info and wall messages
     def show(self, user_id):
+        if 'user_id' not in session:
+            return redirect("/signin")
+
         user = self.models['User'].get_user_by_id(user_id) 
         messages = self.models['Message'].get_wall(user_id)
         return self.load_view("show.html", user=user, messages=messages)
