@@ -21,21 +21,21 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">User Dashboard</a>
-           </div> <!-- navbar-header -->
-           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav">
-               {% if session.admin %}
-                   <li><a class="active" href="/dashboard/admin">Dashboard</a></li>
-               {% else %}
-                   <li><a href="/dashboard">Dashboard</a></li>
-               {% endif %}
-                   <li><a href="/users/edit">Profile</a></li>
-               </ul>
-               <ul class="nav navbar-nav navbar-right">
-                   <li class="navbar-text">{{ session.name }}</li>
-                   <li><a href="/logout">Log Out</a></li>
-               </ul>
-           </div> <!-- div.collapse -->
+            </div> <!-- navbar-header -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                {% if session.admin %}
+                    <li><a class="active" href="/dashboard/admin">Dashboard</a></li>
+                {% else %}
+                    <li><a href="/dashboard">Dashboard</a></li>
+                {% endif %}
+                    <li><a href="/users/edit">Profile</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="navbar-text">{{ session.name }}</li>
+                    <li><a href="/logout">Log Out</a></li>
+                </ul>
+            </div> <!-- div.collapse -->
         </div> <!-- container-fluid -->
     </nav>
 

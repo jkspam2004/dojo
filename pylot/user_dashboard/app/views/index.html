@@ -20,24 +20,24 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">User Dashboard</a>
-           </div> <!-- navbar-header -->
-           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav">
-                   {% if session.user_id %}
-                       <li><a href="/dashboard">Home</a></li>
-                   {% else %}
-                       <li><a href="/signin">Home</a></li>
-                   {% endif %}
-               </ul>
-               <ul class="nav navbar-nav navbar-right">
-                   {% if session.user_id %}
-                       <li class="navbar-text">{{ session.name }}</li>
-                       <li><a href="/logout">Log Out</a></li>
-                   {% else %}
-                       <li><a href="/signin">Sign In</a></li>
-                   {% endif %}
-               </ul>
-           </div> <!-- div.collapse -->
+            </div> <!-- navbar-header -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    {% if session.user_id %}
+                        <li><a href="/dashboard">Home</a></li>
+                    {% else %}
+                        <li><a href="/signin">Home</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if session.user_id %}
+                        <li class="navbar-text">{{ session.name }}</li>
+                        <li><a href="/logout">Log Out</a></li>
+                    {% else %}
+                        <li><a href="/signin">Sign In</a></li>
+                    {% endif %}
+                </ul>
+            </div> <!-- div.collapse -->
         </div> <!-- container-fluid -->
     </nav>
 
