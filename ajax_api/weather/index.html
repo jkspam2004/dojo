@@ -15,7 +15,64 @@
         var url = "http://api.openweathermap.org/data/2.5/weather?q=";
         var city = $("input#city").val();
         url += city + "&units=imperial&appid=" + api_key;
-        
+
+        var request = $.get(url);       
+
+        request.error(
+          function(jqXHR, textStatus, errorThrown) {
+            html_str = "";
+            console.log("jqXHR.status: ", jqXHR.status);
+
+            if (textStatus == 'timeout') {
+              console.log('The server is not responding');
+              html_str += "Request timed out";
+            }
+
+            if (textStatus == 'error') {
+              console.log("errorThrown: ", errorThrown);
+              html_str += "Invalid City";
+            }
+
+            $("div#weather").html(html_str);
+          }
+        );
+
+        request.success(
+          function(res) {
+            var html_str = "";
+            //console.log(res);
+            html_str += "<h4>" + res.name + "</h4>";
+            html_str += "<p>Temperature: " + res.main.temp + "</p>"; 
+
+            $("div#weather").html(html_str);
+          }
+        ); 
+
+/* catching errors
+        $.ajaxSetup({
+            error: function(x, e) {
+                if (x.status == 0) {
+                    alert(' Check Your Network.');
+                } else if (x.status == 404) {
+                    alert('Requested URL not found.');
+                } else if (x.status == 500) {
+                    alert('Internel Server Error.');
+                }  else {
+                    alert('Unknown Error.\n' + x.responseText);
+                }
+            }
+        });
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            error: function(jqXHR, textStatus, errorThrown) { console.log("error"); },
+            success: function() { console.log("success"); }
+        });
+*/
+
+/*
+
         $.get(url, function(res) {
           var html_str = "";
           console.log(res);
@@ -24,6 +81,7 @@
 
           $("div#weather").html(html_str);
         }, 'json');
+*/
 
         return false;
       });

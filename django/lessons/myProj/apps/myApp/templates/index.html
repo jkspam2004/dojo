@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Playing with Template Views</title>
+    <!-- listen to static files in static directory -->
+    {% load staticfiles %} 
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <h1>Main index page</h1>
+
+    {{ request.session.name }}
+    <form action="/new_user" method="post">
+        {% csrf_token %}
+        <input type="text" name="first_name" />
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>

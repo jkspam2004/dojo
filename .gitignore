@@ -6,4 +6,5 @@ pylotVenv/
 __pycache__/
 node_modules/
 bower_components/
+djangoEnv/
 

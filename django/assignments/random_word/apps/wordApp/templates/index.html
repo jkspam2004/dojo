@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Random Word Generator</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" media="screen" title="style" charset="utf-8">
+</head>
+<body>
+    <h2>Random Word (attempt #{{ request.session.counter }})</h2>
+    <p>{{ word }}</p>
+    <a href="/" class="button">Generate</a>
+    <a href="/reset" class="button">Reset</a>
+</body>
+</html>

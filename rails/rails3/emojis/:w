@@ -1,8 +1,0 @@
-<h1>Emoji</h1>
-<p>Here are some of the commonly used Emojis:</p>
-
-<div id="emoji_area">
-  <!-- <p>Blush : <img src='<%= @emoji['blush'] %>' alt='emoji'/></p> -->
-  <p>Blush : <%= image_tag("#{@emoji['blush']}"), alt: 'emoji' %></p>
-  <p>Thumbs Up : <img src='<%= @emoji['+1'] %>' alt='emoji'/></p> 
-</div> 

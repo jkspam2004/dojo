@@ -1,0 +1,21 @@
+Useful session methods:
+
+1. request.session['key']
+This will retrieve (get) the value stored in key
+
+2. request.session['key'] = 'value'
+Set the value that will be stored by key
+
+3. del request.session['key']
+Deletes a session key if it exists, throws a keyError if it doesn’t. Use along with try and except since it’s better to ask for forgiveness than permission
+
+4. 'key' in request.session
+Returns a boolean of whether a key is in session or not
+
+5. {{ request.session.name }}
+Use dot notation (.) to access request.session keys from templates since square brackets ([]) aren’t allowed there
+
+6. request.session.clear()
+Clears all session keys
+
+Errata note: In the video, we (I, MH) say session behaves the same as it does in Flask. This is not true! Session in Django gets saved even if we leave the browser!

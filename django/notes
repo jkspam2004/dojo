@@ -1,0 +1,122 @@
+~~~ installing django ~~~
+$ virtualenv -p /usr/bin/python <djangoEnv>
+$ source djangoEnv/bin/activate
+$ pip install django (while in virtual env)
+
+~~~ MVC ~~~
+(MVC) Model View     Controller
+(MTV) Model Template View
+Model    - Performs heavy logic, queries db
+Template - (templates/) "view" -  Holds HTML that will be rendered and sent to browser
+View     - (views.py) "controller" -  Receives HTTP request from routes.py and decides what to do (i.e. redirect, call a model method, or render HTML)
+urls.py  - routes
+
+~~~ starting project ~~~
+$ django-admin startproject <project> # create manage.py and <project> dir inside of <project> dir
+$ cd <project>
+$ mkdir apps
+$ cd apps
+$ touch __init__.py
+$ python ../manage.py startapp <app_name> # create app in the apps folder
+$ python ../manage.py runserver
+
+~~~ migrate ~~~
+# Need to be in same directory as manage.py file
+# generate database models
+# need for sessions to work even if no models
+$ python manage.py makemigrations
+$ python manage.py migrate
+
+~~~ set up ~~~
+1. Add 'apps.<app>' to INSTALLED_APPS list in  <project>/settings.py
+2. Set up our routes in urlpatterns list in <project>/urls.py. import url and include apps.<app_name>.urls
+3. Add file apps/<app_name>/urls.py. set up routes to our views (aka controllers)
+4. Create our view (aka controller) functions in apps/<app_name>/views.py
+5. Create our templates (aka views) apps/<app_name>/templates/<view_name>/index.html
+
+~~~ file structure ~~~
+myProj/                         # 1. Create project: `django-admin startproject myProj`
+    apps/                       # 2. Create apps dir: `mkdir apps`
+        __init__.py             # 3. Create dunder: `touch __init__.py`
+        myApp/                  # 4. Create Django app: `manage.py startapp myApp`
+            migrations/         # `manage.py startapp myApp` 
+            templates/          # 9. Create template dir: `mkdir templates`
+            admin.py
+            apps.py
+            models.py
+            tests.py
+            urls.py             # 7. Create route file: `touch urls.py` add imports and urlpatterns
+            apps.py
+            views.py            # 8. Add functions to our controller
+    myProj/                     # `django-admin startproject myProj`
+        __init__.py
+        settings.py             # 5. Add 'apps.myApp' to INSTALLED_APPS
+        urls.py                 # 6. Point to routes files. import include. add to urlpatterns
+        wsgi.py
+    db.sqlite3                  # from `python manage.py runserver`
+    manage.py                   # `django-admin startproject myProj`
+
+1. Create project: `django-admin startproject myProj`
+2. Create apps dir: `mkdir apps` in myProj/
+3. Create dunder: `touch __init__.py` in  myProj/apps/
+4. Create Django app: `../manage.py startapp myApp` in myProj/apps/
+5. Add 'apps.myApp' to INSTALLED_APPS in myProj/myProj/settings.py
+
+# myProj/myProj/settings.py
+
+INSTALLED_APPS = [
+    'apps.<app_name>',
+]  
+
+6. Point to routes file. import include. add 'url(r'^', include('apps.myApp.urls'))' to urlpatterns in myProj/myProj/urls.py
+
+# myProj/myProj/urls.py:
+
+from django.conf.urls import url, include
+from django.contrib import admin
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^', include('apps.myApp.urls')) # go to our routes file in our app
+]
+
+7. Our routes. `touch urls.py` in myProj/apps/myApp/. add below:
+
+# myProj/apps/myApp/urls.py
+
+from django.conf.urls import url
+from . import views               # look at our controller
+
+urlpatterns = [
+    url(r'^$', views.index),
+    url(r'^users$', views.show),
+    url(r'^test$', test.show),
+]
+
+8. Our controller. myProj/apps/myApp/views.py
+
+from django.shortcuts import render, HttpResponse
+# controller file
+
+# Create your views here.
+def index(request):
+    return render(request, "index.html")
+
+def show(request):
+    print("request.method", request.method)
+    return render(request, "users/show_user.html")
+
+def test(request):
+    response = "Hello World.  Test Page!"
+    print("*" * 100) # print to python console
+    return HttpResponse(response)
+
+
+9. template views. `mkdir templates` in myProj/apps/myApp/
+create html files in myProj/apps/myApp/templates/
+
+
+~~~ commands ~~~
+$ pip freeze (output package in dependency format)
+$ pip list (list package installed)
+

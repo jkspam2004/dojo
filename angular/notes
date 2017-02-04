@@ -1,2 +1,10 @@
 bower install angular
 bower install angular-route
+
+Angular errors:
+1. Uncaught Error: [$injector:modulerr]
+   Fix: make sure the angular.module setter has the right modules injected
+       angular.module('myapp', [<check here>]);
+
+2. 
+

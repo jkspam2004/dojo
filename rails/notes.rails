@@ -4,6 +4,9 @@ $ rails new <project_name>
 ~~~~ running the rails server
 $ rails s[erver]
 
+~~~~ running the rails server on a different port
+$ rails s -p 3005 
+
 ~~~~ running the rails console
 $ rails c[onsole]
 
