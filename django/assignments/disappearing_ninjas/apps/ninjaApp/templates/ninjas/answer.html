@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+    {% load staticfiles %}
+    {% if image %}
+        <!-- display image passed from controller for in an input color-->
+        <p><a href="{% url 'show_url' color %}">{% url 'show_url' color %}</a></p>
+        <p><img src="{% static image %}" alt="" /></p>
+    {% else %}
+        <!-- display all turtles when /ninjas2 route hit -->
+        <p><a href="{% url 'index_url' %}">{% url 'index_url' %}</a></p>
+        <p><img src="{% static 'img/donatello.jpg' %}" alt="donatello" /></p>
+        <p><img src="{% static 'img/leonardo.jpg' %}" alt="leonardo" /></p>
+        <p><img src="{% static 'img/michelangelo.jpg' %}" alt="michelangelo" /></p>
+        <p><img src="{% static 'img/raphael.jpg' %}" alt="raphael" /></p>
+    {% endif %}
+
+    <p>image location: {{image}}</p> <!-- location of the file -->
+
+
+    <!-- line below is also a comment -->
+    {# <img src="{% static 'img/notapril.jpg' %}" alt="notapril" />#}
+
+  </body>
+</html>

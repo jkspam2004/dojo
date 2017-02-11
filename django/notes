@@ -120,3 +120,44 @@ create html files in myProj/apps/myApp/templates/
 $ pip freeze (output package in dependency format)
 $ pip list (list package installed)
 
+~~~ request.render ~~~
+context = {
+    'name': "bob",
+    'age': 30
+}
+return render(request, "<template>.html", context)
+context is a dictionary that will get unpacked. template will have access to the keys
+{{name}} and {{age}} in template
+
+
+~~~ urls.py ~~~
+https://docs.djangoproject.com/en/1.9/topics/http/urls/
+don't have to pass in leading slash in the routes
+
+?P<named_parameter>
+named_parameter will match the argument passed into function in views.py
+
+  urlpatterns = [
+      url(r'^/en/(?P<id>\d+)$', views.show)
+  ]
+
+in views.py
+def show(request, id):
+
+~~~ url reversing ~~~
+It is good practice to name url patterns. This enables us to do a reverse lookup on a url.  We want to avoid hard-coding url.  If the urls ever change, the url mapper (url.py) would be the only code source to modify. 
+
+in url.py:
+    url(r'^ninjas$', views.index, name='index_url'),
+    url(r'^ninjas/(?P<ninja_color>\w+)$', views.show, name='show_url') 
+
+in views.py:
+    return render(request, "ninjas/index.html", {color: ninja_color});
+
+in ninjas/index.html:
+    <a href="{% url 'show_url' color %}">{% url 'show_url' color %}</a>
+
+in other python code:
+    return HttpResponseRedirect(reverse('show_url', args=(color)))
+
+https://docs.djangoproject.com/en/1.9/topics/http/urls/#naming-url-patterns
