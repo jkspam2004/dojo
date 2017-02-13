@@ -161,3 +161,7 @@ in other python code:
     return HttpResponseRedirect(reverse('show_url', args=(color)))
 
 https://docs.djangoproject.com/en/1.9/topics/http/urls/#naming-url-patterns
+
+~~~ running the server on a different port ~~~
+# Run the development server on the local address and port 4345  ( http://127.0.0.1:4345/ )
+python manage.py runserver 4345
