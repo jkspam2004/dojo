@@ -35,7 +35,7 @@ $ python manage.py migrate
 5. Create our templates (aka views) apps/<app_name>/templates/<view_name>/index.html
 
 ~~~ file structure ~~~
-myProj/                         # 1. Create project: `django-admin startproject myProj`
+myProj/                         # 1. Create project: `django-admin startproject myProj` -- basedir
     apps/                       # 2. Create apps dir: `mkdir apps`
         __init__.py             # 3. Create dunder: `touch __init__.py`
         myApp/                  # 4. Create Django app: `manage.py startapp myApp`
@@ -48,7 +48,7 @@ myProj/                         # 1. Create project: `django-admin startproject 
             urls.py             # 7. Create route file: `touch urls.py` add imports and urlpatterns
             apps.py
             views.py            # 8. Add functions to our controller
-    myProj/                     # `django-admin startproject myProj`
+    myProj/                     # `django-admin startproject myProj` -- projectdir
         __init__.py
         settings.py             # 5. Add 'apps.myApp' to INSTALLED_APPS
         urls.py                 # 6. Point to routes files. import include. add to urlpatterns
@@ -165,3 +165,85 @@ https://docs.djangoproject.com/en/1.9/topics/http/urls/#naming-url-patterns
 ~~~ running the server on a different port ~~~
 # Run the development server on the local address and port 4345  ( http://127.0.0.1:4345/ )
 python manage.py runserver 4345
+
+
+~~~ models
+
+# Inside models.py
+from django.db import models
+class People(models.Model):
+    first_name = models.CharField(max_length=38)
+    last_name = models.CharField(max_length= 38)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+#in views.py
+from django.shortcuts import render
+#look inside models.py for people class
+from .models import People
+def index(request):
+    People.objects.create(first_name=“Mike”,last_name=“Hannon”)
+    people = People.objects.all()
+    print people
+    return render(request,”third_app/index.html”)
+
+run migrate
+
+
+# Inside models.py
+from __future__ import unicode_literals
+from django.db import models
+# Create your models here.
+class User(models.Model):
+  first_name = models.CharField(max_length=45)
+  last_name = models.CharField(max_length=45)
+  password = models.CharField(max_length=100)
+  created_at = models.DateTimeField(auto_now_add = True)
+  updated_at = models.DateTimeField(auto_now = True)
+
+class Post(models.Model):
+  title = models.CharField(max_length=45)
+  message = models.TextField(max_length=1000)
+  # Notice the association made with ForeignKey for a one-to-many relationship
+  user_id = models.ForeignKey(User)
+  created_at = models.DateTimeField(auto_now_add = True)
+  updated_at = models.DateTimeField(auto_now = True)
+
+user can have many posts
+The ForeignKey goes in the many side of the relationship.
+
+
+django-extensions
+python manage.py graph_models -a -o myapp_models.png
+
+  # Inside your app's views.py file
+  from django.shortcuts import render, HttpResponse
+  # Pull the User class into the file
+  from .models import User
+  def index(request):
+      print(User.objects.all())
+      # A list of objects (or an empty list)
+      User.objects.create(first_name="mike",last_name="mike",password="1234asdf")
+      # Creates a user object
+      print(User.objects.all())
+      # A list of objects (or an empty list)
+      u = User.objects.get(id=1)
+      print(u.first_name)
+      u.first_name = "Joey"
+      u.save()
+      j = User.objects.get(id=1)
+      print(j.first_name)
+      # Gets the user with an id of 1, changes name and saves to DB, then retrieves again...
+      print(User.objects.get(first_name="mike"))
+      # Gets the user with a first_name of 'mike' *** THIS MIGHT NEED TO BE CHANGED ***
+      users = User.objects.raw("SELECT * from my_app_name_user")
+      # Uses raw SQL query to grab all users (equivalent to User.objects.all()), which we iterate through below
+      for user in users:
+        print user.first_name
+      return HttpResponse("ok")
+Copy
+Know that this line:
+
+  print(User.objects.raw("SELECT * from my_app_name_user"))
+Copy
+Relies on the fact that Django builds our database's tables according to a particular format ( app_name + _ + lowercase_model_name). If you're ever making a raw query and aren't sure what the table name is, you can always find it by printing the following: User._meta.db_table
