@@ -1,1 +1,4 @@
-sorry Oscar.  no assignment from me yet. :)
+* Dojo Library
+
+** creating our own library
+

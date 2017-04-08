@@ -59,6 +59,37 @@ function showStyles(){
     mainDiv.innerHTML = '';
     for(var style in styles){
         createText(style, styles[style], mainDiv);
-        console.log(`style: ${style} : ${styles[style]}`);
+        //console.log(`style: ${style} : ${styles[style]}`);
     }
+}
+
+/* eventTest()
+ *
+ */
+eventButton.addEventListener("click", eventTest);
+eventButton.addEventListener("mouseenter", eventTest);
+eventButton.addEventListener("mouseleave", eventTest);
+eventButton.addEventListener("dblclick", eventTest);
+function eventTest2(){
+    mainDiv.innerHTML = "";
+    console.log("e:", this);
+    createText("type", this.type, mainDiv);
+    createText("clientX", this.clientX, mainDiv);
+    createText("clientY", this.clientY, mainDiv);
+    mainDiv.innerHTML += "timeStamp is milliseconds that have passed since the page was loaded"
+    createText("timeStamp", this.timeStamp, mainDiv);
+    createText("target innerHTML", this.target.innerHTML, mainDiv);
+    mainDiv.innerHTML += ` target outerHTML ${this.target.outerHTML}`;
+}
+
+function eventTest(e){
+    mainDiv.innerHTML = "";
+    console.log("e:", e);
+    createText("type", e.type, mainDiv);
+    createText("clientX", e.clientX, mainDiv);
+    createText("clientY", e.clientY, mainDiv);
+    mainDiv.innerHTML += "timeStamp is milliseconds that have passed since the page was loaded"
+    createText("timeStamp", e.timeStamp, mainDiv);
+    createText("target innerHTML", e.target.innerHTML, mainDiv);
+    mainDiv.innerHTML += ` target outerHTML ${e.target.outerHTML}`;
 }

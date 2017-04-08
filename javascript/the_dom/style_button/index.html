@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Style My Button</title>
+    <!-- style sheet imports go within the head of the document -->
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+    <div id = "side-nav">
+        <ul>
+            <h2>Styles</h2>
+            <li class = "style-item">
+                <input type = "color" id = "background-color" class = "styles" value = "#FFFFFF"> Background Color </input>
+            </li>    
+            <li class = "style-item">
+                <input type = "color" id = "text-color" class = "styles"> Text Color </input>
+            </li>
+            <li class = "style-item">
+                <input type = "color" id = "border-color" class = "styles"> Border Color </input>
+            </li>
+            <hr />
+            <li class = "style-item">
+                <input type = "checkbox" id = "bold" class = "styles"> Bold </input>
+            </li>
+            <li class = "style-item">
+                <input type = "checkbox" id = "italic" class = "styles"> Italic </input>
+            </li>                    
+            <li class = "style-item">
+                <input type = 'checkbox' id = "hidden" class = "styles"> Hidden </input>
+            </li>
+            <hr />
+            <li class = "style-item">
+                Border Radius
+                <input type = "range" id = "border-radius" class = "styles ranges" min = '0' max = '100' value='0'></input>
+            </li>
+            <li class = "style-item">
+                Font Size
+                <input type = "range" id = "font-size" class = "styles ranges" min = '8' max = '32' value='8'></input>
+            </li>
+            <li class = "style-item">
+                Border Width
+                <input type = "range" id = "border-width" class = "styles ranges" min = '0' max = '20' value='0'></input>
+            </li>        
+            <hr />
+            <li class = "style-item">
+                Padding
+                <input type = "number" id = "padding" class = "styles"></input>
+            </li>
+            <li class = "style-item">
+                Button Text 
+                <input type = "text" id = "button-text" class = "styles" value ="My Button"></input>
+            </li>
+            <li class = "style-item">
+                Border Style 
+                <select id = "border-style">
+                    <option value = "solid">Solid</option>
+                    <option value = "dashed">Dashed</option>
+                    <option value = "outset">Outset</option>
+                    <option value = "inset">Inset</option>
+                    <option value = "dotted">Dotted</option>
+                </select>
+            </li>
+            <hr />
+            <h5>Legendary</h5>
+            <li class = "style-item">
+                <input type = "checkbox" id = "draggable" class = "styles"> Draggable </input>
+            </li>
+            <li class = "style-item">
+                <input type = "checkbox" id = "gravity" class = "styles"> Gravity </input>
+            </li>                        
+    </div>
+    <div id = "main">
+        <button id = "myButton">My Button</button>
+    </div>
+    <script src="./js/app.js"></script>
+</body>
+</html>

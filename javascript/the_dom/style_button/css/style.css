@@ -1,0 +1,20 @@
+h1{
+    color: black;
+}
+#side-nav{
+    display: inline-block;
+    width: 30%;
+}
+#main{
+    display: inline-block;
+    width: 60%;
+}
+.style-item{
+    display: block;
+}
+#myButton{
+    position: fixed;
+    left: 50%;
+    top: 30%;
+    border-image: none;
+}
