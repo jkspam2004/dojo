@@ -4,7 +4,6 @@ function $dojo(id) {
     /* dojo(): get element from id input */
     function dojo() {
         this.Element = document.getElementById(id);
-        return this;
         // implicit return of "this"
     }
     /* html(content): change html content */

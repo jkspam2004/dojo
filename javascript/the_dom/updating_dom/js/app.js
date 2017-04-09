@@ -7,7 +7,6 @@ const propButton = document.getElementById("properties");
 const dummyText = document.getElementById("dummy-text");
 const mainDiv = document.getElementById("main");
 
-
 /* createText(): appends p element to div
  * input: key, content, div
  * returns: undefined

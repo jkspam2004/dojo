@@ -19,10 +19,17 @@ console.log("textnode", textnode.Element); // <h1>this is the text</h1>
 div.append(textnode.Element);
 
 /* Create a function that adds an event listener to an element */
-let listener = $dojo().create("h1").text("click me").eventListener("click", callback);
+let count = 0;
+let listener = $dojo().create("h1").text("Click Me").eventListener("click", callback);
 div.append(listener.Element);
 //callback should run when user clicks the h1 tag. 
 function callback(e) {
     console.log("callback invoked");
-    listener.text("You clicked me!");
+    count++;
+    console.log(count % 2);
+    if (count % 2 == 0) {
+        listener.text("Click Me");
+    } else {
+        listener.text("You clicked me!");
+    }
 }
