@@ -1,4 +1,5 @@
-Testing your code
+# Testing your code
+
 We're going to talk about two different ways you can test your project. You can
 open your html file using the browser by right clicking your HTML file and 
 selecting the option to open in the browser. This option is ok, but every time 
@@ -9,7 +10,7 @@ A better approach is to use the browser-sync package that we installed in the
 Welcome Chapter. From the root of your directory run the following command in 
 your terminal.
 
-browser-sync start --server --files "*.html, css/*.css, js/*.js"
+`browser-sync start --server --files "*.html, css/*.css, js/*.js"`
 
 
 Note: This will only work correctly if you used the same folder structure that 
