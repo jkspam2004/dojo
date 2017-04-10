@@ -72,10 +72,10 @@ var me = new createUser("Donald", "Duck", 7);
 console.log(`${me.first_name} ${me.last_name} ${me.age}`);
 
 /* Array methods
-let arr = [10, 11, 9, 6];
-for(var i = 0; i < arr.length; i++){
-  console.log(arr[i])
-}
+ * let arr = [10, 11, 9, 6];
+ * for(var i = 0; i < arr.length; i++){
+ *   console.log(arr[i])
+ * }
 */
 let arr = [10, 11, 9, 6];
 arr.forEach((v) => console.log(v));
