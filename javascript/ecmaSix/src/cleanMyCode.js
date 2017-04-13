@@ -31,18 +31,20 @@ let newuser = new User("Bob");
  *    }, 1000);
  * }
  */
-function Person() {
-    this.age = 0;
-    let intervalId = setInterval(() => { 
-        this.age++;
-        if (this.age > 1) { 
-            clearInterval(intervalId); 
-        } else {
-            console.log(this.age);
-        }
-    }, 1000);
+class Person {
+    constructor() {
+        this.age = 0;
+        let intervalId = setInterval(() => { 
+            this.age++;
+            if (this.age > 1) { 
+                clearInterval(intervalId); 
+            } else {
+                console.log(this.age);
+            }
+        }, 1000);
+    }
 }
-var bob = new Person();
+let bob = new Person();
 
 /* Set default parameter values
  * function createUser(first_name, last_name, age){
@@ -60,15 +62,18 @@ var bob = new Person();
  *     this.age = age;
 }
 */
-function createUser(first_name="Minnie", last_name="Mouse", age=5) {
-    this.first_name = first_name;
-    this.last_name = last_name;
-    this.age = age;
-    return this;
+//function createUser(first_name="Minnie", last_name="Mouse", age=5) {
+class NewUser {
+    constructor (first_name="Minnie", last_name="Mouse", age=5) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.age = age;
+        //return this;
+    }
 }
-var name = new createUser();
+let name = new NewUser();
 console.log(`${name.first_name} ${name.last_name} ${name.age}`);
-var me = new createUser("Donald", "Duck", 7);
+let me = new NewUser("Donald", "Duck", 7);
 console.log(`${me.first_name} ${me.last_name} ${me.age}`);
 
 /* Array methods

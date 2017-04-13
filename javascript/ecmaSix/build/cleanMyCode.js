@@ -46,8 +46,11 @@ var newuser = new User("Bob");
  *    }, 1000);
  * }
  */
-function Person() {
+
+var Person = function Person() {
     var _this = this;
+
+    _classCallCheck(this, Person);
 
     this.age = 0;
     var intervalId = setInterval(function () {
@@ -58,7 +61,8 @@ function Person() {
             console.log(_this.age);
         }
     }, 1000);
-}
+};
+
 var bob = new Person();
 
 /* Set default parameter values
@@ -77,19 +81,24 @@ var bob = new Person();
  *     this.age = age;
 }
 */
-function createUser() {
+//function createUser(first_name="Minnie", last_name="Mouse", age=5) {
+
+var NewUser = function NewUser() {
     var first_name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "Minnie";
     var last_name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Mouse";
     var age = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 5;
 
+    _classCallCheck(this, NewUser);
+
     this.first_name = first_name;
     this.last_name = last_name;
     this.age = age;
-    return this;
-}
-var name = new createUser();
+    //return this;
+};
+
+var name = new NewUser();
 console.log(name.first_name + " " + name.last_name + " " + name.age);
-var me = new createUser("Donald", "Duck", 7);
+var me = new NewUser("Donald", "Duck", 7);
 console.log(me.first_name + " " + me.last_name + " " + me.age);
 
 /* Array methods

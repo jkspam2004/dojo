@@ -6,6 +6,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 /* dom.js */
 
+/* var insertedNode = parentNode.insertBefore(newNode, referenceNode); */
 var Dom = function () {
     function Dom(defaultColor, secondaryColor) {
         _classCallCheck(this, Dom);
@@ -13,26 +14,69 @@ var Dom = function () {
         this.element = document.createElement("div");
         this.defaultColor = defaultColor;
         this.secondaryColor = secondaryColor;
+
+        this.addStyle();
+        this.addClickEvent();
+        this.addHoverInEvent();
+        this.addHoverOutEvent();
+        this.addToHtmlBody();
     }
+    /* set box background color to default */
+
 
     _createClass(Dom, [{
         key: "addStyle",
-        value: function addStyle() {}
+        value: function addStyle() {
+            this.element.style.border = "1px solid black";
+            this.element.style.height = "200px";
+            this.element.style.width = "200px";
+            this.element.style.backgroundColor = this.defaultColor;
+            this.element.style.margin = "0px auto";
+            this.element.style.textAlign = "center";
+            this.element.style.lineHeight = "180px";
+        }
+        /* clicking on box alerts the box has been clicked */
+
     }, {
         key: "addClickEvent",
-        value: function addClickEvent() {}
+        value: function addClickEvent() {
+            this.element.addEventListener("click", function () {
+                alert("Div has been clicked");
+            });
+        }
+        /* on hover in, box background color is blue */
+
     }, {
         key: "addHoverInEvent",
-        value: function addHoverInEvent() {}
+        value: function addHoverInEvent() {
+            var _this = this;
+
+            this.element.addEventListener("mouseenter", function () {
+                _this.element.style.backgroundColor = _this.secondaryColor;
+            });
+        }
+        /* on hover out, box background color is pink */
+
     }, {
         key: "addHoverOutEvent",
-        value: function addHoverOutEvent() {}
+        value: function addHoverOutEvent() {
+            var _this2 = this;
+
+            this.element.addEventListener("mouseleave", function () {
+                _this2.element.style.backgroundColor = _this2.defaultColor;
+            });
+        }
+        /* add div to body */
+
     }, {
         key: "addToHtmlBody",
-        value: function addToHtmlBody() {}
+        value: function addToHtmlBody() {
+            this.element.appendChild(document.createTextNode("Div"));
+            document.body.insertBefore(this.element, document.body.firstChild);
+        }
     }]);
 
     return Dom;
 }();
 
-new Dom("pink", "blue");
+var x = new Dom("pink", "blue");
