@@ -40,7 +40,7 @@ var Dom = function () {
     }, {
         key: "addClickEvent",
         value: function addClickEvent() {
-            this.element.addEventListener("click", function () {
+            this.element.addEventListener("click", function (e) {
                 alert("Div has been clicked");
             });
         }
@@ -51,7 +51,7 @@ var Dom = function () {
         value: function addHoverInEvent() {
             var _this = this;
 
-            this.element.addEventListener("mouseenter", function () {
+            this.element.addEventListener("mouseenter", function (e) {
                 _this.element.style.backgroundColor = _this.secondaryColor;
             });
         }
@@ -62,7 +62,7 @@ var Dom = function () {
         value: function addHoverOutEvent() {
             var _this2 = this;
 
-            this.element.addEventListener("mouseleave", function () {
+            this.element.addEventListener("mouseleave", function (e) {
                 _this2.element.style.backgroundColor = _this2.defaultColor;
             });
         }

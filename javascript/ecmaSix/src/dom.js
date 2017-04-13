@@ -25,19 +25,19 @@ class Dom {
     }
     /* clicking on box alerts the box has been clicked */
     addClickEvent(){
-        this.element.addEventListener("click", () => {
+        this.element.addEventListener("click", (e) => {
             alert("Div has been clicked");
         });
     }
     /* on hover in, box background color is blue */
     addHoverInEvent(){
-        this.element.addEventListener("mouseenter", () => {
+        this.element.addEventListener("mouseenter", (e) => {
             this.element.style.backgroundColor = this.secondaryColor;
         });
     }
     /* on hover out, box background color is pink */
     addHoverOutEvent(){
-        this.element.addEventListener("mouseleave", () => {
+        this.element.addEventListener("mouseleave", (e) => {
             this.element.style.backgroundColor = this.defaultColor;
         });
     }
