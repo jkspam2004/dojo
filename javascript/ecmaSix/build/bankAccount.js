@@ -19,6 +19,7 @@ var BankAccount = function () {
         this._checking = { balance: 0 };
         this._savings = { balance: 0 };
         /* account number should be random and should stay consistent per user  */
+        //Math.floor(Math.random() * 100000);
         var min = 10000;
         var max = 99999;
         _accountNum = Math.floor(Math.random() * (max - min + 1)) + min;

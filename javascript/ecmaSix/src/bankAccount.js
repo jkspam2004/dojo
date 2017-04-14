@@ -10,6 +10,7 @@ class BankAccount {
         this._checking = { balance: 0 };
         this._savings = { balance: 0 };
         /* account number should be random and should stay consistent per user  */
+        //Math.floor(Math.random() * 100000);
         let min = 10000;
         let max = 99999;
         _accountNum = Math.floor(Math.random() * (max - min + 1)) + min;
