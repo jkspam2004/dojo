@@ -49,3 +49,4 @@ translate all of ES6 JS located in `src` folder and place translations into `bui
 ## npm run watch
 watches files in `src` folder for changes and builds automatically
 
+
