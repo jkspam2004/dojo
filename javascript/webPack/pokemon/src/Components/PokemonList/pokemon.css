@@ -1,0 +1,29 @@
+.card{
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.card img{
+    width: 100%;
+}
+.card .card-block{
+    padding: 10px;
+}
+.card .card-title{
+    margin: 5px;
+}
+.card hr {
+    margin: 10px;
+}
+#mainButton{
+    background-color: transparent;
+    color: black;
+    border: 2px solid black;
+}
+#mainButton:hover{
+    background-color: #2565A2;
+    color: white;
+    transition: background-color 0.5s ease;;
+}

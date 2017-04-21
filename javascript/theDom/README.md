@@ -18,3 +18,10 @@ https://nodejs.org/en/
 
 ## run browser-sync to update browser page upon file modification
 `browser-sync start --server --files "*.html, js/*.js, css/*.css"`
+
+## Miscellaneous
+
+opposite of document.appendChild()
+document.body.insertBefore(this.element, document.body.firstChild);
+
+

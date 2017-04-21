@@ -34,12 +34,28 @@ Loaders are what really make Webpack special, loaders will take care of precompi
 -- package.json
 -- .babelrc
 -- webpack.config.js
--- build
+-- build/
    -- index.html
--- src
+-- src/
    -- index.js
    -- index.css
--- node modules
+   -- Components/
+      -- Card/
+         -- Card.css
+         -- Card.html
+         -- Card.js
+      -- Modal/
+         -- Modal.css
+         -- Modal.html
+         -- Modal.js
+-- node modules/
+
+### set up .babelrc
+```
+{
+    'presets': ["env"]
+}
+```
 
 ### Webpack config
 webpack.config.js
@@ -60,7 +76,8 @@ const webpackConfig = {
     output: {
         path: buildPath,
         filename: "build.js"
-    }
+    },
+    devtools: "#inline-source-map", // debug error in source code
 
     /* loaders */
     module: {
@@ -73,7 +90,7 @@ const webpackConfig = {
                 test: /\.(jpg|png|svg)$/,
                 loader: "url-loader",
                 options: {
-                    limits: 200000, // 200 kb file size limit
+                    limits: 25000, // 25 kb file size limit
                 }
             },
             {
@@ -86,7 +103,7 @@ const webpackConfig = {
                 use: "babel-loader"
             }
         ]
-    }
+    },
 
     /* dev server */
     devServer: {
@@ -99,12 +116,12 @@ const webpackConfig = {
             errors: true,
             warnings: true
         }
-    }
+    },
 
     /* plugins */
     plugins: [
         new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
 }
 
 /* export our configuration */
@@ -112,6 +129,33 @@ module.exports = function() {
     return webpackConfig;
 }
 
+```
+
+### build/index.html
+main skeleton html file that includes build.js 
+```
+<script src="build.js"></script>
+```
+
+### src/index.js
+imports src/index.css and main component
+```
+import "./index.css";
+import Card from "./Components/Card/Card.js";
+
+```
+
+### src/index.css
+imports bootstrap
+```
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css");
+```
+
+### src/Components/Card/Card.js
+```
+import "./Card.css";
+import card from "./Card.html"; // imports file as a string
+import Modal from "./../Modal/Modal.js";
 ```
 
 ### npm scripts
@@ -124,3 +168,9 @@ package.json
 
 ### start dev server
 `npm run start`
+
+### webpack --watch
+build bundle file is served from memory.  to serve from disk, do webpack --watch
+executable location:
+~/Git/dojo/javascript/webPack/template/node_modules/.bin/webpack
+webpack-dev-server

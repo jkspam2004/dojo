@@ -3,8 +3,9 @@ import card from "./Card.html"; // imports file as a string
 import Modal from "./../Modal/Modal.js";
 
 class Card {
-    constructor() {
+    constructor(i) {
         // convert string to html element
+        console.log(i);
         this.ele = document.createRange().createContextualFragment(card);
         this.buttonEvent();
         return this.ele;
@@ -17,8 +18,8 @@ class Card {
     }
 }
 
-export default function() {
-    return new Card();
+export default function(id) {
+    return new Card(id);
 }
 
 /*

@@ -16,6 +16,7 @@ const webpackConfig = {
         filename: "build.js"
     },
     devtool: "#inline-source-map",
+
     /* loaders */
     module: {
         rules: [
