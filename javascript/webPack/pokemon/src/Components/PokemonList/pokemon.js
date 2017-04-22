@@ -4,11 +4,18 @@ import Pokedex from "./../Pokedex/pokedex.js";
 
 class Pokemon {
     constructor(pokeId) {
-        this.div = document.createElement("div");
+        this.div = document.createElement("div"); // placeholder
         this.ele = document.createRange().createContextualFragment(pokemon);
         this.buttonEvent();
         $.get(`http://pokeapi.co/api/v2/pokemon/${pokeId}`, (data) => this.setPoke(data), "json");
 
+        /*  returning this.ele won't work. if we returned this.ele, the moment this.ele 
+            gets appended to the dom (index.js), the fragment will be lost. this.ele will
+            be null. the appendChild happens first because of the callback in $.get() which
+            would not have completed and depends on this.ele in addImage(). async issue.
+            thus, we create a placeholder (this.div) and hold on to this.ele till the very
+            end and append it to this.div  
+        */
         return this.div;
     }
     setPoke(data) {
@@ -17,15 +24,16 @@ class Pokemon {
         this.types = data.types;
         this.weight = data.weight;
         this.addImage();
+        this.div.appendChild(this.ele);
     }
     addImage() {
-        //console.log("this.ele: ", this.ele);
         let elCard = this.ele.querySelector(".card");
-        console.log("selector: ", elCard);
         let img = elCard.querySelector("img");
         img.setAttribute("src", this.img);  
+        let h3 = elCard.querySelector("h3");
+        h3.appendChild(document.createTextNode(this.name));
+        console.log("selector: ", elCard);
 
-        this.div.appendChild(this.ele);
     }
     buttonEvent() {
         this.ele.getElementById("mainButton").addEventListener("click", (e) => {

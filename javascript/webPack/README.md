@@ -31,6 +31,7 @@ Loaders are what really make Webpack special, loaders will take care of precompi
 `npm install webpack-dev-server --save-dev`
 
 ## Folder Structure
+```
 -- package.json
 -- .babelrc
 -- webpack.config.js
@@ -49,6 +50,7 @@ Loaders are what really make Webpack special, loaders will take care of precompi
          -- Modal.html
          -- Modal.js
 -- node modules/
+```
 
 ### set up .babelrc
 ```
