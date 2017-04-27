@@ -1,0 +1,27 @@
+.parent{
+    margin-top: 50px;
+    background-color: #307F83;
+    color: #82BDC0;
+}
+.parent *{
+    margin-top: 0px;
+}
+.child{
+    background-color: #D98F4F;
+    color: #FFD2AB;
+}
+.child input {
+    color: black;
+    background-color: #FFD2AB;
+}
+.grand-child{
+    background-color: #3EAB45;
+    color: #95DD9A;
+    font-size: 12px;
+}
+.parent, .child, .grand-child {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+}
