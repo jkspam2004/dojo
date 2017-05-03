@@ -279,6 +279,12 @@ handleClick = (e) => {
 * mousenter => onMouseEnter
 * mouseleave => onMouseLeave
 * input => onInput
+* onKeyDown 
+* onKeyPress 
+* onKeyUp
+* onFocus
+* onBlur
+* onSubmit
 
 ### tag attributes
 * class => className ie. <div className="main"></div>

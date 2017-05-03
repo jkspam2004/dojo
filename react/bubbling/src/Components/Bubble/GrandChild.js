@@ -16,10 +16,6 @@ class GrandChild extends React.Component {
         this.props.updateUser("first_name", "Grand");
         this.props.updateUser("last_name", "Child");
     }
-    componentDidUpdate(prevProps, prevState) {
-        //this.props.updateUser("first_name", this.state.first_name);
-        //this.props.updateUser("last_name", this.state.last_name);
-    }
     componentWillReceiveProps(props) {
         this.setState({
             first_name: props.user.first_name,

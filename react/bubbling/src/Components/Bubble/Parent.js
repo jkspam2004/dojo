@@ -12,7 +12,9 @@ class Parent extends React.Component {
     updateUser = (key, value) => {
         console.log("Updating user as Parent");
         this.setState({
-            [key]: value
+            // key needs to be in brackets because it is a variable. bracket interpolates.
+            // otherwise, we would be updating this.state.key instead of this.state.first_name
+            [key]: value 
         });
     }
     render() {
