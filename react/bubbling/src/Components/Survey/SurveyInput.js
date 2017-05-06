@@ -6,17 +6,23 @@ import "./Survey.css";
 class SurveyInput extends React.Component {
     constructor(props) {
         super(props);
+        this.state = props.results;
     }
     handleUpdate = (e) => {
         console.log(`name: ${e.target.name}, value: ${e.target.value}`);
         console.log(`which: ${e.which}, keyCode: ${e.keyCode}`);
         this.props.updateResults(e.target.name, e.target.value);
-        e.target.value = "";
+        //e.target.value = "";
+    }
+    componentWillReceiveProps(props) {
+        this.setState({
+            name: props.results.name
+        });
     }
     render() {
         return (
             <div>
-                <p>Name: <input type="text" name="name" onBlur={this.handleUpdate} /></p>
+                <p>Name: <input type="text" name="name" value={this.state.name}  onChange={this.handleUpdate} /></p>
                 <p>Course: 
                     <select className="form-control" name="course" onChange={this.handleUpdate} > 
                         <option>React</option>
@@ -35,7 +41,7 @@ class SurveyInput extends React.Component {
                     </select>
                 </p>
                 <p>Comment:</p>
-                    <textarea name="comment" rows="3" cols="20" onBlur={this.handleUpdate}></textarea> 
+                    <textarea name="comment" rows="3" cols="20" onKeyUp={this.handleUpdate}></textarea> 
             </div>
         );
     }

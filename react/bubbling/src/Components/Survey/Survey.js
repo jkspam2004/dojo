@@ -10,17 +10,12 @@ class Survey extends React.Component {
         super(props);
 
         let results = {
-            name: "",
+            name: "name goes here",
             course: "React",
             rating: "5",
             comment: ""
         };
         this.state = results;
-/*
-        this.state = {
-            results: results
-        }
-*/
     }
     updateResults = (key, value) => {
         this.setState({
@@ -32,7 +27,7 @@ class Survey extends React.Component {
             <div className="row">
                 <div className="col-md-6 survey">
                     <h2>Survey</h2>
-                    <SurveyInput updateResults={this.updateResults} />
+                    <SurveyInput results={this.state} updateResults={this.updateResults} />
                 </div>
                 <div className="col-md-6 results">
                     <h2>Results</h2>

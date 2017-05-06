@@ -1,0 +1,15 @@
+.taskList {
+    text-align: center;
+}
+.regular {
+    color: green;
+}
+.important {
+    color: orange;
+}
+.critical {
+    color: red;
+}
+.myTable {
+    margin-top: 20px;
+}

@@ -4,22 +4,27 @@
 use tempate from webpack
 
 ## Dependencies
-React
+
+### React
 `npm install react react-dom --save`
 
-JSX - allows us to define HTML directly in our JavaScript file
+### JSX - allows us to define HTML directly in our JavaScript file
 enable Babel to understand JSX
 `npm install --save-dev babel-preset-react-es2015`
 
-Set properties of our class easier
+### Set properties of our class easier
 `npm install --save-dev babel-plugin-transform-class-properties`
 
-.babelrc
+### .babelrc
 ```
 {
   "presets": ["react-es2015"],
   "plugins": ["transform-class-properties"]
 }
+
+### Routing
+npm install react-router react-router-dom --save
+
 ```
 
 ## File Structure
