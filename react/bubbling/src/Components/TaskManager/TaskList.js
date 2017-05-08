@@ -1,14 +1,14 @@
 /* TaskList */
 
 import React from "react";
-import TaskItem from "./TaskItem.js";
+import TaskItems from "./TaskItems.js";
 import TaskInput from "./TaskInput.js";
 import TaskSearch from "./TaskSearch.js";
 import "./Task.css";
 
 let tasks = [
-    { task_item: "Learn React", priority: "regular" },
-    { task_item: "Sleep 8 hours", priority: "regular" }
+    { task_item: "Learn React", priority: "regular", deleted: false },
+    { task_item: "Sleep 8 hours", priority: "regular", deleted: false }
 ]
 class TaskList extends React.Component {
     constructor(props) {
@@ -18,6 +18,8 @@ class TaskList extends React.Component {
             searchTerm: "" 
         }
         this.search = this.search.bind(this); // instead of arrow function
+        this.changePriority = this.changePriority.bind(this);
+        this.deleteTask = this.deleteTask.bind(this);
     }
     search(e) {
         this.setState({
@@ -36,46 +38,37 @@ class TaskList extends React.Component {
             tasks: newTaskArr
         }); 
     }
-    deleteTask = (taskId) => {
-        let currTaskArr = this.state.tasks.slice();
-        currTaskArr.splice(taskId, 1);
+    deleteTask(taskId) {
+        let taskArr = this.state.tasks.slice();
+        taskArr.splice(taskId, 1);
+
         this.setState({
-            tasks: currTaskArr
+            tasks: taskArr
+        });
+
+        /* if we had an id, can remove the item with filter()
+        taskArr = taskArr.filter( task => {
+            return task.id != taskId;
+        });
+        */
+    }
+    changePriority(id, priority) {
+        let tasks = this.state.tasks;
+        tasks[id].priority = priority;
+        this.setState({
+            tasks: tasks
         });
     }
     render() {
-        let taskList = this.state.tasks.map((task, index) => {
-            let task_id = "task_" + index
-            if (!this.state.searchTerm) return <TaskItem key={index} task_id={index} task={task} name="priority" deleteTask={this.deleteTask} />
-            const regEx = new RegExp(this.state.searchTerm, 'gi'); // create regex based on search term to filter
-            return regEx.test(task.task_item) && <TaskItem key={index} task_id={index} task={task} name="priority" deleteTask={this.deleteTask} />
-        });
+        console.log("render: ", this.state.tasks);
         return (
             <div className="taskList">
                 <h1>Task Manager</h1>
-                {/*
-                <div className="row">
-                    <div className="col-sm-offset-3 col-sm-1">
-                        <label>Filter:</label>
-                    </div>
-                    <div className="col-sm-3">
-                        <input className="form-control" type="text" onChange={this.search} placeholder="search" value={this.state.searchTerm} />
-                    </div>
-                    <div className="col-sm-1">
-                        <input type="submit" className="btn btn-primary" value="Clear" onClick={this.clearSearch} />
-                    </div>
-                </div>
-                */}
+                {/* search box */}
                 <TaskSearch searchTerm={this.state.searchTerm} clearSearch={this.clearSearch} search={this.search} />
-
-                <table className="table table-striped table-bordered myTable">
-                    <thead>
-                        <tr><th>Task</th><th>Priority</th><th>Action</th></tr>
-                    </thead>
-                    <tbody>
-                        {taskList}
-                    </tbody>
-                </table>
+                {/* task items in table format */}
+                <TaskItems tasks={this.state.tasks} deleteTask={this.deleteTask} changePriority={this.changePriority} searchTerm={this.state.searchTerm} />
+                {/* add new task form */}
                 <TaskInput addTask={this.addTask} />
             </div>
         );
@@ -83,4 +76,3 @@ class TaskList extends React.Component {
 }
 export default TaskList;
 
-// http://stackoverflow.com/questions/40223854/angular-js-ng-repeat-filter-alternative-in-react-js

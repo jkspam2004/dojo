@@ -294,4 +294,7 @@ handleClick = (e) => {
 ### tag attributes
 * class => className ie. <div className="main"></div>
 
-
+## References
+* http://stackoverflow.com/questions/41233458/react-child-component-not-updating-after-parent-state-change
+* http://stackoverflow.com/questions/43230622/reactjs-how-to-delete-item-from-list
+* https://danmartensen.svbtle.com/javascripts-map-reduce-and-filter
