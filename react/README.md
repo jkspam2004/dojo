@@ -169,40 +169,41 @@ Issues with setState()
 3. setState is not sufficient to capture all component state
 
 ## Life Cycle methods
-* constructor() 
+
+### constructor() 
 optional. always add super(props) if constructor added otherwise 
 this.props will be undefined. should only be used to set state properties or to 
 manipulate prop values
 
-* render()
+### render()
 required. render runs every time that component state changes
 should just be returning HTML for component
 
-* setState({})
-- setState enqueues changes to the component state and tells React that this 
+### setState({})
+* setState enqueues changes to the component state and tells React that this 
 component and its children need to be re-rendered with the updated state
-- is a request rather than an immediate command to update the component
--  does not always immediately update the component. It may batch or defer 
+* is a request rather than an immediate command to update the component
+*  does not always immediately update the component. It may batch or defer 
 the update until later
 
-* componentWillMount()
+### componentWillMount()
 invoked immediately before mounting occurs.
 called before render()
 
-* componentDidMount() 
-- runs immediately after render runs (for interacting with the DOM)
-- takes care of events that should happen afer HTML has been added to the DOM
-- do data fetch from server here
-- can setState here
+### componentDidMount() 
+* runs immediately after render runs (for interacting with the DOM)
+* takes care of events that should happen afer HTML has been added to the DOM
+* do data fetch from server here
+* can setState here
 
-* componentWillUpdate(nextProps, nextState) {}
-- runs right before html is re-rendered
-- is invoked immediately before new props or state are being received (before state changes)
-- not called for initial render
-- use this to perform preparation before an update occurs
-- cannot call this.setState() here
-- get a sneak peek at nextState
-- this.state is behind nextState
+### componentWillUpdate(nextProps, nextState) {}
+* runs right before html is re-rendered
+* is invoked immediately before new props or state are being received (before state changes)
+* not called for initial render
+* use this to perform preparation before an update occurs
+* cannot call this.setState() here
+* get a sneak peek at nextState
+* this.state is behind nextState
 
 If we update a state using this.setState(), React will run this method and then re-render HTML
 nextProps: values of props after the change will take place. this.props not updated yet
@@ -218,13 +219,13 @@ nextState: values of state after change will take place
     }
 ```
 
-* componentDidUpdate(prevProps, prevState) {}
-- runs every time your component is updated
-- runs after html is re-rendered and after state changes
-- is invoked immediately after updating occurs
-- use this as to operate on the DOM when the component has been updated
-- use this to do network requests as long as you compare the current props to previous props
-- this.state is ahead of prevState
+### componentDidUpdate(prevProps, prevState) {}
+* runs every time your component is updated
+* runs after html is re-rendered and after state changes
+* is invoked immediately after updating occurs
+* use this as to operate on the DOM when the component has been updated
+* use this to do network requests as long as you compare the current props to previous props
+* this.state is ahead of prevState
 
 React will re-render your component using the new values of state and then run componentDidUpdate()
 prevProps: values of props before change takes place. this.props has alreadby been updated
@@ -247,18 +248,18 @@ Be careful with componentWillUpdate and componentDidUpdate(). React will run
 these internally sometimes if you didn't change the state of values.  Always
 check current state and next or previous state.
 
-* componentWillUnmount() {}
-- invoked immediately before a component is unmounted and destroyed.
-- clean up should be done in this method. ie. stopping interval, canceling get requests,
+### componentWillUnmount() {}
+* invoked immediately before a component is unmounted and destroyed.
+* clean up should be done in this method. ie. stopping interval, canceling get requests,
 removing eventListeners attached to window object.
-- logic to remove a component should be done by the component that added it to the DOM
-- removing a component from its parent is considered good practice. 
+* logic to remove a component should be done by the component that added it to the DOM
+* removing a component from its parent is considered good practice. 
 you should never have a component directly remove itself from the DOM.
 
-* componentWillReceiveProps() {}
--  is triggered if the values passed into the component are different from what they were before
+### componentWillReceiveProps() {}
+*  is triggered if the values passed into the component are different from what they were before
 
-### Life Cycle Order
+## Life Cycle Order
 1. constructor
 2. render
 3. componentDidMount

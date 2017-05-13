@@ -1,6 +1,6 @@
 # React App
 
-## Installation
+## Installation (global)
 `npm install -g create-react-app`
 
 ## Starting Project
