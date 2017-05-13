@@ -279,6 +279,18 @@ handleClick = (e) => {
     alert("Hello, ", + this.name);
 }
 
+## import/export
+
+`import React, {Component} from 'react';`
+Here React is a default that was exported by react.
+Component in the curly braces is one class that was exported by react.
+
+```
+export default EventDay;
+export {EventDashboard, EventDay};
+```
+You can only export one default class, but you can export multiple classes.
+
 ### React events
 * onclick => onClick
 * mousenter => onMouseEnter
@@ -298,3 +310,9 @@ handleClick = (e) => {
 * http://stackoverflow.com/questions/41233458/react-child-component-not-updating-after-parent-state-change
 * http://stackoverflow.com/questions/43230622/reactjs-how-to-delete-item-from-list
 * https://danmartensen.svbtle.com/javascripts-map-reduce-and-filter
+
+## More Packages
+npm install material-ui --save
+npm install react-tap-event-plugin --save // for material-ui
+npm install prop-types --save // runtime type checking for React props and similar objects
+

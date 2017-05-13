@@ -2,18 +2,18 @@
 <head>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js'></script>
     <script type='text/javascript'>
-       var myAppModule = angular.module('myApp', []);
-       myAppModule.controller('studentsController', function (){
-          this.students = [
-              {name: 'Mike', age: 34}, 
-              {name: 'John', age: 24}, 
-              {name: 'Trey', age: 24}, 
-              {name: 'India', age: 35}
-          ];
-          this.addStudent = function(){
-          this.students.push(this.newStudent);
-          this.newStudent = {};
-       }
+        var myAppModule = angular.module('myApp', []);
+        myAppModule.controller('studentsController', function (){
+            this.students = [
+                {name: 'Mike', age: 34}, 
+                {name: 'John', age: 24}, 
+                {name: 'Trey', age: 24}, 
+                {name: 'India', age: 35}
+            ];
+            this.addStudent = function(){
+                this.students.push(this.newStudent);
+                this.newStudent = {};
+            }
       });
     </script>
 </head>
