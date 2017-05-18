@@ -27,7 +27,6 @@ class Events extends React.Component {
     render() {
         return (
             <div id="events" className="col-lg-9 col-sm-9 col-xs-8 main-content">
-                
                 <EventsHeader url={this.props.match.url} />
                 <Route exact path={`${this.props.match.url}`} component={EventDashboard} />
                 <Route path={`${this.props.match.url}/:day`} component={EventDay} />

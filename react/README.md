@@ -21,11 +21,10 @@ enable Babel to understand JSX
   "presets": ["react-es2015"],
   "plugins": ["transform-class-properties"]
 }
+```
 
 ### Routing
 npm install react-router react-router-dom --save
-
-```
 
 ## File Structure
 ```

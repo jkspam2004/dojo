@@ -21,7 +21,10 @@ class TaskItems extends React.Component {
                                     {task.task_item}
                                 </td>
                                 <td>
-                                    <select name="priority" value={task.priority} onChange={(e) => this.props.changePriority(index, e.target.value)} className="form-control">
+                                    <select name="priority" 
+                                        value={task.priority} 
+                                        onChange={(e) => this.props.changePriority(index, e.target.value)} 
+                                        className="form-control">
                                         <option value="regular">Regular</option> 
                                         <option value="important">Important</option>
                                         <option value="critical">Critical</option>
