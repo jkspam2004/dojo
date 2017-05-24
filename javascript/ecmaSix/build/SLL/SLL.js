@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.SLL = undefined;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* SLL class - singly linked list */
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* SLL - singly linked list */
 
-var _SLNode = require("./SLNode");
+var _SLLNode = require("./SLLNode.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -17,116 +17,138 @@ var SLL = function () {
 
         this.head = null;
     }
-
-    /* add new node to the end of the list */
+    /* print values of the list */
 
 
     _createClass(SLL, [{
-        key: "add",
-        value: function add(val) {
-            if (!this.head) {
-                this.head = new _SLNode.SLNode(val);
-                return this;
+        key: "print",
+        value: function print() {
+            if (this.head) {
+                this.head.print();
+            } else {
+                console.log("empty list");
             }
-            var curr = this.head;
-            while (curr.next) {
-                curr = curr.next;
+        }
+        /* insert new node to the front of the list */
+
+    }, {
+        key: "insertFront",
+        value: function insertFront(val) {
+            if (this.head) {
+                var newNode = new _SLLNode.SLLNode(val);
+                newNode.next = this.head;
+                this.head = newNode;
+            } else {
+                this.head = new _SLLNode.SLLNode(val);
             }
-            curr.next = new _SLNode.SLNode(val);
             return this;
         }
+        /* add a new node to the end of the list */
 
+    }, {
+        key: "add",
+        value: function add(val) {
+            if (this.head) {
+                this.head.add(val);
+            } else {
+                this.head = new _SLLNode.SLLNode(val);
+            }
+            return this;
+        }
+        /* insert new node before first occurence of node with given value */
+
+    }, {
+        key: "insertBefore",
+        value: function insertBefore(val, targetVal) {
+            if (this.head) {
+                if (this.head.val === targetVal) {
+                    this.insertFront(val);
+                } else {
+                    this.head.insertBefore(val, targetVal);
+                }
+            } else {
+                this.head = new _SLLNode.SLLNode(val);
+            }
+            return this;
+        }
+        /* insert new node after node with given value */
+
+    }, {
+        key: "insertAfter",
+        value: function insertAfter(val, targetVal) {
+            if (this.head) {
+                this.head.insertAfter(val, targetVal);
+            } else {
+                this.add(val);
+            }
+            return this;
+        }
         /* remove node with given value */
 
     }, {
         key: "remove",
         value: function remove(val) {
-            if (!this.head) {
-                return this;
-            }
-            var curr = this.head;
-            if (curr.val == val) {
-                this.head = curr.next;
-                return this;
-            }
-            while (curr.next) {
-                if (curr.next.val == val) {
-                    curr.next = curr.next.next ? curr.next.next : null;
+            if (this.head) {
+                if (this.head.val === val) {
+                    this.head = this.head.next;
                 } else {
-                    curr = curr.next;
+                    this.head.remove(val);
                 }
+            } else {
+                // empty list. do nothing
             }
             return this;
         }
+        /* remove nodes with duplicate values from list */
 
-        /* check if list contains node with given value */
+    }, {
+        key: "removeDuplicates",
+        value: function removeDuplicates() {
+            if (this.head) {
+                this.head.removeDuplicates();
+            } else {
+                // empty list. do nothing
+            }
+            return this;
+        }
+        /* check if list contains a node with a given value 
+         * returns true if found, false otherwise 
+         */
 
     }, {
         key: "contains",
         value: function contains(val) {
-            if (!this.head) {
-                return this;
-            }
-            var curr = this.head;
-            while (curr) {
-                if (curr.val == val) {
-                    return true;
-                } else {
-                    curr = curr.next;
-                }
-            }
-            return false;
-        }
-
-        /* print out the list */
-
-    }, {
-        key: "show",
-        value: function show() {
-            var curr = this.head;
-            while (curr) {
-                console.log(curr.val);
-                curr = curr.next;
-            }
-            return;
-        }
-
-        /* insert node with given value before node with given value */
-
-    }, {
-        key: "insertBefore",
-        value: function insertBefore(val, before) {
-            if (!this.contains(before)) {
+            if (this.head) {
+                return this.head.contains(val);
+            } else {
                 return false;
             }
-            var curr = this.head;
-            var prev = curr;
+        }
+        /* reverse: reverse list iteratively */
 
-            if (curr.val == before) {
-                var newNode = new _SLNode.SLNode(val);
-                newNode.next = curr;
-
-                this.head = newNode;
-                return true;
+    }, {
+        key: "reverse",
+        value: function reverse() {
+            if (this.head) {
+                var reversed = this.head.reverse();
+                this.head = reversed;
+            } else {
+                // empty list. do nothing
             }
+            return this;
+        }
+        /* reverse_recursive: reverse list recursively */
 
-            while (curr) {
-                curr = curr.next;
-                prev.next = curr;
-                console.log(curr.val);
-                if (curr.val == before) {
-                    var _newNode = new _SLNode.SLNode(val);
-                    _newNode.next = curr;
-                    if (prev == this.head) {
-                        this.head = _newNode;
-                    } else {
-                        prev.next = _newNode;
-                    }
-                    return true;
-                }
-                prev = prev.next;
+    }, {
+        key: "reverse_recursively",
+        value: function reverse_recursively() {
+            if (this.head) {
+                var reversed = this.head.reverse_recursively(this.head);
+                this.head = reversed;
+            } else {
+                // empty list. do nothing
             }
-            return false;
+            return this;
         }
     }]);
 

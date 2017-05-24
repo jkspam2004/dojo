@@ -42,6 +42,11 @@ ecmaSix
 ## .babelrc
 tell Babel to which version of JavaScript to translate ES6 code. If blank, Babel won't translate
 and just copy content as is.  Include babel-preset-env as a dev dependency to set up configuration.
+```
+{
+    'presets': ["env"]
+}
+```
 
 ## npm run build
 translate all of ES6 JS located in `src` folder and place translations into `build` folder
