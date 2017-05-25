@@ -145,6 +145,26 @@ var SLLNode = function () {
             }
             return prev;
         }
+        /* has_cycle: determine if linked list has a cycle
+           returns true if has cycle, false if no cycle
+         */
+
+    }, {
+        key: "has_cycle",
+        value: function has_cycle() {
+            var slow = this;
+            var fast = this.next ? this.next.next : null;
+
+            while (slow && fast) {
+                if (slow == fast) {
+                    return true;
+                }
+
+                slow = slow.next;
+                fast = fast.next ? fast.next.next : null;
+            }
+            return false;
+        }
     }]);
 
     return SLLNode;

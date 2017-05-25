@@ -150,6 +150,19 @@ var SLL = function () {
             }
             return this;
         }
+        /* has_cycle: determine if linked list has a cycle
+           returns true if has cycle, false if no cycle
+         */
+
+    }, {
+        key: "has_cycle",
+        value: function has_cycle() {
+            if (this.head) {
+                return this.head.has_cycle();
+            } else {
+                return false;
+            }
+        }
     }]);
 
     return SLL;

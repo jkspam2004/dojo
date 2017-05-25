@@ -108,6 +108,16 @@ class SLL {
         }
         return this;
     }
+    /* has_cycle: determine if linked list has a cycle
+       returns true if has cycle, false if no cycle
+     */
+    has_cycle() {
+        if (this.head) {
+            return this.head.has_cycle();
+        } else {
+            return false;
+        }
+    }
 
 }
 export { SLL };

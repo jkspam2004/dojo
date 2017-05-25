@@ -107,6 +107,23 @@ class SLLNode {
         }
         return prev;
     }
+    /* has_cycle: determine if linked list has a cycle
+       returns true if has cycle, false if no cycle
+     */
+    has_cycle() {
+        let slow = this;
+        let fast = this.next ? this.next.next : null;
+
+        while (slow && fast) {
+            if (slow == fast) {
+                return true 
+            }
+
+            slow = slow.next;
+            fast = fast.next ? fast.next.next : null;
+        }
+        return false;
+    }
 }
 
 /* reverse_recursive: reverse list recursively */
