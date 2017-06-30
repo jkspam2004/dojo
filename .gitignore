@@ -3,6 +3,7 @@
 node_modules/
 bower_components/
 
+build/
 djangoEnv/
 sqlite3
 npm-debug.log*

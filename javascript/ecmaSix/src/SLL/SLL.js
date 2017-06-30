@@ -5,7 +5,7 @@ import { SLLNode } from './SLLNode.js';
 class SLL {
     constructor() {
         this.head = null;
-    } 
+    }
     /* print values of the list */
     print() {
         if (this.head) {
@@ -28,7 +28,7 @@ class SLL {
     /* add a new node to the end of the list */
     add(val) {
         if (this.head) {
-            this.head.add(val); 
+            this.head.add(val);
         } else {
             this.head = new SLLNode(val);
         }
@@ -69,6 +69,19 @@ class SLL {
         }
         return this;
     }
+    /* remove all nodes with given value */
+    removeAll(val) {
+        if (this.head) {
+            if (this.head.val === val) {
+                this.head = this.head.next;
+            }
+            this.head.removeAll(val);
+        } else {
+            // empty list. do nothing
+        }
+        return this;
+    }
+
     /* remove nodes with duplicate values from list */
     removeDuplicates() {
         if (this.head) {
@@ -78,8 +91,8 @@ class SLL {
         }
         return this;
     }
-    /* check if list contains a node with a given value 
-     * returns true if found, false otherwise 
+    /* check if list contains a node with a given value
+     * returns true if found, false otherwise
      */
     contains(val) {
         if (this.head) {

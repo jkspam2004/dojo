@@ -3,7 +3,7 @@
 class SLLNode {
     constructor(val) {
         this.next = null;
-        this.val = val; 
+        this.val = val;
     }
     /* print values of the list */
     print() {
@@ -63,7 +63,21 @@ class SLLNode {
                 break;
             }
             prev = current;
-        } 
+        }
+    }
+    /* remove all nodes with given value */
+    removeAll(val) {
+        let current = this;
+        let prev = this;
+
+        while (current.next) {
+            current = current.next;
+            if (current.val === val) {
+                prev.next = current.next; // remove current
+            } else {
+                prev = current;
+            }
+        }
     }
     /* remove nodes with duplicate values from list */
     removeDuplicates() {
@@ -116,7 +130,7 @@ class SLLNode {
 
         while (slow && fast) {
             if (slow == fast) {
-                return true 
+                return true
             }
 
             slow = slow.next;
@@ -135,12 +149,12 @@ SLLNode.prototype.reverse_recursively = function (current) {
     let next = current.next;
     next.next = current;
     current.next = null;
-    return head; 
+    return head;
 }
-    
+
 export { SLLNode };
 
-/*
+/* Notes:
     while (current) { // at the last node, you enter loop and move up current
         current = current.next
     }
